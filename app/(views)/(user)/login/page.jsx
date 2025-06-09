@@ -17,70 +17,22 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg, #232526 0%, #414345 100%)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "Inter, sans-serif",
-      }}
-    >
+    <div className="min-h-screen bg-gradient-to-br from-[#232526] to-[#414345] flex items-center justify-center font-sans">
       <form
         onSubmit={(e) => e.preventDefault()}
-        style={{
-          background: "rgba(255,255,255,0.05)",
-          borderRadius: "20px",
-          boxShadow: "0 8px 32px 0 rgba(31,38,135,0.37)",
-          backdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,255,0.18)",
-          padding: "40px 32px",
-          width: "350px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-        }}
+        className="bg-white/5 rounded-2xl shadow-lg backdrop-blur-md border border-white/20 px-8 py-10 w-[350px] flex flex-col gap-6"
       >
-        <h2
-          style={{
-            color: "#fff",
-            textAlign: "center",
-            marginBottom: "8px",
-            letterSpacing: "1px",
-          }}
-        >
+        <h2 className="text-white text-center mb-2 tracking-wide text-2xl font-semibold">
           Welcome Back
         </h2>
-        <p
-          style={{
-            color: "#aaa",
-            textAlign: "center",
-            marginBottom: "16px",
-            fontSize: "15px",
-          }}
-        >
+        <p className="text-gray-400 text-center mb-4 text-[15px]">
           Sign in with your Google account
         </p>
         <button
           type="button"
           onClick={handleGoogleSignIn}
           disabled={isLoading}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            padding: "12px",
-            borderRadius: "8px",
-            border: "1px solid rgba(255,255,255,0.2)",
-            background: "rgba(255,255,255,0.1)",
-            color: "#fff",
-            fontWeight: "bold",
-            fontSize: "16px",
-            cursor: "pointer",
-            transition: "background 0.2s",
-          }}
+          className="flex items-center justify-center gap-2 p-3 rounded-lg border border-white/20 bg-white/10 text-white font-bold text-lg cursor-pointer transition-colors hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
