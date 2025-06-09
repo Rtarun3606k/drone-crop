@@ -105,13 +105,15 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <div className="flex items-center">
                   {session.user?.image ? (
-                    <Image
-                      src={session.user.image}
-                      alt={session.user.name || "User profile"}
-                      width={32}
-                      height={32}
-                      className="rounded-full"
-                    />
+                    <Link href="/profile" className="flex items-center">
+                      <Image
+                        src={session.user.image}
+                        alt={session.user.name || "User profile"}
+                        width={32}
+                        height={32}
+                        className="rounded-full"
+                      />
+                    </Link>
                   ) : (
                     <div className="h-8 w-8 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center">
                       <span className="text-green-700 dark:text-green-300 font-medium text-sm">
@@ -121,11 +123,14 @@ const Navbar = () => {
                       </span>
                     </div>
                   )}
-                  <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
+                  <Link
+                    href={"/profile"}
+                    className="ml-2 text-sm text-gray-700 dark:text-gray-300"
+                  >
                     {session.user?.name?.split(" ")[0] ||
                       session.user?.email?.split("@")[0] ||
                       "User"}
-                  </span>
+                  </Link>
                 </div>
                 <button
                   onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
@@ -265,9 +270,12 @@ const Navbar = () => {
                     </span>
                   </div>
                 )}
-                <span className="ml-3 text-base font-medium text-gray-800 dark:text-gray-200">
+                <Link
+                  href={"/profile"}
+                  className="ml-3 text-base font-medium text-gray-800 dark:text-gray-200"
+                >
                   {session.user?.name || session.user?.email || "User"}
-                </span>
+                </Link>
               </div>
               <div className="mt-3 space-y-1">
                 <Link
