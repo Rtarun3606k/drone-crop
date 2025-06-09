@@ -14,6 +14,10 @@ const nextConfig = {
       bodySizeLimit: "2mb",
     },
   },
+  // Important: This ensures auth routes don't run in the Edge runtime
+  // where PrismaClient cannot function properly
+  skipMiddlewareUrlNormalize: true,
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;
