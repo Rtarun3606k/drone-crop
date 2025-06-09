@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn, signOut } from "../auth";
+import { signIn, signOut } from "../lib/auth-client";
 import { useSession } from "next-auth/react";
 import { FiHome, FiBriefcase, FiInfo, FiMail } from "react-icons/fi";
 
@@ -128,7 +128,7 @@ const Navbar = () => {
                   </span>
                 </div>
                 <button
-                  onClick={() => signOut({ callbackUrl: "/" })}
+                  onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
                   className="text-sm px-3 py-1 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-100 dark:hover:bg-red-800 rounded-full transition-colors"
                 >
                   Sign out
@@ -286,7 +286,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={() => {
-                    signOut({ callbackUrl: "/" });
+                    signOut({ redirect: true, callbackUrl: "/" });
                     setIsMenuOpen(false);
                   }}
                   className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800"
