@@ -1,13 +1,23 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import SessionManager from "@/app/components/SessionManager";
+import { City, State } from "country-state-city";
+// import { State, City } from "country-state-cities";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [form, setForm] = useState({
+    phone: "",
+    address: "",
+    state: "",
+    city: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -30,6 +40,46 @@ export default function ProfilePage() {
   }
 
   const user = session.user;
+
+  // Get all Indian states using country-state-cities
+  const allStates = State.getStatesOfCountry("IN");
+
+  // Form state
+
+  // Handle state change to update cities
+  const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setForm({ ...form, state: selectedState, city: "" });
+    const stateObj = allStates.find((s) => s.name === selectedState);
+    if (stateObj) {
+      const stateCitiesList = City.getCitiesOfState("IN", stateObj.isoCode);
+      setCities(stateCitiesList.map((city) => city.name));
+    } else {
+      setCities([]);
+    }
+  };
+
+  // Validate Indian phone number
+  const validatePhone = (phone) => {
+    return /^[6-9]\d{9}$/.test(phone);
+  };
+
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = {};
+    if (!validatePhone(form.phone)) {
+      newErrors.phone = "Enter a valid 10-digit Indian phone number";
+    }
+    if (!form.address) newErrors.address = "Address is required";
+    if (!form.state) newErrors.state = "State is required";
+    if (!form.city) newErrors.city = "City is required";
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      // Submit form or save data
+      alert("Profile updated!");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-transparent flex flex-col items-center py-24">
