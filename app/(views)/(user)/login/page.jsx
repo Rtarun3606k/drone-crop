@@ -1,16 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle login logic here
-  };
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
@@ -35,7 +28,7 @@ export default function LoginPage() {
       }}
     >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => e.preventDefault()}
         style={{
           background: "rgba(255,255,255,0.05)",
           borderRadius: "20px",
@@ -67,82 +60,8 @@ export default function LoginPage() {
             fontSize: "15px",
           }}
         >
-          Sign in to your account
+          Sign in with your Google account
         </p>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{
-            padding: "12px",
-            borderRadius: "8px",
-            border: "none",
-            outline: "none",
-            background: "rgba(255,255,255,0.15)",
-            color: "#fff",
-            fontSize: "16px",
-          }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{
-            padding: "12px",
-            borderRadius: "8px",
-            border: "none",
-            outline: "none",
-            background: "rgba(255,255,255,0.15)",
-            color: "#fff",
-            fontSize: "16px",
-          }}
-        />
-        <button
-          type="submit"
-          style={{
-            padding: "12px",
-            borderRadius: "8px",
-            border: "none",
-            background: "linear-gradient(90deg, #ff512f 0%, #dd2476 100%)",
-            color: "#fff",
-            fontWeight: "bold",
-            fontSize: "16px",
-            cursor: "pointer",
-            transition: "background 0.2s",
-          }}
-        >
-          Log In
-        </button>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginTop: "16px",
-            marginBottom: "16px",
-          }}
-        >
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              background: "rgba(255,255,255,0.1)",
-            }}
-          ></div>
-          <span style={{ padding: "0 10px", color: "#aaa", fontSize: "14px" }}>
-            OR
-          </span>
-          <div
-            style={{
-              flex: 1,
-              height: "1px",
-              background: "rgba(255,255,255,0.1)",
-            }}
-          ></div>
-        </div>
         <button
           type="button"
           onClick={handleGoogleSignIn}
@@ -188,30 +107,6 @@ export default function LoginPage() {
           </svg>
           {isLoading ? "Loading..." : "Sign in with Google"}
         </button>
-        <div style={{ textAlign: "center", marginTop: "16px" }}>
-          <a
-            href="#"
-            style={{
-              color: "#ff7eb3",
-              textDecoration: "none",
-              fontSize: "14px",
-            }}
-          >
-            Forgot password?
-          </a>
-        </div>
-        <div style={{ textAlign: "center", marginTop: "8px" }}>
-          <a
-            href="/register"
-            style={{
-              color: "#7ee8fa",
-              textDecoration: "none",
-              fontSize: "14px",
-            }}
-          >
-            New user? Register here
-          </a>
-        </div>
       </form>
     </div>
   );
