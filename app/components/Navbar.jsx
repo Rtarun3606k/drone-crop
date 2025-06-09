@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut } from "../auth";
 import { useSession } from "next-auth/react";
+import { FiHome, FiBriefcase, FiInfo, FiMail } from "react-icons/fi";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,28 +70,32 @@ const Navbar = () => {
           {/* Desktop navigation links */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              href="/"
-              className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              href="/home"
+              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
             >
-              Home
+              <FiHome className="inline-block mr-1" />
+              <span>Home</span>
             </Link>
             <Link
               href="/services"
-              className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
             >
-              Services
+              <FiBriefcase className="inline-block mr-1" />
+              <span>Services</span>
             </Link>
             <Link
               href="/about"
-              className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
             >
-              About
+              <FiInfo className="inline-block mr-1" />
+              <span>About</span>
             </Link>
             <Link
               href="/contact"
-              className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
             >
-              Contact
+              <FiMail className="inline-block mr-1" />
+              <span>Contact</span>
             </Link>
 
             {/* Auth buttons based on session state */}
@@ -204,30 +209,34 @@ const Navbar = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link
             href="/"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => setIsMenuOpen(false)}
           >
+            <FiHome className="inline-block mr-2" />
             Home
           </Link>
           <Link
             href="/services"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => setIsMenuOpen(false)}
           >
+            <FiBriefcase className="inline-block mr-2" />
             Services
           </Link>
           <Link
             href="/about"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => setIsMenuOpen(false)}
           >
+            <FiInfo className="inline-block mr-2" />
             About
           </Link>
           <Link
             href="/contact"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() => setIsMenuOpen(false)}
           >
+            <FiMail className="inline-block mr-2" />
             Contact
           </Link>
         </div>
