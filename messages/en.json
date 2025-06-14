@@ -14,7 +14,45 @@
         "signout": "Sign out",
         "profile": "Your Profile",
         "dashboard": "Dashboard",
-        "open_menu": "Open menu",
-        "close_menu": "Close menu"
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+                "rights": "All rights reserved."
+ 
+        
+    },
+    "about":{
+        "title": "About Drone Crop",
+        "mission_title": "Our Mission",
+        "mission_description": "Drone Crop aims to make advanced agricultural insights accessible to every farmer, regardless of their background or digital literacy. By transforming complex drone and satellite data into clear, actionable advice in local languages, we empower farmers to make informed decisions for healthier crops and better yields.",
+        "why_title": "Why We Exist",
+        "why_description": "Many farmers face challenges understanding technical crop health data. Our platform bridges this gap by providing personalized, easy-to-understand crop health reports, supporting timely actions like nutrient management and pest control. We believe that technology should serve everyone, and our solutions are designed to be inclusive and practical for real-world farming needs.",
+        "offer_title": "What We Offer",
+        "offer_1": "AI-powered summaries of drone and satellite imagery, highlighting key crop health issues.",
+        "offer_2": "Support for multiple Indian languages, ensuring accessibility for farmers across regions.",
+        "offer_3": "Seamless integration with agri-drone platforms and mobile advisory services.",
+        "offer_4": "Curated datasets from Indian farms to improve and validate our crop analysis models.",
+        "back_to_home": "Back to Home"
+    },
+    "services": {
+        "title": "Our Services",
+        "ai_title": "AI-Powered Crop Health Summaries",
+        "ai_description": "Our generative AI model transforms drone and satellite imagery into natural-language crop health reports, highlighting issues like disease spread, nutrient deficiency, water stress, and weed coverage.",
+        "language_title": "Local Language Support",
+        "language_description": "We generate crop health insights in Hindi, Kannada, Tamil, Bengali, and other Indian languages, making our services accessible to farmers across diverse regions.",
+        "integration_title": "Seamless Platform Integration",
+        "integration_description": "Our integration modules connect with agri-drone platforms and mobile advisory systems, including Kisan Call Centers and agri-tech apps, for smooth delivery of actionable advice.",
+        "data_title": "Curated Agricultural Datasets",
+        "data_description": "We maintain a labeled dataset of annotated drone images from Indian farms, supporting the training and validation of region-specific crop health analysis models.",
+        "back_to_home": "Back to Home"
+    },
+    "contact": {
+        "title": "Contact Us",
+        "description": "Have questions or want to collaborate? Reach out to the Drone Crop team using the form below.",
+        "name_placeholder": "Your Name",
+        "email_placeholder": "Your Email",
+        "message_placeholder": "Your Message",
+        "send_button": "Send Message",
+        "or_email": "Or email us at",
+        "back_to_home": "Back to Home"
     }
 }
