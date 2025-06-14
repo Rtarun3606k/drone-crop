@@ -1,0 +1,18 @@
+{
+    "Home":{
+        "title": "Home",
+        "description": "Welcome to the home page of our application. Here you can find the latest updates and features."
+    },
+    "common": {
+        "brand": "DroneCrops",
+        "home": "Home",
+        "services": "Services",
+        "about": "About",
+        "contact": "Contact",
+        "login": "Log in",
+        "signup": "Sign up",
+        "signout": "Sign out",
+        "profile": "Your Profile",
+        "dashboard": "Dashboard"
+    }
+}

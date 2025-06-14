@@ -1,17 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "next/link"; // Switch to Next.js native Link
 import Image from "next/image";
 import { signIn, signOut } from "../lib/auth-client";
 import { useSession } from "next-auth/react";
 import { FiHome, FiBriefcase, FiInfo, FiMail } from "react-icons/fi";
+// Remove the next-intl dependency for now
+// import { useTranslations } from "next-intl";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
+  // For now, use a simple object for translations
+  const t = (key) => {
+    const translations = {
+      brand: "DroneCrops",
+    };
+    return translations[key] || key;
+  };
 
   // Handle scrolling effect
   useEffect(() => {
@@ -62,7 +71,8 @@ const Navbar = () => {
                 </svg>
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                DroneCrops
+                {/* {t("brand")} */}
+                DroneCrop
               </span>
             </Link>
           </div>

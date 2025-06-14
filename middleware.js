@@ -1,14 +1,12 @@
-import { auth } from "./app/auth";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-// Only run the middleware on specific routes that aren't auth-related
+// Create a middleware instance for internationalization
+export default createMiddleware(routing);
+
 export const config = {
-  matcher: [
-    // Apply to all routes except those starting with:
-    "/((?!api/auth|_next/static|_next/image|favicon.ico|public/|fonts/).*)",
-  ],
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
 };
-
-// Export the middleware function with a safety check
-export async function middleware(request) {
-  return auth(request);
-}
