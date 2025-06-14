@@ -14,17 +14,21 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
+  // Get translations and make sure they're rendered only once
   const t = useTranslations("common");
 
   // Handle scrolling effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
+
+    // Set initial scroll state
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -37,10 +41,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+          ? "bg-black/90 backdrop-blur-md shadow-md"
+          : "bg-black/50 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +68,15 @@ const Navbar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
+              <span
+                className="text-xl font-bold text-white"
+                style={{
+                  display: "inline-block",
+                  minHeight: "28px",
+                  position: "relative",
+                  zIndex: 10,
+                }}
+              >
                 {t("brand")}
               </span>
             </Link>
@@ -74,31 +86,31 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/home"
-              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
+              className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"
             >
               <FiHome className="inline-block mr-1" />
               <span> {t("home")}</span>
             </Link>
             <Link
               href="/services"
-              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
+              className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"
             >
               <FiBriefcase className="inline-block mr-1" />
-              <span>Services</span>
+              <span>{t("services")}</span>
             </Link>
             <Link
               href="/about"
-              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
+              className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"
             >
               <FiInfo className="inline-block mr-1" />
-              <span>About</span>
+              <span>{t("about")}</span>
             </Link>
             <Link
               href="/contact"
-              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
+              className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"
             >
               <FiMail className="inline-block mr-1" />
-              <span>Contact</span>
+              <span>{t("contact")}</span>
             </Link>
 
             {/* Auth buttons based on session state */}
@@ -140,7 +152,7 @@ const Navbar = () => {
                   onClick={() => signOut({ redirect: true, callbackUrl: "/" })}
                   className="text-sm px-3 py-1 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900 dark:text-red-100 dark:hover:bg-red-800 rounded-full transition-colors"
                 >
-                  Sign out
+                  {t("signout")}
                 </button>
               </div>
             ) : (
@@ -150,13 +162,13 @@ const Navbar = () => {
                   href="/login"
                   className="text-sm px-4 py-2 border border-green-500 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/30 rounded-full transition-colors"
                 >
-                  Log in
+                  {t("login")}
                 </Link>
                 <button
                   onClick={() => signIn("google")}
                   className="text-sm px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded-full transition-colors"
                 >
-                  Sign up
+                  {t("signup")}
                 </button>
               </div>
             )}
@@ -170,7 +182,7 @@ const Navbar = () => {
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">
-                {isMenuOpen ? "Close menu" : "Open menu"}
+                {isMenuOpen ? t("closeMenu") : t("openMenu")}
               </span>
               {isMenuOpen ? (
                 <svg
@@ -223,7 +235,7 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <FiHome className="inline-block mr-2" />
-            Home
+            {t("home")}
           </Link>
           <Link
             href="/services"
@@ -231,7 +243,7 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <FiBriefcase className="inline-block mr-2" />
-            Services
+            {t("services")}
           </Link>
           <Link
             href="/about"
@@ -239,7 +251,7 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <FiInfo className="inline-block mr-2" />
-            About
+            {t("about")}
           </Link>
           <Link
             href="/contact"
@@ -247,7 +259,7 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(false)}
           >
             <FiMail className="inline-block mr-2" />
-            Contact
+            {t("contact")}
           </Link>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
@@ -291,14 +303,14 @@ const Navbar = () => {
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Your Profile
+                  {t("profile")}
                 </Link>
                 <Link
                   href="/dashboard"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Dashboard
+                  {t("dashboard")}
                 </Link>
                 <button
                   onClick={() => {
@@ -307,7 +319,7 @@ const Navbar = () => {
                   }}
                   className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
-                  Sign out
+                  {t("signout")}
                 </button>
               </div>
             </div>
@@ -321,7 +333,7 @@ const Navbar = () => {
                 className="block text-center px-4 py-2 border border-green-500 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/30 rounded-md"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Log in
+                {t("login")}
               </Link>
               <button
                 onClick={() => {
@@ -330,7 +342,7 @@ const Navbar = () => {
                 }}
                 className="block w-full px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded-md"
               >
-                Sign up
+                {t("signup")}
               </button>
             </div>
           )}

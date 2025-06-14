@@ -16,6 +16,10 @@ const LanguageSwitcher = () => {
   const languages = [
     { code: "en", name: "English" },
     { code: "ka", name: "ಕನ್ನಡ" }, // Kannada
+    { code: "hi", name: "हिंदी" }, // Hindi
+    { code: "te", name: "తెలుగు" }, // Telugu
+    { code: "ta", name: "தமிழ்" }, // Tamil
+    { code: "ml", name: "മലയാളം" }, // Malayalam
   ];
 
   const handleLanguageChange = (locale) => {
@@ -43,7 +47,10 @@ const LanguageSwitcher = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-1 right-0 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 min-w-[120px] border border-gray-200 dark:border-gray-700" style={{ minWidth: '120px', maxWidth: '150px' }}>
+        <div
+          className="absolute top-full mt-1 right-0 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 min-w-[120px] border border-gray-200 dark:border-gray-700"
+          style={{ minWidth: "120px", maxWidth: "150px" }}
+        >
           {languages.map((language) => (
             <button
               key={language.code}

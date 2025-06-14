@@ -13,6 +13,8 @@
         "signup": "Sign up",
         "signout": "Sign out",
         "profile": "Your Profile",
-        "dashboard": "Dashboard"
+        "dashboard": "Dashboard",
+        "open_menu": "Open menu",
+        "close_menu": "Close menu"
     }
 }
