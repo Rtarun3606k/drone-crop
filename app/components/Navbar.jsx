@@ -1,26 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link"; // Switch to Next.js native Link
+import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut } from "../lib/auth-client";
 import { useSession } from "next-auth/react";
 import { FiHome, FiBriefcase, FiInfo, FiMail } from "react-icons/fi";
-// Remove the next-intl dependency for now
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "../lib/client-i18n";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
-  // For now, use a simple object for translations
-  const t = (key) => {
-    const translations = {
-      brand: "DroneCrops",
-    };
-    return translations[key] || key;
-  };
+  const t = useTranslations("common");
 
   // Handle scrolling effect
   useEffect(() => {
@@ -71,8 +65,7 @@ const Navbar = () => {
                 </svg>
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                {/* {t("brand")} */}
-                DroneCrop
+                {t("brand")}
               </span>
             </Link>
           </div>
@@ -84,7 +77,7 @@ const Navbar = () => {
               className="flex items-center text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors space-x-2"
             >
               <FiHome className="inline-block mr-1" />
-              <span>Home</span>
+              <span> {t("home")}</span>
             </Link>
             <Link
               href="/services"
@@ -112,8 +105,9 @@ const Navbar = () => {
             {isLoading ? (
               <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
             ) : session ? (
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center">
+              <div className="flex items-center space-x-6">
+                <LanguageSwitcher />
+                <div className="flex items-center ml-2">
                   {session.user?.image ? (
                     <Link href="/profile" className="flex items-center">
                       <Image
@@ -150,7 +144,8 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex space-x-4">
+              <div className="flex space-x-6 items-center">
+                <LanguageSwitcher />
                 <Link
                   href="/login"
                   className="text-sm px-4 py-2 border border-green-500 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/30 rounded-full transition-colors"
@@ -262,6 +257,9 @@ const Navbar = () => {
             </div>
           ) : session ? (
             <div className="px-4">
+              <div className="mb-4">
+                <LanguageSwitcher />
+              </div>
               <div className="flex items-center py-2">
                 {session.user?.image ? (
                   <Image
@@ -314,7 +312,10 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            <div className="px-4 py-2 space-y-2">
+            <div className="px-4 py-2 space-y-4">
+              <div className="mb-2">
+                <LanguageSwitcher />
+              </div>
               <Link
                 href="/login"
                 className="block text-center px-4 py-2 border border-green-500 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/30 rounded-md"
