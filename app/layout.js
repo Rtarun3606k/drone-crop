@@ -23,7 +23,12 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+  // Default to English messages
+
+  // Note: The locale will be set client-side by the LanguageSwitcher
+  // This prevents issues with server-side cookie access in layouts
+
   return (
     <html lang="en">
       <body
