@@ -62,7 +62,7 @@ def get_random_images_from_dataset(base_paths, image_arrays, num_samples_per_cla
     
     return random_samples
 
-def random_prediction_test(model_path, num_samples_per_class=20, save_dir='random_test_results'):
+def random_prediction_test(model_path, num_samples_per_class=500, save_dir='random_test_results'):
     """
     Perform random prediction testing and generate comprehensive analysis
     
@@ -477,7 +477,7 @@ def run_random_prediction_test():
     try:
         test_results = random_prediction_test(
             model_path=model_path,
-            num_samples_per_class=25,  # Test 25 random samples per class
+            num_samples_per_class=500,  # Test 500 random samples per class (increased for comprehensive testing)
             save_dir='random_test_results'
         )
         
