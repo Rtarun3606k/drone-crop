@@ -1,0 +1,17 @@
+Random Prediction Test - Classification Report
+==================================================
+Test Date: 2025-06-28 13:49:46
+Total Samples: 299
+Overall Accuracy: 88.96%
+Classes found in data: ['Soyabean_Mosaic', 'healthy', 'rust']
+Expected classes: ['Soyabean_Mosaic', 'healthy', 'rust']
+
+                 precision    recall  f1-score   support
+
+Soyabean_Mosaic       0.79      0.96      0.86        99
+        healthy       1.00      0.74      0.85       100
+           rust       0.93      0.97      0.95       100
+
+       accuracy                           0.89       299
+      macro avg       0.91      0.89      0.89       299
+   weighted avg       0.91      0.89      0.89       299
