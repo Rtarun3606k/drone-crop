@@ -1,0 +1,4 @@
+,Pred_Soyabean_Mosaic,Pred_healthy,Pred_rust
+True_Soyabean_Mosaic,101,0,9
+True_healthy,13,23,0
+True_rust,3,0,61
