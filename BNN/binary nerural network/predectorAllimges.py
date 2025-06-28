@@ -18,7 +18,7 @@ from paths import Soyabean_Mosaic_array, Healthyhealthy_images, Rust_array
 # Import the model classes from predictor.py
 from predictor import BinaryNeuralNetwork, predict_plant_disease
 
-def get_random_images_from_dataset(base_paths, image_arrays, num_samples_per_class=500):
+def get_random_images_from_dataset(base_paths, image_arrays, num_samples_per_class=1000):
     """
     Get random images from each class
     
@@ -62,7 +62,7 @@ def get_random_images_from_dataset(base_paths, image_arrays, num_samples_per_cla
     
     return random_samples
 
-def random_prediction_test(model_path, num_samples_per_class=500, save_dir='random_test_results'):
+def random_prediction_test(model_path, num_samples_per_class=1000, save_dir='random_test_results'):
     """
     Perform random prediction testing and generate comprehensive analysis
     
@@ -477,7 +477,7 @@ def run_random_prediction_test():
     try:
         test_results = random_prediction_test(
             model_path=model_path,
-            num_samples_per_class=500,  # Test 500 random samples per class (increased for comprehensive testing)
+            num_samples_per_class=1000,  # Test 500 random samples per class (increased for comprehensive testing)
             save_dir='random_test_results'
         )
         
