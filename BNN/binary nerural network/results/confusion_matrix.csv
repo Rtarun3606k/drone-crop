@@ -1,4 +1,5 @@
-,Pred_Soyabean_Mosaic,Pred_healthy,Pred_rust
-True_Soyabean_Mosaic,101,0,9
-True_healthy,13,23,0
-True_rust,3,0,61
+,Pred_Healthy_Soyabean,Pred_Soyabean Semilooper_Pest_Attack,Pred_Soyabean_Mosaic,Pred_rust
+True_Healthy_Soyabean,48,3,3,2
+True_Soyabean Semilooper_Pest_Attack,1,146,8,3
+True_Soyabean_Mosaic,0,4,136,15
+True_rust,1,0,19,180
