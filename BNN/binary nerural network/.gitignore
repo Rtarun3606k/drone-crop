@@ -4,8 +4,7 @@ __pycache__/
 
 .venv
 
-# Model files are now tracked by Git LFS
-# results/bnn_plant_disease_model_20250628_125321.pth
-# results/bnn_plant_disease_model_20250629_141950.pth
-# results/bnn_plant_disease_model_20250629_131745.pth
+# Exclude all model weight files - they are too large for GitHub
+*.pth
+results/*.pth
 
