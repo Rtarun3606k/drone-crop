@@ -1,0 +1,69 @@
+🚀 Complete Test - ALL images in dataset
+Using model: results/bnn_plant_disease_model_20250628_125321.pth
+🎯 Starting COMPREHENSIVE test on ALL dataset images...
+======================================================================
+🎯 Starting COMPREHENSIVE testing of ALL images in dataset...
+======================================================================
+Processing Soyabean_Mosaic class...
+  Found 771 Soyabean_Mosaic images
+Processing rust class...
+  Found 994 rust images
+Processing healthy class...
+  Found 280 healthy images
+
+📊 Total images to test: 2045
+Class distribution: {'Soyabean_Mosaic': 771, 'rust': 994, 'healthy': 280}
+
+🔍 Making predictions on ALL images...
+==================================================
+Progress: 5.0% (102/2045) | Current accuracy: 96.08%
+Progress: 10.0% (204/2045) | Current accuracy: 96.57%
+Progress: 15.0% (306/2045) | Current accuracy: 89.87%
+Progress: 20.0% (408/2045) | Current accuracy: 92.16%
+Progress: 24.9% (510/2045) | Current accuracy: 92.94%
+Progress: 29.9% (612/2045) | Current accuracy: 94.12%
+Progress: 34.9% (714/2045) | Current accuracy: 94.68%
+Progress: 39.9% (816/2045) | Current accuracy: 94.61%
+Progress: 44.9% (918/2045) | Current accuracy: 94.66%
+Progress: 49.9% (1020/2045) | Current accuracy: 94.61%
+Progress: 54.9% (1122/2045) | Current accuracy: 95.10%
+Progress: 59.9% (1224/2045) | Current accuracy: 90.93%
+Progress: 64.8% (1326/2045) | Current accuracy: 86.20%
+Progress: 69.8% (1428/2045) | Current accuracy: 87.18%
+Progress: 74.8% (1530/2045) | Current accuracy: 85.36%
+Progress: 79.8% (1632/2045) | Current accuracy: 85.66%
+Progress: 84.8% (1734/2045) | Current accuracy: 86.51%
+Progress: 89.8% (1836/2045) | Current accuracy: 86.06%
+Progress: 94.8% (1938/2045) | Current accuracy: 85.86%
+Progress: 99.8% (2040/2045) | Current accuracy: 85.20%
+Progress: 100.0% (2045/2045) | Current accuracy: 85.13%
+
+✅ COMPREHENSIVE TESTING COMPLETED!
+Total images processed: 2045
+Correct predictions: 1741
+Overall accuracy: 85.13%
+📄 Comprehensive results saved to: comprehensive_test_results/comprehensive_all_images_results_20250628_142425.csv
+
+📊 Generating comprehensive analysis graphs...
+/home/dragoon/coding/drone-crop/BNN/binary nerural network/predectorAllimges.py:891: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+📊 Comprehensive analysis saved to: comprehensive_test_results/comprehensive_analysis_20250628_142425.png
+📄 Comprehensive report saved to: comprehensive_test_results/comprehensive_report_20250628_142425.txt
+
+======================================================================
+🏆 COMPREHENSIVE TEST SUMMARY
+======================================================================
+Total Images Tested: 2,045
+Correct Predictions: 1,741
+Overall Accuracy: 85.13%
+
+Class Distribution:
+  Soyabean_Mosaic: 771 images
+  rust: 994 images
+  healthy: 280 images
+
+Results saved to: comprehensive_test_results/comprehensive_all_images_results_20250628_142425.csv
+======================================================================
+
+✅ Test completed successfully!
+Check the results directory for detailed reports and visualizations.

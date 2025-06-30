@@ -1,0 +1,2 @@
+layer,total_weights,positive_weights,negative_weights,zero_weights,weight_mean,weight_std,binary_weight_ratio
+hidden_layer,262144,130994,131150,0,-4e-45,0.0,0.49970245361328125
