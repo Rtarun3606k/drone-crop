@@ -1,0 +1,20 @@
+parameter,value
+model_type,Binary Neural Network
+input_size,12288
+hidden_size,512
+num_classes,4
+num_epochs,20
+batch_size,32
+learning_rate,0.001
+optimizer,Adam
+total_parameters,6556676
+trainable_parameters,6556676
+final_train_loss,0.24615943857133651
+final_train_accuracy,89.7160293592105
+test_loss,0.5147284681075498
+test_accuracy,80.79164376030786
+total_training_time,428.6243896484375
+avg_epoch_time,10.715609741210937
+dataset_total_samples,45472
+train_samples,36377
+test_samples,9095
