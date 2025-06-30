@@ -23,7 +23,9 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // This is the root layout, localization should be handled in the [locale] layout
+
   return (
     <html lang="en">
       <body

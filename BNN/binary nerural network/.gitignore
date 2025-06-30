@@ -1,0 +1,10 @@
+
+__pycache__/
+*.pyc
+
+.venv
+
+# Exclude all model weight files - they are too large for GitHub
+*.pth
+results/*.pth
+

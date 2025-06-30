@@ -1,0 +1,23 @@
+{
+  "report_generated": "2025-06-27 14:58:57",
+  "csv_file": "epoch_training_report_20250627_145856.csv",
+  "plot_file": "epoch_training_report_20250627_145856_training_analysis.png",
+  "training_details": {
+    "total_epochs": 9,
+    "best_validation_accuracy": 0.6143,
+    "best_epoch": 4,
+    "final_validation_accuracy": 0.5714,
+    "total_improvement": 0.061900000000000066,
+    "average_improvement_per_epoch": 0.007737500000000001
+  },
+  "analysis": {
+    "overfitting_epochs": 0,
+    "excellent_epochs": 0,
+    "average_accuracy_gap": -0.05133333333333333,
+    "model_status": "Good"
+  },
+  "class_names": [
+    "rust",
+    "healthy"
+  ]
+}

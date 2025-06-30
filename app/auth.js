@@ -3,15 +3,14 @@ import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./lib/prisma-server";
 
-// For diagnostics during development
-if (process.env.NODE_ENV !== "production") {
-  console.log("Auth.js - Prisma instance:", !!prisma);
-  console.log("Auth.js - Prisma models available:", Object.keys(prisma));
-}
+// Check if we have a valid Prisma instance
+const usingPrismaAdapter = !!prisma && typeof prisma.user !== "undefined";
 
+// Standard NextAuth configuration with dynamic adapter selection
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: usingPrismaAdapter ? PrismaAdapter(prisma) : undefined,
   debug: process.env.NODE_ENV !== "production",
+  trustHost: true, // Required for production deployment
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,

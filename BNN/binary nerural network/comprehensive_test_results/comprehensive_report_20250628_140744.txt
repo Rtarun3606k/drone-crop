@@ -1,0 +1,55 @@
+COMPREHENSIVE BINARY NEURAL NETWORK EVALUATION REPORT
+============================================================
+Test Date: 2025-06-28 14:07:48
+Total Images Tested: 1,049
+
+DATASET COMPOSITION:
+------------------------------
+Soyabean_Mosaic: 549 images (52.3%)
+rust: 320 images (30.5%)
+healthy: 180 images (17.2%)
+
+OVERALL PERFORMANCE:
+------------------------------
+Overall Accuracy: 91.61%
+Correct Predictions: 961
+Incorrect Predictions: 88
+Average Confidence: 0.8401
+Confidence Std Dev: 0.1405
+
+PER-CLASS PERFORMANCE:
+------------------------------
+Soyabean_Mosaic:
+  Samples: 549
+  Accuracy: 93.44%
+  Avg Confidence: 0.7858
+  Correct: 513
+  Incorrect: 36
+
+rust:
+  Samples: 320
+  Accuracy: 96.25%
+  Avg Confidence: 0.9268
+  Correct: 308
+  Incorrect: 12
+
+healthy:
+  Samples: 180
+  Accuracy: 77.78%
+  Avg Confidence: 0.8517
+  Correct: 140
+  Incorrect: 40
+
+CONFUSION MATRIX:
+------------------------------
+Predicted ->  Soyabean_Mosaic          rust       healthy
+Soyabean_Mosaic           513            36             0
+        rust            12           308             0
+     healthy            34             6           140
+
+CONFIDENCE ANALYSIS:
+------------------------------
+High Confidence (>0.8): 689 (65.7%)
+Medium Confidence (0.6-0.8): 288 (27.5%)
+Low Confidence (<0.6): 72 (6.9%)
+High Confidence Accuracy: 97.24%

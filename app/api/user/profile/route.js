@@ -1,6 +1,11 @@
 import { auth } from "@/app/auth";
 import { getUserProfile, updateUserProfile } from "@/app/lib/db";
 import { NextResponse } from "next/server";
+import { authConfig } from "@/app/non-edge-config";
+
+// Force Node.js runtime for this route
+export const runtime = authConfig.runtime;
+export const preferredRegion = authConfig.preferredRegion;
 
 export async function GET() {
   const session = await auth();
