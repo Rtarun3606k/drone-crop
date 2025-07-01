@@ -1,0 +1,52 @@
+{
+  "test_loss": 0.5559246639410654,
+  "test_accuracy": 85.7394366197183,
+  "classification_report": {
+    "Healthy_Soyabean": {
+      "precision": 0.9523809523809523,
+      "recall": 0.7547169811320755,
+      "f1-score": 0.8421052631578947,
+      "support": 53.0
+    },
+    "Soyabean Semilooper_Pest_Attack": {
+      "precision": 0.9595375722543352,
+      "recall": 0.9707602339181286,
+      "f1-score": 0.9651162790697675,
+      "support": 171.0
+    },
+    "Soyabean_Mosaic": {
+      "precision": 0.6697674418604651,
+      "recall": 0.9795918367346939,
+      "f1-score": 0.7955801104972375,
+      "support": 147.0
+    },
+    "rust": {
+      "precision": 0.9927536231884058,
+      "recall": 0.6954314720812182,
+      "f1-score": 0.817910447761194,
+      "support": 197.0
+    },
+    "accuracy": 0.8573943661971831,
+    "macro avg": {
+      "precision": 0.8936098974210397,
+      "recall": 0.8501251309665291,
+      "f1-score": 0.8551780251215233,
+      "support": 568.0
+    },
+    "weighted avg": {
+      "precision": 0.8953968187557854,
+      "recall": 0.8573943661971831,
+      "f1-score": 0.8587061569020209,
+      "support": 568.0
+    }
+  },
+  "timestamp": "20250701_152847",
+  "model_config": {
+    "image_size": 64,
+    "input_size": 12288,
+    "hidden_size": 256,
+    "num_classes": 4,
+    "dropout_rate": 0.35,
+    "model_size_mb": 168.82716369628906
+  }
+}

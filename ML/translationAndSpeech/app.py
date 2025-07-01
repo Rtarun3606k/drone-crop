@@ -14,6 +14,7 @@ load_dotenv()
 # add Routes
 from Routes.transalate import translate
 from Routes.speechConversion import sheech_conversion 
+from Routes.Summerizer import summerisizer 
 
 
 # Initialize Flask app and CORS
@@ -45,3 +46,4 @@ def index():
 # Register the blueprint
 app.register_blueprint(translate, url_prefix='/translate')
 app.register_blueprint(sheech_conversion, url_prefix='/speech')
+app.register_blueprint(summerisizer, url_prefix='/summery')
