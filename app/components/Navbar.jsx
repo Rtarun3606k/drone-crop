@@ -91,6 +91,7 @@ const Navbar = () => {
               <FiHome className="inline-block mr-1" />
               <span> {t("home")}</span>
             </Link>
+
             <Link
               href="/services"
               className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"

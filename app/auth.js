@@ -9,7 +9,8 @@ const usingPrismaAdapter = !!prisma && typeof prisma.user !== "undefined";
 // Standard NextAuth configuration with dynamic adapter selection
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: usingPrismaAdapter ? PrismaAdapter(prisma) : undefined,
-  debug: process.env.NODE_ENV !== "production",
+  // debug: process.env.NODE_ENV !== "production",
+  debug: false,
   trustHost: true, // Required for production deployment
   providers: [
     Google({

@@ -13,6 +13,7 @@ const page = () => {
     <div>
       <h1>{t("title")}</h1>
       <Link href="/about">{t("description")}</Link>
+      <Link href="/dashboard">Dashboard</Link>
     </div>
   );
 };

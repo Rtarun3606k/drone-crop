@@ -12,6 +12,7 @@
     "@auth/prisma-adapter": "^2.9.1",
     "country-state-city": "^3.2.1",
     "date-fns": "^4.1.0",
+    "jszip": "^3.10.1",
     "next": "15.3.3",
     "next-auth": "^5.0.0-beta.28",
     "next-intl": "^4.1.0",
