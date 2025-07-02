@@ -1,0 +1,3362 @@
+[
+  {
+    "image_name": "image_469.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.64962601661682,
+    "probabilities": {
+      "Healthy_Soyabean": 99.64962601661682,
+      "Soyabean Semilooper_Pest_Attack": 0.0803455535788089,
+      "Soyabean_Mosaic": 0.2700005192309618,
+      "rust": 3.445401262069936e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_032.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 50.470441579818726,
+    "probabilities": {
+      "Healthy_Soyabean": 47.67531156539917,
+      "Soyabean Semilooper_Pest_Attack": 50.470441579818726,
+      "Soyabean_Mosaic": 1.8517553806304932,
+      "rust": 0.00249257282121107
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_101.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 87.75235414505005,
+    "probabilities": {
+      "Healthy_Soyabean": 87.75235414505005,
+      "Soyabean Semilooper_Pest_Attack": 0.0016323769159498625,
+      "Soyabean_Mosaic": 12.245087325572968,
+      "rust": 0.0009356285772810224
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_213.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.1269588470459,
+    "probabilities": {
+      "Healthy_Soyabean": 99.1269588470459,
+      "Soyabean Semilooper_Pest_Attack": 0.1250806963071227,
+      "Soyabean_Mosaic": 0.7479092106223106,
+      "rust": 4.450819801604666e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_544.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.85793828964233,
+    "probabilities": {
+      "Healthy_Soyabean": 99.85793828964233,
+      "Soyabean Semilooper_Pest_Attack": 0.017283578927163035,
+      "Soyabean_Mosaic": 0.12473650276660919,
+      "rust": 3.7558484677902015e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_152.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_495.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5164155960083,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5164155960083,
+      "Soyabean Semilooper_Pest_Attack": 0.16909933183342218,
+      "Soyabean_Mosaic": 0.3144533606246114,
+      "rust": 3.9024251918817754e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_370.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.78699684143066,
+    "probabilities": {
+      "Healthy_Soyabean": 99.78699684143066,
+      "Soyabean Semilooper_Pest_Attack": 0.05726157105527818,
+      "Soyabean_Mosaic": 0.15569578390568495,
+      "rust": 3.769976331113867e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_073.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.8991072177887,
+    "probabilities": {
+      "Healthy_Soyabean": 99.8991072177887,
+      "Soyabean Semilooper_Pest_Attack": 0.011308343528071418,
+      "Soyabean_Mosaic": 0.08954248623922467,
+      "rust": 4.028719615689624e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_433.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96589422225952,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96589422225952,
+      "Soyabean Semilooper_Pest_Attack": 0.030428252648562193,
+      "Soyabean_Mosaic": 0.0036195164284436032,
+      "rust": 5.025109430789598e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_542.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55962300300598,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55962300300598,
+      "Soyabean Semilooper_Pest_Attack": 0.08682506158947945,
+      "Soyabean_Mosaic": 0.35352970007807016,
+      "rust": 3.279162683611503e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_413.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.8615026473999,
+    "probabilities": {
+      "Healthy_Soyabean": 99.8615026473999,
+      "Soyabean Semilooper_Pest_Attack": 0.094438879750669,
+      "Soyabean_Mosaic": 0.04399520403239876,
+      "rust": 5.37486300800083e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_540.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_633.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.58847165107727,
+    "probabilities": {
+      "Healthy_Soyabean": 99.58847165107727,
+      "Soyabean Semilooper_Pest_Attack": 0.19530345452949405,
+      "Soyabean_Mosaic": 0.21619191393256187,
+      "rust": 3.133617951789347e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_145.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.27595853805542,
+    "probabilities": {
+      "Healthy_Soyabean": 99.27595853805542,
+      "Soyabean Semilooper_Pest_Attack": 0.2462384756654501,
+      "Soyabean_Mosaic": 0.4777661059051752,
+      "rust": 4.567065730043396e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_499.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.44496154785156,
+    "probabilities": {
+      "Healthy_Soyabean": 99.44496154785156,
+      "Soyabean Semilooper_Pest_Attack": 0.5548228975385427,
+      "Soyabean_Mosaic": 0.00016653941656841198,
+      "rust": 5.685298560820229e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_514.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.93734955787659,
+    "probabilities": {
+      "Healthy_Soyabean": 99.93734955787659,
+      "Soyabean Semilooper_Pest_Attack": 0.005602219243883155,
+      "Soyabean_Mosaic": 0.057007395662367344,
+      "rust": 3.969262252212502e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_582.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.88786578178406,
+    "probabilities": {
+      "Healthy_Soyabean": 99.88786578178406,
+      "Soyabean Semilooper_Pest_Attack": 0.014680379536002874,
+      "Soyabean_Mosaic": 0.09742109687067568,
+      "rust": 3.969192903241492e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_556.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.54336285591125,
+    "probabilities": {
+      "Healthy_Soyabean": 99.54336285591125,
+      "Soyabean Semilooper_Pest_Attack": 0.18729498842731118,
+      "Soyabean_Mosaic": 0.2693010028451681,
+      "rust": 3.7707090427829826e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_060.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.67967867851257,
+    "probabilities": {
+      "Healthy_Soyabean": 99.67967867851257,
+      "Soyabean Semilooper_Pest_Attack": 0.3200559178367257,
+      "Soyabean_Mosaic": 0.00019626359062385745,
+      "rust": 6.369709808495827e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_221.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97043013572693,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97043013572693,
+      "Soyabean Semilooper_Pest_Attack": 0.005397002314566635,
+      "Soyabean_Mosaic": 0.02412741887383163,
+      "rust": 4.1940160144804395e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_317.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.88327217102051,
+    "probabilities": {
+      "Healthy_Soyabean": 97.88327217102051,
+      "Soyabean Semilooper_Pest_Attack": 1.1100225150585175,
+      "Soyabean_Mosaic": 1.006640587002039,
+      "rust": 6.474921860899485e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_068.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61525797843933,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61525797843933,
+      "Soyabean Semilooper_Pest_Attack": 0.08524709846824408,
+      "Soyabean_Mosaic": 0.29945571441203356,
+      "rust": 3.435516475747136e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_578.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.81788396835327,
+    "probabilities": {
+      "Healthy_Soyabean": 99.81788396835327,
+      "Soyabean Semilooper_Pest_Attack": 0.05286915693432093,
+      "Soyabean_Mosaic": 0.1292145811021328,
+      "rust": 3.585350611956528e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_328.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_205.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56516623497009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56516623497009,
+      "Soyabean Semilooper_Pest_Attack": 0.07243954460136592,
+      "Soyabean_Mosaic": 0.3623516298830509,
+      "rust": 4.364758865449403e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_570.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91604089736938,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91604089736938,
+      "Soyabean Semilooper_Pest_Attack": 0.07612110348418355,
+      "Soyabean_Mosaic": 0.007806957000866532,
+      "rust": 4.31971557190991e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_212.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95909333229065,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95909333229065,
+      "Soyabean Semilooper_Pest_Attack": 0.005269367466098629,
+      "Soyabean_Mosaic": 0.035596315865404904,
+      "rust": 4.0574508375357254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_050.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97684359550476,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97684359550476,
+      "Soyabean Semilooper_Pest_Attack": 0.006219696660991758,
+      "Soyabean_Mosaic": 0.016884748765733093,
+      "rust": 4.391575600948272e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_015.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5858371257782,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5858371257782,
+      "Soyabean Semilooper_Pest_Attack": 0.08906700531952083,
+      "Soyabean_Mosaic": 0.32505104318261147,
+      "rust": 3.6627608324124594e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_536.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.53651022911072,
+    "probabilities": {
+      "Healthy_Soyabean": 97.53651022911072,
+      "Soyabean Semilooper_Pest_Attack": 1.629934087395668,
+      "Soyabean_Mosaic": 0.8334837853908539,
+      "rust": 6.857715106889373e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_589.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_562.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97201561927795,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97201561927795,
+      "Soyabean Semilooper_Pest_Attack": 0.015065823390614241,
+      "Soyabean_Mosaic": 0.012880646681878716,
+      "rust": 2.7897772270080168e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_543.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.9834189414978,
+    "probabilities": {
+      "Healthy_Soyabean": 98.9834189414978,
+      "Soyabean Semilooper_Pest_Attack": 0.1767049776390195,
+      "Soyabean_Mosaic": 0.8398398756980896,
+      "rust": 4.220835023716063e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_477.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.92592930793762,
+    "probabilities": {
+      "Healthy_Soyabean": 99.92592930793762,
+      "Soyabean Semilooper_Pest_Attack": 0.0728572194930166,
+      "Soyabean_Mosaic": 0.0011810806427092757,
+      "rust": 3.450183498898696e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_367.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.27595853805542,
+    "probabilities": {
+      "Healthy_Soyabean": 99.27595853805542,
+      "Soyabean Semilooper_Pest_Attack": 0.2462384756654501,
+      "Soyabean_Mosaic": 0.4777661059051752,
+      "rust": 4.567065730043396e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_107.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 50.577789545059204,
+    "probabilities": {
+      "Healthy_Soyabean": 49.183183908462524,
+      "Soyabean Semilooper_Pest_Attack": 50.577789545059204,
+      "Soyabean_Mosaic": 0.23852039594203234,
+      "rust": 0.0005043985311203869
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_064.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.43406581878662,
+    "probabilities": {
+      "Healthy_Soyabean": 99.43406581878662,
+      "Soyabean Semilooper_Pest_Attack": 0.08519166731275618,
+      "Soyabean_Mosaic": 0.4806971177458763,
+      "rust": 4.360217360499519e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_537.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.39603304862976,
+    "probabilities": {
+      "Healthy_Soyabean": 98.39603304862976,
+      "Soyabean Semilooper_Pest_Attack": 0.86755296215415,
+      "Soyabean_Mosaic": 0.7363732904195786,
+      "rust": 4.792786967300344e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_488.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.85758066177368,
+    "probabilities": {
+      "Healthy_Soyabean": 99.85758066177368,
+      "Soyabean Semilooper_Pest_Attack": 0.02107909240294248,
+      "Soyabean_Mosaic": 0.12130271643400192,
+      "rust": 3.6627309896175575e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_103.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.97826910018921,
+    "probabilities": {
+      "Healthy_Soyabean": 98.97826910018921,
+      "Soyabean Semilooper_Pest_Attack": 0.00148762528624502,
+      "Soyabean_Mosaic": 1.020012330263853,
+      "rust": 0.0002368947889408446
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_501.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.75672960281372,
+    "probabilities": {
+      "Healthy_Soyabean": 99.75672960281372,
+      "Soyabean Semilooper_Pest_Attack": 0.06309236632660031,
+      "Soyabean_Mosaic": 0.18014691304415464,
+      "rust": 3.424764543069614e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_593.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.54409599304199,
+    "probabilities": {
+      "Healthy_Soyabean": 99.54409599304199,
+      "Soyabean Semilooper_Pest_Attack": 0.11905469000339508,
+      "Soyabean_Mosaic": 0.3368069417774677,
+      "rust": 3.9204033441819774e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_186.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55642223358154,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55642223358154,
+      "Soyabean Semilooper_Pest_Attack": 0.16228696331381798,
+      "Soyabean_Mosaic": 0.2812647260725498,
+      "rust": 3.055729393963702e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_490.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_013.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.47152733802795,
+    "probabilities": {
+      "Healthy_Soyabean": 99.47152733802795,
+      "Soyabean Semilooper_Pest_Attack": 0.1057521440088749,
+      "Soyabean_Mosaic": 0.42267171666026115,
+      "rust": 3.898058196227794e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_274.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_150.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_066.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_105.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.92524981498718,
+    "probabilities": {
+      "Healthy_Soyabean": 99.92524981498718,
+      "Soyabean Semilooper_Pest_Attack": 0.009426785982213914,
+      "Soyabean_Mosaic": 0.06528838421218097,
+      "rust": 3.532059338340332e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_594.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.64967465400696,
+    "probabilities": {
+      "Healthy_Soyabean": 98.64967465400696,
+      "Soyabean Semilooper_Pest_Attack": 0.7345560006797314,
+      "Soyabean_Mosaic": 0.615727249532938,
+      "rust": 4.3557224671531e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_222.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_493.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6325671672821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6325671672821,
+      "Soyabean Semilooper_Pest_Attack": 0.146115489769727,
+      "Soyabean_Mosaic": 0.22128461860120296,
+      "rust": 3.3122140052910254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_065.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.80044960975647,
+    "probabilities": {
+      "Healthy_Soyabean": 99.80044960975647,
+      "Soyabean Semilooper_Pest_Attack": 0.0433073058957234,
+      "Soyabean_Mosaic": 0.15619464684277773,
+      "rust": 4.16634804878413e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_586.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.66363906860352,
+    "probabilities": {
+      "Healthy_Soyabean": 99.66363906860352,
+      "Soyabean Semilooper_Pest_Attack": 0.16996911726891994,
+      "Soyabean_Mosaic": 0.16635258216410875,
+      "rust": 3.109558690539416e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_516.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_525.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 54.1750967502594,
+    "probabilities": {
+      "Healthy_Soyabean": 54.1750967502594,
+      "Soyabean Semilooper_Pest_Attack": 45.455607771873474,
+      "Soyabean_Mosaic": 0.36873631179332733,
+      "rust": 0.0005574012902798131
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_533.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97817873954773,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97817873954773,
+      "Soyabean Semilooper_Pest_Attack": 0.007416274456772953,
+      "Soyabean_Mosaic": 0.01436131278751418,
+      "rust": 4.3244432390565635e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_435.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_033.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.67181086540222,
+    "probabilities": {
+      "Healthy_Soyabean": 99.67181086540222,
+      "Soyabean Semilooper_Pest_Attack": 0.11590559734031558,
+      "Soyabean_Mosaic": 0.21225775126367807,
+      "rust": 2.798438458739838e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_192.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 93.31603646278381,
+    "probabilities": {
+      "Healthy_Soyabean": 93.31603646278381,
+      "Soyabean Semilooper_Pest_Attack": 5.519507080316544,
+      "Soyabean_Mosaic": 1.1642777360975742,
+      "rust": 0.00017879849565360928
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_534.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.61650466918945,
+    "probabilities": {
+      "Healthy_Soyabean": 98.61650466918945,
+      "Soyabean Semilooper_Pest_Attack": 0.695962505415082,
+      "Soyabean_Mosaic": 0.6874844431877136,
+      "rust": 4.717473416349094e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_494.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 66.59682393074036,
+    "probabilities": {
+      "Healthy_Soyabean": 31.2092125415802,
+      "Soyabean Semilooper_Pest_Attack": 66.59682393074036,
+      "Soyabean_Mosaic": 2.188706584274769,
+      "rust": 0.00525331124663353
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_421.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_568.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 96.97036743164062,
+    "probabilities": {
+      "Healthy_Soyabean": 96.97036743164062,
+      "Soyabean Semilooper_Pest_Attack": 2.4949420243501663,
+      "Soyabean_Mosaic": 0.5346080753952265,
+      "rust": 8.177224231076252e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_632.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5164155960083,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5164155960083,
+      "Soyabean Semilooper_Pest_Attack": 0.16909933183342218,
+      "Soyabean_Mosaic": 0.3144533606246114,
+      "rust": 3.9024251918817754e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_560.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.39603304862976,
+    "probabilities": {
+      "Healthy_Soyabean": 98.39603304862976,
+      "Soyabean Semilooper_Pest_Attack": 0.86755296215415,
+      "Soyabean_Mosaic": 0.7363732904195786,
+      "rust": 4.792786967300344e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_547.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.2521653175354,
+    "probabilities": {
+      "Healthy_Soyabean": 98.2521653175354,
+      "Soyabean Semilooper_Pest_Attack": 1.137420255690813,
+      "Soyabean_Mosaic": 0.6103516556322575,
+      "rust": 5.764274533248681e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_214.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.66869950294495,
+    "probabilities": {
+      "Healthy_Soyabean": 99.66869950294495,
+      "Soyabean Semilooper_Pest_Attack": 0.17710152314975858,
+      "Soyabean_Mosaic": 0.15417340910062194,
+      "rust": 2.9073339646856766e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_523.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.76670742034912,
+    "probabilities": {
+      "Healthy_Soyabean": 99.76670742034912,
+      "Soyabean Semilooper_Pest_Attack": 0.23305623326450586,
+      "Soyabean_Mosaic": 0.00018302871467312798,
+      "rust": 6.0513804100992274e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_343.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_110.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55924153327942,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55924153327942,
+      "Soyabean Semilooper_Pest_Attack": 0.12243390083312988,
+      "Soyabean_Mosaic": 0.3183017950505018,
+      "rust": 2.9746641416750208e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_520.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.5212574005127,
+    "probabilities": {
+      "Healthy_Soyabean": 97.5212574005127,
+      "Soyabean Semilooper_Pest_Attack": 1.4053268358111382,
+      "Soyabean_Mosaic": 1.0733426548540592,
+      "rust": 7.541343052253069e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_404.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.18453097343445,
+    "probabilities": {
+      "Healthy_Soyabean": 99.18453097343445,
+      "Soyabean Semilooper_Pest_Attack": 0.28740502893924713,
+      "Soyabean_Mosaic": 0.5280194338411093,
+      "rust": 4.607584003224474e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_566.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.85578656196594,
+    "probabilities": {
+      "Healthy_Soyabean": 99.85578656196594,
+      "Soyabean Semilooper_Pest_Attack": 0.12628979748114944,
+      "Soyabean_Mosaic": 0.017875729827210307,
+      "rust": 4.883434598923486e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_510.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.31207299232483,
+    "probabilities": {
+      "Healthy_Soyabean": 99.31207299232483,
+      "Soyabean Semilooper_Pest_Attack": 0.6877243518829346,
+      "Soyabean_Mosaic": 0.00014198511735230568,
+      "rust": 6.170632218527317e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_508.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.50213432312012,
+    "probabilities": {
+      "Healthy_Soyabean": 99.50213432312012,
+      "Soyabean Semilooper_Pest_Attack": 0.4976786207407713,
+      "Soyabean_Mosaic": 0.0001228086148330476,
+      "rust": 6.878015597067133e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_558.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6325671672821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6325671672821,
+      "Soyabean Semilooper_Pest_Attack": 0.146115489769727,
+      "Soyabean_Mosaic": 0.22128461860120296,
+      "rust": 3.3122140052910254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_567.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55071210861206,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55071210861206,
+      "Soyabean Semilooper_Pest_Attack": 0.15241719083860517,
+      "Soyabean_Mosaic": 0.2968335524201393,
+      "rust": 3.528774357164366e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_504.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56509470939636,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56509470939636,
+      "Soyabean Semilooper_Pest_Attack": 0.06419365527108312,
+      "Soyabean_Mosaic": 0.37067518569529057,
+      "rust": 3.616701746977924e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_512.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.9498963356018,
+    "probabilities": {
+      "Healthy_Soyabean": 99.9498963356018,
+      "Soyabean Semilooper_Pest_Attack": 0.0457274989457801,
+      "Soyabean_Mosaic": 0.004309693395043723,
+      "rust": 5.799697078145982e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_402.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_489.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.50213432312012,
+    "probabilities": {
+      "Healthy_Soyabean": 99.50213432312012,
+      "Soyabean Semilooper_Pest_Attack": 0.4976786207407713,
+      "Soyabean_Mosaic": 0.0001228086148330476,
+      "rust": 6.878015597067133e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_571.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6569275856018,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6569275856018,
+      "Soyabean Semilooper_Pest_Attack": 0.09996627923101187,
+      "Soyabean_Mosaic": 0.24307682178914547,
+      "rust": 3.240533885673358e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_190.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.77351427078247,
+    "probabilities": {
+      "Healthy_Soyabean": 99.77351427078247,
+      "Soyabean Semilooper_Pest_Attack": 0.06540014874190092,
+      "Soyabean_Mosaic": 0.16105514951050282,
+      "rust": 3.381339581665088e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_576.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.90248680114746,
+    "probabilities": {
+      "Healthy_Soyabean": 99.90248680114746,
+      "Soyabean Semilooper_Pest_Attack": 0.0970857625361532,
+      "Soyabean_Mosaic": 0.00036757376165041933,
+      "rust": 5.7759262972467695e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_522.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95498061180115,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95498061180115,
+      "Soyabean Semilooper_Pest_Attack": 0.043938017915934324,
+      "Soyabean_Mosaic": 0.0010320801266061608,
+      "rust": 4.6574606926697015e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_513.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_056.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.64144921302795,
+    "probabilities": {
+      "Healthy_Soyabean": 98.64144921302795,
+      "Soyabean Semilooper_Pest_Attack": 0.002429797859804239,
+      "Soyabean_Mosaic": 1.35587640106678,
+      "rust": 0.00023381460323435022
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_585.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91969466209412,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91969466209412,
+      "Soyabean Semilooper_Pest_Attack": 0.014200217265170068,
+      "Soyabean_Mosaic": 0.06606820388697088,
+      "rust": 3.3728986181813525e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_036.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.64967465400696,
+    "probabilities": {
+      "Healthy_Soyabean": 98.64967465400696,
+      "Soyabean Semilooper_Pest_Attack": 0.7345560006797314,
+      "Soyabean_Mosaic": 0.615727249532938,
+      "rust": 4.3557224671531e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_016.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.33869242668152,
+    "probabilities": {
+      "Healthy_Soyabean": 99.33869242668152,
+      "Soyabean Semilooper_Pest_Attack": 0.15186045784503222,
+      "Soyabean_Mosaic": 0.5094072315841913,
+      "rust": 3.977920073339192e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_635.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.76958632469177,
+    "probabilities": {
+      "Healthy_Soyabean": 99.76958632469177,
+      "Soyabean Semilooper_Pest_Attack": 0.23019937798380852,
+      "Soyabean_Mosaic": 0.0001565569732520089,
+      "rust": 6.113407380325953e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_550.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.48711395263672,
+    "probabilities": {
+      "Healthy_Soyabean": 99.48711395263672,
+      "Soyabean Semilooper_Pest_Attack": 0.11103220749646425,
+      "Soyabean_Mosaic": 0.40182704105973244,
+      "rust": 3.38984960990274e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_437.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.39603304862976,
+    "probabilities": {
+      "Healthy_Soyabean": 98.39603304862976,
+      "Soyabean Semilooper_Pest_Attack": 0.86755296215415,
+      "Soyabean_Mosaic": 0.7363732904195786,
+      "rust": 4.792786967300344e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_331.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96480941772461,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96480941772461,
+      "Soyabean Semilooper_Pest_Attack": 0.03231223963666707,
+      "Soyabean_Mosaic": 0.0028237134756636806,
+      "rust": 5.489667387337249e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_480.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.59188103675842,
+    "probabilities": {
+      "Healthy_Soyabean": 99.59188103675842,
+      "Soyabean Semilooper_Pest_Attack": 0.4079424310475588,
+      "Soyabean_Mosaic": 0.0001037797233038873,
+      "rust": 7.610570946781081e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_579.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.65991377830505,
+    "probabilities": {
+      "Healthy_Soyabean": 99.65991377830505,
+      "Soyabean Semilooper_Pest_Attack": 0.3398234024643898,
+      "Soyabean_Mosaic": 0.00020420995952008525,
+      "rust": 5.7061077995967935e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_325.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.2521653175354,
+    "probabilities": {
+      "Healthy_Soyabean": 98.2521653175354,
+      "Soyabean Semilooper_Pest_Attack": 1.137420255690813,
+      "Soyabean_Mosaic": 0.6103516556322575,
+      "rust": 5.764274533248681e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_636.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.4194884300232,
+    "probabilities": {
+      "Healthy_Soyabean": 97.4194884300232,
+      "Soyabean Semilooper_Pest_Attack": 2.5797253474593163,
+      "Soyabean_Mosaic": 0.0007173707672336604,
+      "rust": 6.430301482396317e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_486.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.78073239326477,
+    "probabilities": {
+      "Healthy_Soyabean": 99.78073239326477,
+      "Soyabean Semilooper_Pest_Attack": 0.05801698425784707,
+      "Soyabean_Mosaic": 0.1612131018191576,
+      "rust": 4.30655745731201e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_012.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40595626831055,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40595626831055,
+      "Soyabean Semilooper_Pest_Attack": 0.11698940070345998,
+      "Soyabean_Mosaic": 0.47702318988740444,
+      "rust": 3.542900230968371e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_268.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.59558248519897,
+    "probabilities": {
+      "Healthy_Soyabean": 99.59558248519897,
+      "Soyabean Semilooper_Pest_Attack": 0.09937749709933996,
+      "Soyabean_Mosaic": 0.30501175206154585,
+      "rust": 3.576097071800177e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_574.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.48031306266785,
+    "probabilities": {
+      "Healthy_Soyabean": 99.48031306266785,
+      "Soyabean Semilooper_Pest_Attack": 0.12061864836141467,
+      "Soyabean_Mosaic": 0.39902818389236927,
+      "rust": 4.020939172733051e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_272.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_332.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_483.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 92.01503992080688,
+    "probabilities": {
+      "Healthy_Soyabean": 7.867333292961121,
+      "Soyabean Semilooper_Pest_Attack": 92.01503992080688,
+      "Soyabean_Mosaic": 0.11664514895528555,
+      "rust": 0.0009837012839852832
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_468.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95601773262024,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95601773262024,
+      "Soyabean Semilooper_Pest_Attack": 0.003574770744307898,
+      "Soyabean_Mosaic": 0.04035384627059102,
+      "rust": 4.3387177584008896e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_080.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96196031570435,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96196031570435,
+      "Soyabean Semilooper_Pest_Attack": 0.03742484841495752,
+      "Soyabean_Mosaic": 0.0005334927664080169,
+      "rust": 7.48601109989977e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_527.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_434.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 75.95712542533875,
+    "probabilities": {
+      "Healthy_Soyabean": 23.985043168067932,
+      "Soyabean Semilooper_Pest_Attack": 75.95712542533875,
+      "Soyabean_Mosaic": 0.05731948185712099,
+      "rust": 0.0005105443960928824
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_436.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 59.35216546058655,
+    "probabilities": {
+      "Healthy_Soyabean": 40.6014084815979,
+      "Soyabean Semilooper_Pest_Attack": 59.35216546058655,
+      "Soyabean_Mosaic": 0.046022277092561126,
+      "rust": 0.00039997448766371235
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_075.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61967468261719,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61967468261719,
+      "Soyabean Semilooper_Pest_Attack": 0.09020690340548754,
+      "Soyabean_Mosaic": 0.29008109122514725,
+      "rust": 3.6029510397384e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_481.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.66509938240051,
+    "probabilities": {
+      "Healthy_Soyabean": 99.66509938240051,
+      "Soyabean Semilooper_Pest_Attack": 0.29299191664904356,
+      "Soyabean_Mosaic": 0.04187092708889395,
+      "rust": 3.5398775821704476e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_270.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.97347688674927,
+    "probabilities": {
+      "Healthy_Soyabean": 98.97347688674927,
+      "Soyabean Semilooper_Pest_Attack": 0.2521683229133487,
+      "Soyabean_Mosaic": 0.7743095047771931,
+      "rust": 5.000027840651455e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_479.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_528.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.67784285545349,
+    "probabilities": {
+      "Healthy_Soyabean": 99.67784285545349,
+      "Soyabean Semilooper_Pest_Attack": 0.3219664329662919,
+      "Soyabean_Mosaic": 0.0001304797365264676,
+      "rust": 6.493927457995596e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_349.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.83623719215393,
+    "probabilities": {
+      "Healthy_Soyabean": 98.83623719215393,
+      "Soyabean Semilooper_Pest_Attack": 0.5890647415071726,
+      "Soyabean_Mosaic": 0.5746474489569664,
+      "rust": 4.285777492896159e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_092.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.52517747879028,
+    "probabilities": {
+      "Healthy_Soyabean": 99.52517747879028,
+      "Soyabean Semilooper_Pest_Attack": 0.47460729256272316,
+      "Soyabean_Mosaic": 0.00014913861150489538,
+      "rust": 6.428463166230358e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_096.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.44496154785156,
+    "probabilities": {
+      "Healthy_Soyabean": 99.44496154785156,
+      "Soyabean Semilooper_Pest_Attack": 0.5548228975385427,
+      "Soyabean_Mosaic": 0.00016653941656841198,
+      "rust": 5.685298560820229e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_611.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55924153327942,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55924153327942,
+      "Soyabean Semilooper_Pest_Attack": 0.12243390083312988,
+      "Soyabean_Mosaic": 0.3183017950505018,
+      "rust": 2.9746641416750208e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_545.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_095.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_553.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56509470939636,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56509470939636,
+      "Soyabean Semilooper_Pest_Attack": 0.06419365527108312,
+      "Soyabean_Mosaic": 0.37067518569529057,
+      "rust": 3.616701746977924e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_518.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6325671672821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6325671672821,
+      "Soyabean Semilooper_Pest_Attack": 0.146115489769727,
+      "Soyabean_Mosaic": 0.22128461860120296,
+      "rust": 3.3122140052910254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_634.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6325671672821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6325671672821,
+      "Soyabean Semilooper_Pest_Attack": 0.146115489769727,
+      "Soyabean_Mosaic": 0.22128461860120296,
+      "rust": 3.3122140052910254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_610.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96827840805054,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96827840805054,
+      "Soyabean Semilooper_Pest_Attack": 0.028952801949344575,
+      "Soyabean_Mosaic": 0.0026850060748984106,
+      "rust": 8.966456448433746e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_053.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55642223358154,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55642223358154,
+      "Soyabean Semilooper_Pest_Attack": 0.16228696331381798,
+      "Soyabean_Mosaic": 0.2812647260725498,
+      "rust": 3.055729393963702e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_149.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.84312653541565,
+    "probabilities": {
+      "Healthy_Soyabean": 99.84312653541565,
+      "Soyabean Semilooper_Pest_Attack": 0.015412179345730692,
+      "Soyabean_Mosaic": 0.1414224854670465,
+      "rust": 3.6439422501644e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_478.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97192025184631,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97192025184631,
+      "Soyabean Semilooper_Pest_Attack": 0.023628701455891132,
+      "Soyabean_Mosaic": 0.004398602686705999,
+      "rust": 4.935210426992853e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_538.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.25133681297302,
+    "probabilities": {
+      "Healthy_Soyabean": 98.25133681297302,
+      "Soyabean Semilooper_Pest_Attack": 1.2116487137973309,
+      "Soyabean_Mosaic": 0.5369586870074272,
+      "rust": 5.906123305976507e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_617.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.58202838897705,
+    "probabilities": {
+      "Healthy_Soyabean": 99.58202838897705,
+      "Soyabean Semilooper_Pest_Attack": 0.4177411552518606,
+      "Soyabean_Mosaic": 0.00016403085965066566,
+      "rust": 6.516960979752184e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_572.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.39804077148438,
+    "probabilities": {
+      "Healthy_Soyabean": 99.39804077148438,
+      "Soyabean Semilooper_Pest_Attack": 0.6017447914928198,
+      "Soyabean_Mosaic": 0.00014644823522758088,
+      "rust": 7.01734848007618e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_181.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_484.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.45787191390991,
+    "probabilities": {
+      "Healthy_Soyabean": 99.45787191390991,
+      "Soyabean Semilooper_Pest_Attack": 0.19231102196499705,
+      "Soyabean_Mosaic": 0.34977931063622236,
+      "rust": 3.4039928209494974e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_093.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97379183769226,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97379183769226,
+      "Soyabean Semilooper_Pest_Attack": 0.008490872278343886,
+      "Soyabean_Mosaic": 0.017684671911410987,
+      "rust": 3.400090520244703e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_502.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56509470939636,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56509470939636,
+      "Soyabean Semilooper_Pest_Attack": 0.06419365527108312,
+      "Soyabean_Mosaic": 0.37067518569529057,
+      "rust": 3.616701746977924e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_144.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96683597564697,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96683597564697,
+      "Soyabean Semilooper_Pest_Attack": 0.032207826734520495,
+      "Soyabean_Mosaic": 0.000905506567505654,
+      "rust": 5.50124070741731e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_094.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 96.27201557159424,
+    "probabilities": {
+      "Healthy_Soyabean": 96.27201557159424,
+      "Soyabean Semilooper_Pest_Attack": 2.9398238286376,
+      "Soyabean_Mosaic": 0.7880744524300098,
+      "rust": 9.839368431130424e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_081.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_327.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.99064993858337,
+    "probabilities": {
+      "Healthy_Soyabean": 97.99064993858337,
+      "Soyabean Semilooper_Pest_Attack": 0.9631208144128323,
+      "Soyabean_Mosaic": 1.0461783967912197,
+      "rust": 5.554181825573323e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_431.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_372.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.49362969398499,
+    "probabilities": {
+      "Healthy_Soyabean": 98.49362969398499,
+      "Soyabean Semilooper_Pest_Attack": 0.7066847756505013,
+      "Soyabean_Mosaic": 0.7996276021003723,
+      "rust": 4.869174858868064e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_519.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6249258518219,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6249258518219,
+      "Soyabean Semilooper_Pest_Attack": 0.1368992612697184,
+      "Soyabean_Mosaic": 0.23814470041543245,
+      "rust": 3.3409170896447904e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_121.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_188.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40125346183777,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40125346183777,
+      "Soyabean Semilooper_Pest_Attack": 0.11409305734559894,
+      "Soyabean_Mosaic": 0.48461188562214375,
+      "rust": 4.214994646645209e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_072.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96458292007446,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96458292007446,
+      "Soyabean Semilooper_Pest_Attack": 0.034279475221410394,
+      "Soyabean_Mosaic": 0.0010818260307132732,
+      "rust": 5.049273568147328e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_430.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.43406581878662,
+    "probabilities": {
+      "Healthy_Soyabean": 99.43406581878662,
+      "Soyabean Semilooper_Pest_Attack": 0.08519166731275618,
+      "Soyabean_Mosaic": 0.4806971177458763,
+      "rust": 4.360217360499519e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_203.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.93475079536438,
+    "probabilities": {
+      "Healthy_Soyabean": 99.93475079536438,
+      "Soyabean Semilooper_Pest_Attack": 0.027600207249633968,
+      "Soyabean_Mosaic": 0.03761488769669086,
+      "rust": 4.408858274018712e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_503.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.02698588371277,
+    "probabilities": {
+      "Healthy_Soyabean": 97.02698588371277,
+      "Soyabean Semilooper_Pest_Attack": 2.077341079711914,
+      "Soyabean_Mosaic": 0.8955784142017365,
+      "rust": 8.907798019208713e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_539.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.62477087974548,
+    "probabilities": {
+      "Healthy_Soyabean": 99.62477087974548,
+      "Soyabean Semilooper_Pest_Attack": 0.37501289043575525,
+      "Soyabean_Mosaic": 0.00014767980474061915,
+      "rust": 7.329095979002886e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_583.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95431900024414,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95431900024414,
+      "Soyabean Semilooper_Pest_Attack": 0.043928271043114364,
+      "Soyabean_Mosaic": 0.0017086178559111431,
+      "rust": 5.301586156747362e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_047.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.76739287376404,
+    "probabilities": {
+      "Healthy_Soyabean": 99.76739287376404,
+      "Soyabean Semilooper_Pest_Attack": 0.0026650126528693363,
+      "Soyabean_Mosaic": 0.22985802497714758,
+      "rust": 8.319570952153299e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_573.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.3891716003418,
+    "probabilities": {
+      "Healthy_Soyabean": 99.3891716003418,
+      "Soyabean Semilooper_Pest_Attack": 0.6106056272983551,
+      "Soyabean_Mosaic": 0.00014010037148182164,
+      "rust": 7.77788500272436e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_559.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_052.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.43406581878662,
+    "probabilities": {
+      "Healthy_Soyabean": 99.43406581878662,
+      "Soyabean Semilooper_Pest_Attack": 0.08519166731275618,
+      "Soyabean_Mosaic": 0.4806971177458763,
+      "rust": 4.360217360499519e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_472.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.64967465400696,
+    "probabilities": {
+      "Healthy_Soyabean": 98.64967465400696,
+      "Soyabean Semilooper_Pest_Attack": 0.7345560006797314,
+      "Soyabean_Mosaic": 0.615727249532938,
+      "rust": 4.3557224671531e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_076.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97201561927795,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97201561927795,
+      "Soyabean Semilooper_Pest_Attack": 0.015065823390614241,
+      "Soyabean_Mosaic": 0.012880646681878716,
+      "rust": 2.7897772270080168e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_302.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91437196731567,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91437196731567,
+      "Soyabean Semilooper_Pest_Attack": 0.01395620929542929,
+      "Soyabean_Mosaic": 0.07163550471886992,
+      "rust": 3.4064277087964e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_330.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55962300300598,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55962300300598,
+      "Soyabean Semilooper_Pest_Attack": 0.08682506158947945,
+      "Soyabean_Mosaic": 0.35352970007807016,
+      "rust": 3.279162683611503e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_320.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6249258518219,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6249258518219,
+      "Soyabean Semilooper_Pest_Attack": 0.1368992612697184,
+      "Soyabean_Mosaic": 0.23814470041543245,
+      "rust": 3.3409170896447904e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_100.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55642223358154,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55642223358154,
+      "Soyabean Semilooper_Pest_Attack": 0.16228696331381798,
+      "Soyabean_Mosaic": 0.2812647260725498,
+      "rust": 3.055729393963702e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_487.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_077.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.899822473526,
+    "probabilities": {
+      "Healthy_Soyabean": 99.899822473526,
+      "Soyabean Semilooper_Pest_Attack": 0.06270899320952594,
+      "Soyabean_Mosaic": 0.03743455745279789,
+      "rust": 3.771252465867292e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_557.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_290.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.69329833984375,
+    "probabilities": {
+      "Healthy_Soyabean": 99.69329833984375,
+      "Soyabean Semilooper_Pest_Attack": 0.07581199752166867,
+      "Soyabean_Mosaic": 0.23085549473762512,
+      "rust": 3.38491020102083e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_369.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.46681261062622,
+    "probabilities": {
+      "Healthy_Soyabean": 99.46681261062622,
+      "Soyabean Semilooper_Pest_Attack": 0.26370964478701353,
+      "Soyabean_Mosaic": 0.26945159770548344,
+      "rust": 3.7564214494523185e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_476.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.42492246627808,
+    "probabilities": {
+      "Healthy_Soyabean": 99.42492246627808,
+      "Soyabean Semilooper_Pest_Attack": 0.19615190103650093,
+      "Soyabean_Mosaic": 0.37888430524617434,
+      "rust": 3.752884651930799e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_491.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.25463795661926,
+    "probabilities": {
+      "Healthy_Soyabean": 99.25463795661926,
+      "Soyabean Semilooper_Pest_Attack": 0.2973690163344145,
+      "Soyabean_Mosaic": 0.4479466937482357,
+      "rust": 4.1207491108252725e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_419.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61839318275452,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61839318275452,
+      "Soyabean Semilooper_Pest_Attack": 0.11011643800884485,
+      "Soyabean_Mosaic": 0.2714477013796568,
+      "rust": 3.457202240042534e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_014.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91065859794617,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91065859794617,
+      "Soyabean Semilooper_Pest_Attack": 0.08877340005710721,
+      "Soyabean_Mosaic": 0.0004963747869624058,
+      "rust": 6.354669039865257e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_621.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.65716600418091,
+    "probabilities": {
+      "Healthy_Soyabean": 99.65716600418091,
+      "Soyabean Semilooper_Pest_Attack": 0.2520370529964566,
+      "Soyabean_Mosaic": 0.09077038266696036,
+      "rust": 2.7816832925964263e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_530.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_341.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.87621307373047,
+    "probabilities": {
+      "Healthy_Soyabean": 99.87621307373047,
+      "Soyabean Semilooper_Pest_Attack": 0.026227740454487503,
+      "Soyabean_Mosaic": 0.09754076017998159,
+      "rust": 2.959999960694404e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_521.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55071210861206,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55071210861206,
+      "Soyabean Semilooper_Pest_Attack": 0.15241719083860517,
+      "Soyabean_Mosaic": 0.2968335524201393,
+      "rust": 3.528774357164366e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_211.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.9640941619873,
+    "probabilities": {
+      "Healthy_Soyabean": 99.9640941619873,
+      "Soyabean Semilooper_Pest_Attack": 0.005079856418888085,
+      "Soyabean_Mosaic": 0.030791398603469133,
+      "rust": 3.668145041046955e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_438.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.8477041721344,
+    "probabilities": {
+      "Healthy_Soyabean": 99.8477041721344,
+      "Soyabean Semilooper_Pest_Attack": 0.004480044663068838,
+      "Soyabean_Mosaic": 0.14776374446228147,
+      "rust": 4.906014510197565e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_619.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.78699684143066,
+    "probabilities": {
+      "Healthy_Soyabean": 99.78699684143066,
+      "Soyabean Semilooper_Pest_Attack": 0.05726157105527818,
+      "Soyabean_Mosaic": 0.15569578390568495,
+      "rust": 3.769976331113867e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_515.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.48031306266785,
+    "probabilities": {
+      "Healthy_Soyabean": 99.48031306266785,
+      "Soyabean Semilooper_Pest_Attack": 0.12061864836141467,
+      "Soyabean_Mosaic": 0.39902818389236927,
+      "rust": 4.020939172733051e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_584.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40876960754395,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40876960754395,
+      "Soyabean Semilooper_Pest_Attack": 0.19843620248138905,
+      "Soyabean_Mosaic": 0.3927583806216717,
+      "rust": 3.879020198382932e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_507.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40876960754395,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40876960754395,
+      "Soyabean Semilooper_Pest_Attack": 0.19843620248138905,
+      "Soyabean_Mosaic": 0.3927583806216717,
+      "rust": 3.879020198382932e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_220.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.59558248519897,
+    "probabilities": {
+      "Healthy_Soyabean": 99.59558248519897,
+      "Soyabean Semilooper_Pest_Attack": 0.09937749709933996,
+      "Soyabean_Mosaic": 0.30501175206154585,
+      "rust": 3.576097071800177e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_185.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.43270182609558,
+    "probabilities": {
+      "Healthy_Soyabean": 98.43270182609558,
+      "Soyabean Semilooper_Pest_Attack": 0.7585860323160887,
+      "Soyabean_Mosaic": 0.8086473681032658,
+      "rust": 6.949733233341249e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_615.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61916208267212,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61916208267212,
+      "Soyabean Semilooper_Pest_Attack": 0.15986469807103276,
+      "Soyabean_Mosaic": 0.22095004096627235,
+      "rust": 2.9410847446342814e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_098.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5858371257782,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5858371257782,
+      "Soyabean Semilooper_Pest_Attack": 0.08906700531952083,
+      "Soyabean_Mosaic": 0.32505104318261147,
+      "rust": 3.6627608324124594e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_581.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.9091625213623,
+    "probabilities": {
+      "Healthy_Soyabean": 99.9091625213623,
+      "Soyabean Semilooper_Pest_Attack": 0.024665548698976636,
+      "Soyabean_Mosaic": 0.0661345780827105,
+      "rust": 4.0161316405828984e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_342.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 99.92101192474365,
+    "probabilities": {
+      "Healthy_Soyabean": 0.022174659534357488,
+      "Soyabean Semilooper_Pest_Attack": 99.92101192474365,
+      "Soyabean_Mosaic": 0.05521989078260958,
+      "rust": 0.001600759060238488
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_564.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91660118103027,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91660118103027,
+      "Soyabean Semilooper_Pest_Attack": 0.004597423321683891,
+      "Soyabean_Mosaic": 0.07875235751271248,
+      "rust": 4.5524188863055315e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_035.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.68562126159668,
+    "probabilities": {
+      "Healthy_Soyabean": 99.68562126159668,
+      "Soyabean Semilooper_Pest_Attack": 0.010684796143323183,
+      "Soyabean_Mosaic": 0.30363104306161404,
+      "rust": 6.037496973476664e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_074.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.75662326812744,
+    "probabilities": {
+      "Healthy_Soyabean": 98.75662326812744,
+      "Soyabean Semilooper_Pest_Attack": 0.49333125352859497,
+      "Soyabean_Mosaic": 0.7499935571104288,
+      "rust": 4.859554110225872e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_146.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6249258518219,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6249258518219,
+      "Soyabean Semilooper_Pest_Attack": 0.1368992612697184,
+      "Soyabean_Mosaic": 0.23814470041543245,
+      "rust": 3.3409170896447904e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_587.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.64967465400696,
+    "probabilities": {
+      "Healthy_Soyabean": 98.64967465400696,
+      "Soyabean Semilooper_Pest_Attack": 0.7345560006797314,
+      "Soyabean_Mosaic": 0.615727249532938,
+      "rust": 4.3557224671531e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_546.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.45529103279114,
+    "probabilities": {
+      "Healthy_Soyabean": 99.45529103279114,
+      "Soyabean Semilooper_Pest_Attack": 0.5444920621812344,
+      "Soyabean_Mosaic": 0.00016103435882541817,
+      "rust": 5.899074722037767e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_059.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.63091015815735,
+    "probabilities": {
+      "Healthy_Soyabean": 99.63091015815735,
+      "Soyabean Semilooper_Pest_Attack": 0.09212432196363807,
+      "Soyabean_Mosaic": 0.27693507727235556,
+      "rust": 2.9414596269816684e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_347.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.9545156955719,
+    "probabilities": {
+      "Healthy_Soyabean": 99.9545156955719,
+      "Soyabean Semilooper_Pest_Attack": 0.01688081683823839,
+      "Soyabean_Mosaic": 0.02856806677300483,
+      "rust": 3.12921628164986e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_364.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.45847392082214,
+    "probabilities": {
+      "Healthy_Soyabean": 99.45847392082214,
+      "Soyabean Semilooper_Pest_Attack": 0.20028480794280767,
+      "Soyabean_Mosaic": 0.34120643977075815,
+      "rust": 3.8923687384340155e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_613.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 88.83936405181885,
+    "probabilities": {
+      "Healthy_Soyabean": 88.83936405181885,
+      "Soyabean Semilooper_Pest_Attack": 7.704641669988632,
+      "Soyabean_Mosaic": 3.4557167440652847,
+      "rust": 0.00028390199986461084
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_097.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.5952615737915,
+    "probabilities": {
+      "Healthy_Soyabean": 98.5952615737915,
+      "Soyabean Semilooper_Pest_Attack": 1.1684192344546318,
+      "Soyabean_Mosaic": 0.23625812027603388,
+      "rust": 6.857994776510168e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_529.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.86029267311096,
+    "probabilities": {
+      "Healthy_Soyabean": 99.86029267311096,
+      "Soyabean Semilooper_Pest_Attack": 0.005414324550656602,
+      "Soyabean_Mosaic": 0.13424495700746775,
+      "rust": 4.988684736417781e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_079.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97820258140564,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97820258140564,
+      "Soyabean Semilooper_Pest_Attack": 0.01750293158693239,
+      "Soyabean_Mosaic": 0.004242857175995596,
+      "rust": 5.0210377366965986e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_575.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6325671672821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6325671672821,
+      "Soyabean Semilooper_Pest_Attack": 0.146115489769727,
+      "Soyabean_Mosaic": 0.22128461860120296,
+      "rust": 3.3122140052910254e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_058.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.71736669540405,
+    "probabilities": {
+      "Healthy_Soyabean": 99.71736669540405,
+      "Soyabean Semilooper_Pest_Attack": 0.28240804094821215,
+      "Soyabean_Mosaic": 0.0001720992372611363,
+      "rust": 6.223862101251143e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_561.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.54409599304199,
+    "probabilities": {
+      "Healthy_Soyabean": 99.54409599304199,
+      "Soyabean Semilooper_Pest_Attack": 0.11905469000339508,
+      "Soyabean_Mosaic": 0.3368069417774677,
+      "rust": 3.9204033441819774e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_541.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.93999791145325,
+    "probabilities": {
+      "Healthy_Soyabean": 97.93999791145325,
+      "Soyabean Semilooper_Pest_Attack": 1.9551003351807594,
+      "Soyabean_Mosaic": 0.10482979705557227,
+      "rust": 7.173640597102349e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_577.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_590.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95330572128296,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95330572128296,
+      "Soyabean Semilooper_Pest_Attack": 0.044976259232498705,
+      "Soyabean_Mosaic": 0.001669890116318129,
+      "rust": 5.1917032806159114e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_401.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.69139099121094,
+    "probabilities": {
+      "Healthy_Soyabean": 99.69139099121094,
+      "Soyabean Semilooper_Pest_Attack": 0.15608915127813816,
+      "Soyabean_Mosaic": 0.1524848979897797,
+      "rust": 3.0012643037480302e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_187.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.63091015815735,
+    "probabilities": {
+      "Healthy_Soyabean": 99.63091015815735,
+      "Soyabean Semilooper_Pest_Attack": 0.09212432196363807,
+      "Soyabean_Mosaic": 0.27693507727235556,
+      "rust": 2.9414596269816684e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_526.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 61.580878496170044,
+    "probabilities": {
+      "Healthy_Soyabean": 61.580878496170044,
+      "Soyabean Semilooper_Pest_Attack": 37.87086009979248,
+      "Soyabean_Mosaic": 0.5477568600326777,
+      "rust": 0.0005045960278948769
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_055.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.81788396835327,
+    "probabilities": {
+      "Healthy_Soyabean": 99.81788396835327,
+      "Soyabean Semilooper_Pest_Attack": 0.05286915693432093,
+      "Soyabean_Mosaic": 0.1292145811021328,
+      "rust": 3.585350611956528e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_067.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96998310089111,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96998310089111,
+      "Soyabean Semilooper_Pest_Attack": 0.0285689951851964,
+      "Soyabean_Mosaic": 0.0014120314517640509,
+      "rust": 4.8712507805248606e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_588.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.2592990398407,
+    "probabilities": {
+      "Healthy_Soyabean": 99.2592990398407,
+      "Soyabean Semilooper_Pest_Attack": 0.38372641429305077,
+      "Soyabean_Mosaic": 0.35694295074790716,
+      "rust": 3.340524017403368e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_505.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5164155960083,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5164155960083,
+      "Soyabean Semilooper_Pest_Attack": 0.16909933183342218,
+      "Soyabean_Mosaic": 0.3144533606246114,
+      "rust": 3.9024251918817754e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_524.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.87918734550476,
+    "probabilities": {
+      "Healthy_Soyabean": 99.87918734550476,
+      "Soyabean Semilooper_Pest_Attack": 0.01525929692434147,
+      "Soyabean_Mosaic": 0.10551611194387078,
+      "rust": 3.6726081020788115e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_210.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_612.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_618.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95037317276001,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95037317276001,
+      "Soyabean Semilooper_Pest_Attack": 0.04797072906512767,
+      "Soyabean_Mosaic": 0.001625700679142028,
+      "rust": 2.9770347964586108e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_597.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96589422225952,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96589422225952,
+      "Soyabean Semilooper_Pest_Attack": 0.030428252648562193,
+      "Soyabean_Mosaic": 0.0036195164284436032,
+      "rust": 5.025109430789598e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_549.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.17480945587158,
+    "probabilities": {
+      "Healthy_Soyabean": 99.17480945587158,
+      "Soyabean Semilooper_Pest_Attack": 0.20903502590954304,
+      "Soyabean_Mosaic": 0.6161155179142952,
+      "rust": 3.569955424609361e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_500.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.9129593372345,
+    "probabilities": {
+      "Healthy_Soyabean": 99.9129593372345,
+      "Soyabean Semilooper_Pest_Attack": 0.08640640880912542,
+      "Soyabean_Mosaic": 0.0005775201316282619,
+      "rust": 6.268876404647017e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_554.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55962300300598,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55962300300598,
+      "Soyabean Semilooper_Pest_Attack": 0.08682506158947945,
+      "Soyabean_Mosaic": 0.35352970007807016,
+      "rust": 3.279162683611503e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_196.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_563.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 97.25250005722046,
+    "probabilities": {
+      "Healthy_Soyabean": 97.25250005722046,
+      "Soyabean Semilooper_Pest_Attack": 1.3920711353421211,
+      "Soyabean_Mosaic": 1.35534992441535,
+      "rust": 7.555749448329152e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_555.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.43406581878662,
+    "probabilities": {
+      "Healthy_Soyabean": 99.43406581878662,
+      "Soyabean Semilooper_Pest_Attack": 0.08519166731275618,
+      "Soyabean_Mosaic": 0.4806971177458763,
+      "rust": 4.360217360499519e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_429.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6569275856018,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6569275856018,
+      "Soyabean Semilooper_Pest_Attack": 0.09996627923101187,
+      "Soyabean_Mosaic": 0.24307682178914547,
+      "rust": 3.240533885673358e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_506.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.55962300300598,
+    "probabilities": {
+      "Healthy_Soyabean": 99.55962300300598,
+      "Soyabean Semilooper_Pest_Attack": 0.08682506158947945,
+      "Soyabean_Mosaic": 0.35352970007807016,
+      "rust": 3.279162683611503e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_271.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.5164155960083,
+    "probabilities": {
+      "Healthy_Soyabean": 99.5164155960083,
+      "Soyabean Semilooper_Pest_Attack": 0.16909933183342218,
+      "Soyabean_Mosaic": 0.3144533606246114,
+      "rust": 3.9024251918817754e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_485.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.32397603988647,
+    "probabilities": {
+      "Healthy_Soyabean": 99.32397603988647,
+      "Soyabean Semilooper_Pest_Attack": 0.35483967512845993,
+      "Soyabean_Mosaic": 0.32114696223288774,
+      "rust": 4.456625788407109e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_439.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.58338737487793,
+    "probabilities": {
+      "Healthy_Soyabean": 99.58338737487793,
+      "Soyabean Semilooper_Pest_Attack": 0.2204960910603404,
+      "Soyabean_Mosaic": 0.19607662688940763,
+      "rust": 3.4159910455855425e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_346.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.90924596786499,
+    "probabilities": {
+      "Healthy_Soyabean": 99.90924596786499,
+      "Soyabean Semilooper_Pest_Attack": 0.010512150038266554,
+      "Soyabean_Mosaic": 0.08019905653782189,
+      "rust": 3.682682745420607e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_070.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_517.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.53621029853821,
+    "probabilities": {
+      "Healthy_Soyabean": 99.53621029853821,
+      "Soyabean Semilooper_Pest_Attack": 0.08376027108170092,
+      "Soyabean_Mosaic": 0.37999721243977547,
+      "rust": 3.868227054226736e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_062.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 66.48995280265808,
+    "probabilities": {
+      "Healthy_Soyabean": 31.03090226650238,
+      "Soyabean Semilooper_Pest_Attack": 66.48995280265808,
+      "Soyabean_Mosaic": 2.471586689352989,
+      "rust": 0.007554853800684214
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_531.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.97347688674927,
+    "probabilities": {
+      "Healthy_Soyabean": 98.97347688674927,
+      "Soyabean Semilooper_Pest_Attack": 0.2521683229133487,
+      "Soyabean_Mosaic": 0.7743095047771931,
+      "rust": 5.000027840651455e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_071.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.65134263038635,
+    "probabilities": {
+      "Healthy_Soyabean": 99.65134263038635,
+      "Soyabean Semilooper_Pest_Attack": 0.05140815628692508,
+      "Soyabean_Mosaic": 0.29720545280724764,
+      "rust": 4.2129522626055405e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_054.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.83742237091064,
+    "probabilities": {
+      "Healthy_Soyabean": 99.83742237091064,
+      "Soyabean Semilooper_Pest_Attack": 0.0434227054938674,
+      "Soyabean_Mosaic": 0.1191037823446095,
+      "rust": 5.3718451908935094e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_345.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.97369647026062,
+    "probabilities": {
+      "Healthy_Soyabean": 99.97369647026062,
+      "Soyabean Semilooper_Pest_Attack": 0.02143196907127276,
+      "Soyabean_Mosaic": 0.004854397411691025,
+      "rust": 2.5341509513054916e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_467.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.54409599304199,
+    "probabilities": {
+      "Healthy_Soyabean": 99.54409599304199,
+      "Soyabean Semilooper_Pest_Attack": 0.11905469000339508,
+      "Soyabean_Mosaic": 0.3368069417774677,
+      "rust": 3.9204033441819774e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_108.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.78699684143066,
+    "probabilities": {
+      "Healthy_Soyabean": 99.78699684143066,
+      "Soyabean Semilooper_Pest_Attack": 0.05726157105527818,
+      "Soyabean_Mosaic": 0.15569578390568495,
+      "rust": 3.769976331113867e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_551.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_511.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.49362969398499,
+    "probabilities": {
+      "Healthy_Soyabean": 98.49362969398499,
+      "Soyabean Semilooper_Pest_Attack": 0.7066847756505013,
+      "Soyabean_Mosaic": 0.7996276021003723,
+      "rust": 4.869174858868064e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_319.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_201.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.3019163608551,
+    "probabilities": {
+      "Healthy_Soyabean": 99.3019163608551,
+      "Soyabean Semilooper_Pest_Attack": 0.6456179544329643,
+      "Soyabean_Mosaic": 0.05243053310550749,
+      "rust": 3.084828108512738e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_109.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61399435997009,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61399435997009,
+      "Soyabean Semilooper_Pest_Attack": 0.0866526213940233,
+      "Soyabean_Mosaic": 0.2993145724758506,
+      "rust": 3.436377085108688e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_432.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.63091015815735,
+    "probabilities": {
+      "Healthy_Soyabean": 99.63091015815735,
+      "Soyabean Semilooper_Pest_Attack": 0.09212432196363807,
+      "Soyabean_Mosaic": 0.27693507727235556,
+      "rust": 2.9414596269816684e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_226.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.97347688674927,
+    "probabilities": {
+      "Healthy_Soyabean": 98.97347688674927,
+      "Soyabean Semilooper_Pest_Attack": 0.2521683229133487,
+      "Soyabean_Mosaic": 0.7743095047771931,
+      "rust": 5.000027840651455e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_147.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91170763969421,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91170763969421,
+      "Soyabean Semilooper_Pest_Attack": 0.02379829529672861,
+      "Soyabean_Mosaic": 0.06445861654356122,
+      "rust": 3.473766128081479e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_189.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.80340600013733,
+    "probabilities": {
+      "Healthy_Soyabean": 99.80340600013733,
+      "Soyabean Semilooper_Pest_Attack": 0.0016859048628248274,
+      "Soyabean_Mosaic": 0.19481794442981482,
+      "rust": 8.691194466337038e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_497.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.43406581878662,
+    "probabilities": {
+      "Healthy_Soyabean": 99.43406581878662,
+      "Soyabean Semilooper_Pest_Attack": 0.08519166731275618,
+      "Soyabean_Mosaic": 0.4806971177458763,
+      "rust": 4.360217360499519e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_470.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.30685758590698,
+    "probabilities": {
+      "Healthy_Soyabean": 99.30685758590698,
+      "Soyabean Semilooper_Pest_Attack": 0.25768764317035675,
+      "Soyabean_Mosaic": 0.4354091826826334,
+      "rust": 4.1384933524568623e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_057.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6599018573761,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6599018573761,
+      "Soyabean Semilooper_Pest_Attack": 0.006916095298947766,
+      "Soyabean_Mosaic": 0.3331223502755165,
+      "rust": 5.5767594631106476e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_565.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.69580173492432,
+    "probabilities": {
+      "Healthy_Soyabean": 99.69580173492432,
+      "Soyabean Semilooper_Pest_Attack": 0.3038923488929868,
+      "Soyabean_Mosaic": 0.00025112542516581016,
+      "rust": 5.581460982284625e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_063.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.91182684898376,
+    "probabilities": {
+      "Healthy_Soyabean": 99.91182684898376,
+      "Soyabean Semilooper_Pest_Attack": 0.015525257913395762,
+      "Soyabean_Mosaic": 0.07262119324877858,
+      "rust": 2.9175683380344708e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_293.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40465688705444,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40465688705444,
+      "Soyabean Semilooper_Pest_Attack": 0.15916145639494061,
+      "Soyabean_Mosaic": 0.43613817542791367,
+      "rust": 4.0055655858850514e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_569.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.92808699607849,
+    "probabilities": {
+      "Healthy_Soyabean": 99.92808699607849,
+      "Soyabean Semilooper_Pest_Attack": 0.016196121578104794,
+      "Soyabean_Mosaic": 0.055683922255411744,
+      "rust": 3.820952940714051e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_099.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.2693305015564,
+    "probabilities": {
+      "Healthy_Soyabean": 99.2693305015564,
+      "Soyabean Semilooper_Pest_Attack": 0.29915908817201853,
+      "Soyabean_Mosaic": 0.4314691759645939,
+      "rust": 4.0559737612966273e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_471.jpg",
+    "predicted_class": "Soyabean Semilooper_Pest_Attack",
+    "confidence": 61.78290247917175,
+    "probabilities": {
+      "Healthy_Soyabean": 36.43504083156586,
+      "Soyabean Semilooper_Pest_Attack": 61.78290247917175,
+      "Soyabean_Mosaic": 1.7785623669624329,
+      "rust": 0.0034981985663762316
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_509.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.40876960754395,
+    "probabilities": {
+      "Healthy_Soyabean": 99.40876960754395,
+      "Soyabean Semilooper_Pest_Attack": 0.19843620248138905,
+      "Soyabean_Mosaic": 0.3927583806216717,
+      "rust": 3.879020198382932e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_311.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.77351427078247,
+    "probabilities": {
+      "Healthy_Soyabean": 99.77351427078247,
+      "Soyabean Semilooper_Pest_Attack": 0.06540014874190092,
+      "Soyabean_Mosaic": 0.16105514951050282,
+      "rust": 3.381339581665088e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_580.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.44496154785156,
+    "probabilities": {
+      "Healthy_Soyabean": 99.44496154785156,
+      "Soyabean Semilooper_Pest_Attack": 0.5548228975385427,
+      "Soyabean_Mosaic": 0.00016653941656841198,
+      "rust": 5.685298560820229e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_409.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.86029267311096,
+    "probabilities": {
+      "Healthy_Soyabean": 99.86029267311096,
+      "Soyabean Semilooper_Pest_Attack": 0.005414324550656602,
+      "Soyabean_Mosaic": 0.13424495700746775,
+      "rust": 4.988684736417781e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_535.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.61650466918945,
+    "probabilities": {
+      "Healthy_Soyabean": 98.61650466918945,
+      "Soyabean Semilooper_Pest_Attack": 0.695962505415082,
+      "Soyabean_Mosaic": 0.6874844431877136,
+      "rust": 4.717473416349094e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_548.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.8559296131134,
+    "probabilities": {
+      "Healthy_Soyabean": 99.8559296131134,
+      "Soyabean Semilooper_Pest_Attack": 0.004370156239019707,
+      "Soyabean_Mosaic": 0.13963790843263268,
+      "rust": 5.282716983856517e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_492.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.66937303543091,
+    "probabilities": {
+      "Healthy_Soyabean": 99.66937303543091,
+      "Soyabean Semilooper_Pest_Attack": 0.12950471136718988,
+      "Soyabean_Mosaic": 0.20107757300138474,
+      "rust": 3.590930930386094e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_048.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.6249258518219,
+    "probabilities": {
+      "Healthy_Soyabean": 99.6249258518219,
+      "Soyabean Semilooper_Pest_Attack": 0.1368992612697184,
+      "Soyabean_Mosaic": 0.23814470041543245,
+      "rust": 3.3409170896447904e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_269.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.76092576980591,
+    "probabilities": {
+      "Healthy_Soyabean": 99.76092576980591,
+      "Soyabean Semilooper_Pest_Attack": 0.07301716832444072,
+      "Soyabean_Mosaic": 0.1660214038565755,
+      "rust": 3.72013204241739e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_078.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.61444139480591,
+    "probabilities": {
+      "Healthy_Soyabean": 99.61444139480591,
+      "Soyabean Semilooper_Pest_Attack": 0.13809936353936791,
+      "Soyabean_Mosaic": 0.24742537643760443,
+      "rust": 2.8610918434424093e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_218.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.63091015815735,
+    "probabilities": {
+      "Healthy_Soyabean": 99.63091015815735,
+      "Soyabean Semilooper_Pest_Attack": 0.09212432196363807,
+      "Soyabean_Mosaic": 0.27693507727235556,
+      "rust": 2.9414596269816684e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_273.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.41946864128113,
+    "probabilities": {
+      "Healthy_Soyabean": 99.41946864128113,
+      "Soyabean Semilooper_Pest_Attack": 0.2494048560038209,
+      "Soyabean_Mosaic": 0.3310882719233632,
+      "rust": 3.8082609421508096e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_116.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56509470939636,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56509470939636,
+      "Soyabean Semilooper_Pest_Attack": 0.06419365527108312,
+      "Soyabean_Mosaic": 0.37067518569529057,
+      "rust": 3.616701746977924e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_552.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.56509470939636,
+    "probabilities": {
+      "Healthy_Soyabean": 99.56509470939636,
+      "Soyabean Semilooper_Pest_Attack": 0.06419365527108312,
+      "Soyabean_Mosaic": 0.37067518569529057,
+      "rust": 3.616701746977924e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_614.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.79994893074036,
+    "probabilities": {
+      "Healthy_Soyabean": 99.79994893074036,
+      "Soyabean Semilooper_Pest_Attack": 0.005653790140058845,
+      "Soyabean_Mosaic": 0.1943330280482769,
+      "rust": 5.3877312211625394e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_498.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.96844530105591,
+    "probabilities": {
+      "Healthy_Soyabean": 99.96844530105591,
+      "Soyabean Semilooper_Pest_Attack": 0.006037829371052794,
+      "Soyabean_Mosaic": 0.025474134599789977,
+      "rust": 3.551938903001428e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_310.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.97347688674927,
+    "probabilities": {
+      "Healthy_Soyabean": 98.97347688674927,
+      "Soyabean Semilooper_Pest_Attack": 0.2521683229133487,
+      "Soyabean_Mosaic": 0.7743095047771931,
+      "rust": 5.000027840651455e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_344.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.95834231376648,
+    "probabilities": {
+      "Healthy_Soyabean": 99.95834231376648,
+      "Soyabean Semilooper_Pest_Attack": 0.01215814845636487,
+      "Soyabean_Mosaic": 0.029469153378158808,
+      "rust": 3.490407323170075e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_061.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.3423581123352,
+    "probabilities": {
+      "Healthy_Soyabean": 99.3423581123352,
+      "Soyabean Semilooper_Pest_Attack": 0.11709816753864288,
+      "Soyabean_Mosaic": 0.5404996685683727,
+      "rust": 3.575983100745361e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_482.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 98.01419973373413,
+    "probabilities": {
+      "Healthy_Soyabean": 98.01419973373413,
+      "Soyabean Semilooper_Pest_Attack": 1.8678830936551094,
+      "Soyabean_Mosaic": 0.11784995440393686,
+      "rust": 6.56831673495617e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_496.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.45474863052368,
+    "probabilities": {
+      "Healthy_Soyabean": 99.45474863052368,
+      "Soyabean Semilooper_Pest_Attack": 0.5450010765343904,
+      "Soyabean_Mosaic": 0.00019663623334054137,
+      "rust": 5.484545226863702e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_069.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.81967806816101,
+    "probabilities": {
+      "Healthy_Soyabean": 99.81967806816101,
+      "Soyabean Semilooper_Pest_Attack": 0.03056034620385617,
+      "Soyabean_Mosaic": 0.14973001088947058,
+      "rust": 3.8186428241715475e-05
+    },
+    "status": "success"
+  },
+  {
+    "image_name": "image_151.jpg",
+    "predicted_class": "Healthy_Soyabean",
+    "confidence": 99.3423581123352,
+    "probabilities": {
+      "Healthy_Soyabean": 99.3423581123352,
+      "Soyabean Semilooper_Pest_Attack": 0.11709816753864288,
+      "Soyabean_Mosaic": 0.5404996685683727,
+      "rust": 3.575983100745361e-05
+    },
+    "status": "success"
+  }
+]
