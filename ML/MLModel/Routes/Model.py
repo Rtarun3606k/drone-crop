@@ -227,8 +227,10 @@ if __name__ == "__main__":
     # image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_UAV-Based_Image_Dataset/Soyabean_Mosaic/"
     # image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_UAV-Based_Image_Dataset/Soyabean Semilooper_Pest_Attack/"
     # image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_UAV-Based_Image_Dataset/rust/"
-    image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_UAV-Based_Image_Dataset/Healthy_Soyabean"
-    output_json = "Healthy_Soyabean.json"
+    # image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_UAV-Based_Image_Dataset/Healthy_Soyabean"
+    # image_dir = "/home/dragoon/Downloads/zip"
+    image_dir = "/home/dragoon/Downloads/MH-SoyaHealthVision An Indian UAV and Leaf Image Dataset for Integrated Crop Health Assessment/Soyabean_Leaf_Image_Dataset/Soyabean_Mosaic"
+    output_json = "random.json"
     
     # Get all jpg files in directory
     image_paths = [os.path.join(image_dir, f) for f in os.listdir(image_dir) 
