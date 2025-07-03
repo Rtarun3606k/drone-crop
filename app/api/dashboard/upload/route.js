@@ -7,6 +7,12 @@ import { data } from "react-router-dom";
 export async function POST(request) {
   const session = await auth();
   const formData = await request.formData();
+  if (!session?.user || session === null) {
+    return NextResponse.json(
+      { error: "Unauthorized. Please log in." },
+      { status: 401 }
+    );
+  }
 
   // Get the uploaded ZIP file
   const zipFile = formData.get("imagesZip");
