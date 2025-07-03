@@ -19,7 +19,10 @@ def getAllIncompleteBatches():
 
     try:
         data = db['Batch'].find({"isCompletedModel": False})
-        return list(data)
+        coursor = list(data)
+        # data = db['Batch'].find()
+        print("Fetched incomplete batches successfully.", len(coursor),coursor, "batches found.")
+        return coursor
     except Exception as e:
         print(f"An error occurred while fetching incomplete batches: {e}")
         return []
@@ -41,15 +44,19 @@ def updatebatchStatus(batch_id, status):
         print(f"An error occurred while updating batch status: {e}")
         return False
     
-
+if __name__ == "__main__":
+    query = db['Batch'].delete_many({"isCompletedModel": False})
+    print(f"Deleted {query.deleted_count} incomplete batches from the database.")
 
 # data  = getAllIncompleteBatches()
 # # print("Function to get all incomplete batches defined successfully.",getAllIncompleteBatches()[0],listLen)
 # print("First incomplete batch:", data[0] if data else "No incomplete batches found.")
 
-# # updateStatus = updatebatchStatus(data[0]['_id'], True)
+# print("Fetched incomplete batches successfully.", data, "batches found.")
 
-# # print(f"Batch status updated successfully. {updateStatus} document(s) modified.")
+# updateStatus = updatebatchStatus(data[0]['_id'], False)
+
+# print(f"Batch status updated successfully. {updateStatus} document(s) modified.")
 # print("Updated batch:", list(db['Batch'].find()))
 
 
