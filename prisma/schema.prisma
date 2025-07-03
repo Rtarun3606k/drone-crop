@@ -62,18 +62,20 @@ model VerificationToken {
 }
 
 model Batch {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  cropType    String
-  imagesZip   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      String   @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sessionId   String   @default(uuid())
-  isCompleted Boolean  @default(false)
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  cropType         String
+  imagesZipURL     String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  userId           String   @db.ObjectId
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId        String   @default(uuid())
+  isCompletedModel Boolean  @default(false)
+  isCompleted      Boolean  @default(false)
+  imagesCount      Int      @default(0)
 
-  @@index([id, userId, cropType, sessionId, isCompleted], name: "batch_user_index")
+  @@index([id, userId, cropType, sessionId, isCompletedModel], name: "batch_user_index")
 }
 
 enum Role {
