@@ -1,49 +1,62 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from pytz import utc
-
-from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.mongodb import MongoDBJobStore
-# from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
-from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+from apscheduler.executors.pool import ProcessPoolExecutor
+from pytz import utc
+import atexit
+import signal
+import sys
+import logging
+from Routes.ModelFunction import ModelRunner
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
-jobstores = {
-    'mongo': MongoDBJobStore(),
-    # 'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite')
-}
+# Only one executor since ML is CPU-bound
 executors = {
-    'default': ThreadPoolExecutor(20),
     'processpool': ProcessPoolExecutor(5)
 }
+
+# Job defaults: max_instances=1 prevents concurrent runs
 job_defaults = {
-    'coalesce': False,
-    'max_instances': 3
+    'coalesce': False,       # don’t “catch up” missed runs
+    'max_instances': 1,      # only one running at a time
 }
 
-def print1():
-    print("Hello, this is a background task running every 10 seconds.")
+scheduler = BackgroundScheduler(
+    jobstores={'default': MongoDBJobStore(host='localhost', port=27017, database='droneCrop')},
+    executors=executors,
+    job_defaults=job_defaults,
+    timezone=utc
+)
 
-
-
-scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
-
-
-scheduler.add_job(print1, 'interval', seconds=2, id='print1_job', replace_existing=True)
-
-def start_scheduler():
-    """
-    Start the background scheduler.
-    """
-    if not scheduler.running:
-        print("Starting the scheduler...")
-    scheduler.start()
+# Schedule your ML runner every 10 minutes
+scheduler.add_job(
+    ModelRunner,
+    trigger='interval',
+    minutes=10,
+    id='Ml_Model',
+    executor='processpool',
+    misfire_grace_time=3600,  # if a run is delayed, allow up to 1 hour late
+    replace_existing=True
+)
 
 def shutdown_scheduler():
-    """
-    Shutdown the background scheduler.
-    """
-    if scheduler.running:
-        print("Shutting down the scheduler...")
-        scheduler.shutdown(wait=False)
-    else:
-        print("Scheduler is not running.")
+    logger.info("Shutting down scheduler; waiting for running jobs to finish…")
+    scheduler.shutdown(wait=True)  # <-- this waits for your ML job to complete
+
+def signal_handler(signum, frame):
+    shutdown_scheduler()
+    sys.exit(0)
+
+def start_scheduler():
+    # register cleanup handlers
+    atexit.register(shutdown_scheduler)
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+    scheduler.start()
+    logger.info("Scheduler started.")
+
+if __name__ == "__main__":
+    start_scheduler()
+    # Keep main thread alive…
+    signal.pause()
