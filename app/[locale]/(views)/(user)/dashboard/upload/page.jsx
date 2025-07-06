@@ -118,6 +118,11 @@ export default function UploadPage() {
         `${batchName + session.data.user.email + Date.now()}.zip`
       );
       formData.append("imagesCount", selectedFiles.length);
+      console.log("Form data prepared for upload:", {
+        batchName,
+        cropType: selectedCrop,
+        imagesCount: selectedFiles.length,
+      });
 
       const request = await fetch("/api/dashboard/upload", {
         method: "POST",

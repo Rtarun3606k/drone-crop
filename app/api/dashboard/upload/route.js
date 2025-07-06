@@ -27,7 +27,7 @@ export async function POST(request) {
     );
   }
 
-  const uploadToBucket = await storeZip(zipFile);
+  const uploadToBucket = await storeZip(zipFile, zipFile.name);
 
   if (!uploadToBucket.success) {
     return NextResponse.json(
