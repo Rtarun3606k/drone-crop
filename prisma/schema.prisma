@@ -62,18 +62,22 @@ model VerificationToken {
 }
 
 model Batch {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  name             String
-  cropType         String
-  imagesZipURL     String
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  userId           String   @db.ObjectId
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sessionId        String   @default(uuid())
-  isCompletedModel Boolean  @default(false)
-  isCompleted      Boolean  @default(false)
-  imagesCount      Int      @default(0)
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  cropType          String
+  imagesZipURL      String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  userId            String   @db.ObjectId
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId         String   @default(uuid())
+  isCompletedModel  Boolean  @default(false)
+  isCompletedDesc   Boolean  @default(false)
+  isCompletedAudio  Boolean  @default(false)
+  imagesCount       Int      @default(0)
+  description       String?  @db.String
+  prefferedLanguage Language @default(En)
+  audioURL          String?  @db.String
 
   @@index([id, userId, cropType, sessionId, isCompletedModel], name: "batch_user_index")
 }
@@ -81,4 +85,13 @@ model Batch {
 enum Role {
   USER
   ADMIN
+}
+
+enum Language {
+  En
+  Ta
+  Hi
+  Te
+  Ml
+  Kn
 }
