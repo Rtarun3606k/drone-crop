@@ -63,7 +63,7 @@ def ModelRunner():
 
             os.system(f"rm -rf '{unzip_dir}'/*")  # Clean up unzip directory after processing
             os.system(f"rm -rf '{zips_dir}'/*")  # Clean up unzip directory after processing
-            updatebatchStatus(batch['sessionId'], 'completed')
+            updatebatchStatus(batch['_id'], 'completed')
             logger.info(f"Batch {batch['sessionId']} processed successfully.")
 
         except Exception as e:
