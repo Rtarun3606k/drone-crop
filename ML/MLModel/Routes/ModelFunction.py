@@ -60,6 +60,7 @@ def ModelRunner():
             results = batch_predict(image_paths, model_path, num_threads=8, output_json_path=output_json)
             # print(f"Batch processing complete. Processed {len(results)} images.")
             logger.info(f"Batch {batch['sessionId']} processed with {len(results)} images.")
+            print(f"Batch {batch['sessionId']} processed with {len(results)} image _id {batch['_id']} images.")
 
             os.system(f"rm -rf '{unzip_dir}'/*")  # Clean up unzip directory after processing
             os.system(f"rm -rf '{zips_dir}'/*")  # Clean up unzip directory after processing

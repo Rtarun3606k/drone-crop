@@ -34,6 +34,7 @@ scheduler.add_job(
     ModelRunner,
     trigger='interval',
     minutes=10,
+    # seconds=1,
     id='Ml_Model',
     executor='processpool',
     misfire_grace_time=3600,  # if a run is delayed, allow up to 1 hour late
