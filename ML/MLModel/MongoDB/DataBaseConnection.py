@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId 
 from dotenv import load_dotenv
 import os
+import logging
 
 # Load environment variables from .env file
 load_dotenv()
@@ -9,6 +10,9 @@ load_dotenv()
 MongoDBConnection = MongoClient(os.getenv("MONGODB_URI", "mongodb://localhost:27017/"))
 
 db = MongoDBConnection["droneCrop"]
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 print("MongoDB connection established successfully.")
 
@@ -35,13 +39,19 @@ def updatebatchStatus(batch_id, status):
     :param status: The new status to set for the batch.
     """
     try:
+        if status =='failed':
+            result = db['Batch'].update_one(
+                {"_id": ObjectId(batch_id)},
+                {"$set": {"isCompletedModel": False, "execFailed": True}}
+            )
         result = db['Batch'].update_one(
             {"_id": ObjectId(batch_id)},
-            {"$set": {"isCompletedModel": status}}
+            {"$set": {"isCompletedModel": True, "execFailed": False}}
         )
         return result.modified_count
     except Exception as e:
         print(f"An error occurred while updating batch status: {e}")
+        
         return False
     
 if __name__ == "__main__":

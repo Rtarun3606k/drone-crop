@@ -4,8 +4,13 @@ import sys
 
 # ensure MLModel root is on PYTHONPATH before importing
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from MongoDB.DataBaseConnection import getAllIncompleteBatches
+from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus
 from Routes.Model import  batch_predict
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 
 
@@ -33,6 +38,9 @@ def ModelRunner():
         src = os.path.join(project_root, batch['imagesZipURL'])
         if not os.path.isfile(src):
             print(f"Source file not found: {src}")
+            logger.warning(f"Source file not found: {src}")
+            updatebatchStatus(batch['sessionId'], 'failed')
+            logger.error(f"Batch {batch['sessionId']} failed due to missing source file.")
             continue
 
         dst = os.path.join(zips_dir, os.path.basename(src))
@@ -50,10 +58,13 @@ def ModelRunner():
 
             # Run batch prediction
             results = batch_predict(image_paths, model_path, num_threads=8, output_json_path=output_json)
-            print(f"Batch processing complete. Processed {len(results)} images.")
+            # print(f"Batch processing complete. Processed {len(results)} images.")
+            logger.info(f"Batch {batch['sessionId']} processed with {len(results)} images.")
 
             os.system(f"rm -rf '{unzip_dir}'/*")  # Clean up unzip directory after processing
             os.system(f"rm -rf '{zips_dir}'/*")  # Clean up unzip directory after processing
+            updatebatchStatus(batch['sessionId'], 'completed')
+            logger.info(f"Batch {batch['sessionId']} processed successfully.")
 
         except Exception as e:
             print(f"Failed to copy {src}: {e}")

@@ -74,6 +74,7 @@ model Batch {
   isCompletedModel  Boolean  @default(false)
   isCompletedDesc   Boolean  @default(false)
   isCompletedAudio  Boolean  @default(false)
+  execFailed        Boolean  @default(false)
   imagesCount       Int      @default(0)
   description       String?  @db.String
   prefferedLanguage Language @default(En)

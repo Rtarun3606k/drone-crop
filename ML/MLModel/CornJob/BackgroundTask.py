@@ -42,7 +42,7 @@ scheduler.add_job(
 
 def shutdown_scheduler():
     logger.info("Shutting down scheduler; waiting for running jobs to finish…")
-    scheduler.shutdown(wait=True)  # <-- this waits for your ML job to complete
+    scheduler.shutdown(wait=True)  # <-- this waits for  ML job to complete
 
 def signal_handler(signum, frame):
     shutdown_scheduler()
