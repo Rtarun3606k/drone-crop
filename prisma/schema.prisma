@@ -79,6 +79,7 @@ model Batch {
   description       String?  @db.String
   prefferedLanguage Language @default(En)
   audioURL          String?  @db.String
+  langDescription   String?  @db.String
 
   @@index([id, userId, cropType, sessionId, isCompletedModel], name: "batch_user_index")
 }

@@ -237,7 +237,9 @@ if __name__ == "__main__":
                   if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
     
     # Run batch prediction
-    results = batch_predict(image_paths, model_path, num_threads=8, output_json_path=output_json)
+    # results = batch_predict(image_paths, model_path, num_threads=8, output_json_path=output_json)
+    from analysis import process_batch_with_analysis
+    results = process_batch_with_analysis(image_paths, model_path, num_threads=8, output_json_path=output_json)
     print(f"Batch processing complete. Processed {len(results)} images.")
     
     # For single image prediction

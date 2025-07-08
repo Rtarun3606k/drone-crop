@@ -15,7 +15,7 @@ const LanguageSwitcher = () => {
 
   const languages = [
     { code: "en", name: "English" },
-    { code: "ka", name: "ಕನ್ನಡ" }, // Kannada
+    { code: "kn", name: "ಕನ್ನಡ" }, // Kannada
     { code: "hi", name: "हिंदी" }, // Hindi
     { code: "te", name: "తెలుగు" }, // Telugu
     { code: "ta", name: "தமிழ்" }, // Tamil

@@ -4,6 +4,20 @@ import { storeZip } from "@/app/lib/storage";
 import { NextResponse } from "next/server";
 import { data } from "react-router-dom";
 
+const mapLocaleToLanguageEnum = (locale) => {
+  const mapping = {
+    en: "En",
+    ta: "Ta",
+    hi: "Hi",
+    te: "Te",
+    ml: "Ml",
+    kn: "Kn",
+  };
+  return mapping[locale?.toLowerCase()] || "En";
+};
+
+// When creating your batch:
+
 export async function POST(request) {
   const session = await auth();
   const formData = await request.formData();
@@ -19,6 +33,7 @@ export async function POST(request) {
   const batchName = formData.get("batchName");
   const cropType = formData.get("cropType");
   const imagesCount = formData.get("imagesCount");
+  const defaultSetLang = formData.get("defaultSetLang");
 
   if (!zipFile || !zipFile.name.endsWith(".zip")) {
     return NextResponse.json(
@@ -35,6 +50,8 @@ export async function POST(request) {
       { status: 500 }
     );
   }
+  // console.log(defaultSetLang.charAt(0).toUpperCase() + defaultSetLang.slice(1));
+  const preferredLanguage = mapLocaleToLanguageEnum(defaultSetLang);
   const DB = await prisma.batch.create({
     data: {
       name: batchName,
@@ -42,6 +59,7 @@ export async function POST(request) {
       imagesZipURL: uploadToBucket.url || `shared/${zipFile.name}`,
       imagesCount: parseInt(imagesCount) || 0,
       userId: session.user.id, // You need to provide the user ID
+      prefferedLanguage: preferredLanguage || "En", // Default language for the batch
       // The following fields have defaults, so you don't need to provide them:
       // createdAt: new Date(), // This has @default(now())
       // isCompletedModel: false, // This has @default(false)

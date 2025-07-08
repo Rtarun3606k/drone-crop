@@ -35,7 +35,9 @@ export default function UploadPage() {
   if (!session || session === null || !session.data?.user) {
     return router.push("/login");
   }
+  const [defaultsetLang, setdefaultSetLang] = useState();
 
+  console.log(window.location.href.split("/").slice(3)[0]);
   // Handle file selection
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -74,6 +76,8 @@ export default function UploadPage() {
   }; // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const windowLoc = window.location.href.split("/").slice(3)[0];
+    setdefaultSetLang(windowLoc);
 
     // Form validation
     if (!batchName.trim()) {
@@ -117,6 +121,7 @@ export default function UploadPage() {
         zipBlob,
         `${batchName + session.data.user.email + Date.now()}.zip`
       );
+      formData.append("defaultSetLang", defaultsetLang);
       formData.append("imagesCount", selectedFiles.length);
       console.log("Form data prepared for upload:", {
         batchName,

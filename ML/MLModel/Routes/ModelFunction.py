@@ -6,6 +6,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus
 from Routes.Model import  batch_predict
+from Routes.analysis import process_batch_with_analysis
 import logging
 
 logger = logging.getLogger(__name__)
@@ -57,7 +58,7 @@ def ModelRunner():
             if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 
             # Run batch prediction
-            results = batch_predict(image_paths, model_path, num_threads=8, output_json_path=output_json)
+            results = process_batch_with_analysis(image_paths, model_path, num_threads=8, output_json_path=output_json)
             # print(f"Batch processing complete. Processed {len(results)} images.")
             logger.info(f"Batch {batch['sessionId']} processed with {len(results)} images.")
             print(f"Batch {batch['sessionId']} processed with {len(results)} image _id {batch['_id']} images.")

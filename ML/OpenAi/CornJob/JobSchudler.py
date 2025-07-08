@@ -6,7 +6,7 @@ import atexit
 import signal
 import sys
 import logging
-from Routes.ModelFunction import ModelRunner
+from CornJob.Job import Job_generate_response
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -31,7 +31,7 @@ scheduler = BackgroundScheduler(
 
 # Schedule your ML runner every 10 minutes
 scheduler.add_job(
-    ModelRunner,
+    Job_generate_response,
     trigger='interval',
     # minutes=10,
     seconds=1,
