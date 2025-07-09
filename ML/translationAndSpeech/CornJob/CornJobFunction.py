@@ -1,7 +1,7 @@
 from CornJob.SpeechFunction import text_to_speech
 from MongoDB.DatabAseConnection import getAllIncompleteBatches,updatebatchStatus
 
-output_file_path = "/home/dragoon/coding/drone-crop/audioFiles/"
+output_file_path = "/home/dragoon/coding/drone-crop/public/audioFiles/"
 
 def Job_generate_speech():
     """
