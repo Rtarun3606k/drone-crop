@@ -7,7 +7,7 @@ export const storeZip = async (zip, name) => {
     const buffer = Buffer.from(arrayBuffer);
 
     const fileName = `${zip.name.replace(/\.zip$/, "")}-${Date.now()}.zip`;
-    const filePath = join(process.cwd(), "shared", name);
+    const filePath = join(process.cwd(), "public/shared", name);
 
     await writeFile(filePath, buffer);
     return { success: true, path: filePath };

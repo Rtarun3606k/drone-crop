@@ -56,7 +56,7 @@ export async function POST(request) {
     data: {
       name: batchName,
       cropType: cropType,
-      imagesZipURL: uploadToBucket.url || `shared/${zipFile.name}`,
+      imagesZipURL: uploadToBucket.url || `public/shared/${zipFile.name}`,
       imagesCount: parseInt(imagesCount) || 0,
       userId: session.user.id, // You need to provide the user ID
       prefferedLanguage: preferredLanguage || "En", // Default language for the batch
