@@ -33,6 +33,7 @@ export default function UploadPage() {
   const [formError, setFormError] = useState("");
   const router = useRouter();
   const params = useParams();
+  // useParams() returns a regular object, not a Promise, so we access it directly
   const locale = params.locale;
   // Initialize state with the locale value directly
   const [defaultsetLang, setdefaultSetLang] = useState(locale);
