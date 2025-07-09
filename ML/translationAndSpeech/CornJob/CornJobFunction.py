@@ -2,6 +2,7 @@ from CornJob.SpeechFunction import text_to_speech
 from MongoDB.DatabAseConnection import getAllIncompleteBatches,updatebatchStatus
 
 output_file_path = "/home/dragoon/coding/drone-crop/public/audioFiles/"
+output_file_path_relative = "/audioFiles/"
 
 def Job_generate_speech():
     """
@@ -28,7 +29,7 @@ def Job_generate_speech():
             text_to_speech(text=batch_text ,target_language=batch_preffered_language,output_file_path=output_file_path+str(batch_session_id)+str(batch_preffered_language)+'.mp3')
 
             # Update the batch status to completed
-            update_result = updatebatchStatus(batch_id, 'completed',audioURL=output_file_path+str(batch_session_id)+str(batch_preffered_language)+'.mp3')
+            update_result = updatebatchStatus(batch_id, 'completed',audioURL='/audioFiles/'+str(batch_session_id)+str(batch_preffered_language)+'.mp3')
             if update_result:
                 print(f"Batch ID {batch_id} updated successfully.")
             else:
