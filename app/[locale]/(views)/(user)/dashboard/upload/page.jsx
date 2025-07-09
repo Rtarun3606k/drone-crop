@@ -7,6 +7,8 @@ import { FiUpload, FiX } from "react-icons/fi";
 import Image from "next/image";
 import JSZip from "jszip";
 import { useSession } from "next-auth/react";
+import { Param } from "@/app/generated/prisma/runtime/library";
+import { useParams } from "next/navigation";
 
 // List of crops for dropdown
 const cropOptions = [
@@ -29,15 +31,28 @@ export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [previewImages, setPreviewImages] = useState([]);
   const [formError, setFormError] = useState("");
-
   const router = useRouter();
-  const session = useSession();
-  if (!session || session === null || !session.data?.user) {
-    return router.push("/login");
-  }
-  const [defaultsetLang, setdefaultSetLang] = useState();
+  const params = useParams();
+  const locale = params.locale;
+  // Initialize state with the locale value directly
+  const [defaultsetLang, setdefaultSetLang] = useState(locale);
 
-  console.log(window.location.href.split("/").slice(3)[0]);
+  const session = useSession();
+
+  // Use useEffect to handle redirection after component mount
+  React.useEffect(() => {
+    if (session.status === "unauthenticated") {
+      router.push(`/${locale}/login`);
+    }
+  }, [session.status, router, locale]);
+
+  // Debug function to see the current locale value
+  const getLocale = React.useCallback(() => {
+    console.log("Current locale:", locale);
+    console.log("Default set lang:", defaultsetLang);
+  }, [locale, defaultsetLang]);
+
+  // Using locale from params instead of manually parsing the URL
   // Handle file selection
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -76,8 +91,6 @@ export default function UploadPage() {
   }; // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const windowLoc = window.location.href.split("/").slice(3)[0];
-    setdefaultSetLang(windowLoc);
 
     // Form validation
     if (!batchName.trim()) {
@@ -308,6 +321,14 @@ export default function UploadPage() {
             Back to Dashboard
           </Link>
         </div>
+        <button
+          onClick={() => {
+            getLocale();
+            console.log("Locale button clicked");
+          }}
+        >
+          get locale
+        </button>
       </div>
     </div>
   );
