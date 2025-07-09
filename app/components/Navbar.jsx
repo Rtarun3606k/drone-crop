@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut } from "../lib/auth-client";
 import { useSession } from "next-auth/react";
-import { FiHome, FiBriefcase, FiInfo, FiMail } from "react-icons/fi";
+import { FiHome, FiBriefcase, FiInfo, FiMail, FiInbox } from "react-icons/fi";
 import { useTranslations } from "../lib/client-i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -91,6 +91,17 @@ const Navbar = () => {
               <FiHome className="inline-block mr-1" />
               <span> {t("home")}</span>
             </Link>
+            {session && session.user ? (
+              <Link
+                href="/dashboard"
+                className="flex items-center text-white hover:text-green-400 transition-colors space-x-2"
+              >
+                {/* <FiHome className="inline-block mr-1" /> */}
+                <FiInbox className="inline-block mr-1" />
+                <span> {t("dashboard")} </span>
+                {/* <span> dashboard </span> */}
+              </Link>
+            ) : null}
 
             <Link
               href="/services"
