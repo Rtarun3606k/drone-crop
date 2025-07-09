@@ -33,7 +33,7 @@ def getAllIncompleteBatches():
         print(f"An error occurred while fetching incomplete batches: {e}")
         return []
     
-def updatebatchStatus(batch_id, status):
+def updatebatchStatus(batch_id, status,audioURL=None):
     """
     Update the status of a batch in the 'Batch' collection.
     
@@ -48,7 +48,7 @@ def updatebatchStatus(batch_id, status):
             )
         result = db['Batch'].update_one(
             {"_id": ObjectId(batch_id)},
-            {"$set": {"isCompletedAudio": True, "execFailed": False}}
+            {"$set": {"isCompletedAudio": True, "execFailed": False,'audioURL':audioURL if audioURL else None}}
         )
         return result.modified_count
     except Exception as e:
