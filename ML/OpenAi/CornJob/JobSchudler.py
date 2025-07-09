@@ -23,7 +23,7 @@ job_defaults = {
 }
 
 scheduler = BackgroundScheduler(
-    jobstores={'default': MongoDBJobStore(host='localhost', port=27017, database='droneCrop')},
+    jobstores={'default': MongoDBJobStore(host='localhost', port=27017, database='droneCrop',collection='summerizers_jobs')},
     executors=executors,
     job_defaults=job_defaults,
     timezone=utc
@@ -35,7 +35,7 @@ scheduler.add_job(
     trigger='interval',
     # minutes=10,
     seconds=5,
-    id='Ml_Model',
+    id='summerisier_services',
     executor='processpool',
     misfire_grace_time=3600,  # if a run is delayed, allow up to 1 hour late
     replace_existing=True

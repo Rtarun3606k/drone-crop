@@ -23,7 +23,7 @@ job_defaults = {
 }
 
 scheduler = BackgroundScheduler(
-    jobstores={'default': MongoDBJobStore(host='localhost', port=27017, database='droneCrop')},
+    jobstores={'default': MongoDBJobStore(host='localhost', port=27017, database='droneCrop',collection='Ml_Model_jobs')},
     executors=executors,
     job_defaults=job_defaults,
     timezone=utc
