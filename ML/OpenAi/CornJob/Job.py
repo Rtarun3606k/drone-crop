@@ -2,7 +2,8 @@ import json
 from CornJob.krishi_advisor import get_krishi_sathi_response
 import os
 from dotenv import load_dotenv
-from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus,uploadResponseToDB
+from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus,uploadResponseToDB,uploadPrefferedLanguageResponseToDB
+from CornJob.Translator import translationJob
 
 # Load environment variables
 load_dotenv()
@@ -99,6 +100,7 @@ def Job_generate_response():
     for batch in batches:
         session_id = str(batch['sessionId'])
         batch_id = str(batch['_id'])
+        preffered_language = batch.get('prefferedLanguage', 'en')
         print(f"Processing batch with ID: {session_id}")
         
         # Load JSON data from file
@@ -110,16 +112,21 @@ def Job_generate_response():
         
         # Analyze the crop data
         analysis = analyze_crop_data_with_ai(json_data=json_data)
+        language = translationJob(analysis, preffered_language)  # Translate to Hindi
         
-        if analysis:
+        if analysis and language:
             # Upload response to database
             uploadResponseToDB(batch_id, analysis)
             print(f"Response uploaded for batch {session_id}.")
+            # Upload translated response to database
+            uploadPrefferedLanguageResponseToDB(batch_id, language)
+            print(f"Translated response uploaded for batch {session_id}.")
             
             # Update batch status
             updatebatchStatus(batch_id, 'completed')
             print(f"Batch {session_id} status updated to completed.")
         else:
+            updatebatchStatus(batch_id, 'failed')
             print(f"Failed to analyze data for batch {session_id}.")
     
     print("Job completed successfully.")

@@ -24,7 +24,7 @@ def getAllIncompleteBatches():
     """
 
     try:
-        data = db['Batch'].find({"isCompletedDesc": False, "isCompletedModel": True, })
+        data = db['Batch'].find({"isCompletedAudio": False,"isCompletedDesc":True,"execFailed":False})
         coursor = list(data)
         # data = db['Batch'].find()
         print("Fetched incomplete batches successfully.", len(coursor), "batches found.")
@@ -44,52 +44,20 @@ def updatebatchStatus(batch_id, status):
         if status =='failed':
             result = db['Batch'].update_one(
                 {"_id": ObjectId(batch_id)},
-                {"$set": {"isCompletedDesc": False, "execFailed": True}}
+                {"$set": {"isCompletedAudio": False, "execFailed": True}}
             )
         result = db['Batch'].update_one(
             {"_id": ObjectId(batch_id)},
-            {"$set": {"isCompletedDesc": True, "execFailed": False}}
+            {"$set": {"isCompletedAudio": True, "execFailed": False}}
         )
         return result.modified_count
     except Exception as e:
         print(f"An error occurred while updating batch status: {e}")
         
         return False
-    
-def uploadResponseToDB(id, response):
-    """
-    Upload the response to the database for a specific batch.
-    
-    :param id: The ID of the batch to update.
-    :param response: The response data to upload.
-    """
-    try:
-        result = db['Batch'].update_one(
-            {"_id": ObjectId(id)},
-            {"$set": {"description": response}}
-        )
-        return result.modified_count
-    except Exception as e:
-        print(f"An error occurred while uploading response to DB: {e}")
-        return False
+
     
 
-def uploadPrefferedLanguageResponseToDB(id, response):
-    """
-    Upload the preferred language response to the database for a specific batch.
-    
-    :param id: The ID of the batch to update.
-    :param response: The preferred language response data to upload.
-    """
-    try:
-        result = db['Batch'].update_one(
-            {"_id": ObjectId(id)},
-            {"$set": {"langDescription": response}}
-        )
-        return result.modified_count
-    except Exception as e:
-        print(f"An error occurred while uploading preferred language response to DB: {e}")
-        return False
     
 if __name__ == "__main__":
     # query = db['Batch'].delete_many({"isCompletedModel": False})
