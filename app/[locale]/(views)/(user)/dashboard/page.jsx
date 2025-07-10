@@ -2,9 +2,12 @@ import { auth } from "@/app/auth";
 import { Link, redirect } from "@/i18n/routing";
 import React from "react";
 import { FiUpload, FiList, FiGrid } from "react-icons/fi";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 const page = async ({ params }) => {
   const session = await auth();
+  const t = await getTranslations("dashboard");
 
   if (!session?.user) {
     return (
@@ -18,15 +21,12 @@ const page = async ({ params }) => {
   return (
     <>
       <div className="mx-auto p-4 flex flex-col items-center font-stretch-semi-expanded text-lg text-center">
-        <p className="font-extrabold text-2xl">Welcome to your dashboard!</p>
+        <p className="font-extrabold text-2xl">{t("welcome")}</p>
+        <p>{t("navigation")}</p>
         <p>
-          Use the navigation menu to access different sections of your
-          dashboard.
-        </p>
-        <p>
-          If you have any questions, feel free to{" "}
+          {t("questions")}
           <Link href="/contact" className="text-blue-500 hover:underline">
-            Contact
+            {t("contact")}
           </Link>
           .
         </p>
@@ -40,10 +40,10 @@ const page = async ({ params }) => {
           <FiUpload className="text-2xl hover:text-black" />
           <div>
             <p className="text-lg font-semibold hover:text-black">
-              Upload Images
+              {t("upload_title")}
             </p>
             <p className="text-sm text-gray-400 hover:text-black">
-              Upload new drone images for analysis
+              {t("upload_desc")}
             </p>
           </div>
         </Link>
@@ -55,10 +55,10 @@ const page = async ({ params }) => {
           <FiList className="text-2xl hover:text-black" />
           <div>
             <p className="text-lg font-semibold hover:text-black">
-              View Batches
+              {t("batches_title")}
             </p>
             <p className="text-sm text-gray-400 hover:text-black">
-              See all your uploaded batches and analysis results
+              {t("batches_desc")}
             </p>
           </div>
         </Link>

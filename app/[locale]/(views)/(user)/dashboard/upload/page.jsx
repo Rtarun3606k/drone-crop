@@ -3,6 +3,7 @@
 import { auth } from "@/app/auth";
 import { Link, redirect, useRouter } from "@/i18n/routing";
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { FiUpload, FiX } from "react-icons/fi";
 import Image from "next/image";
 import JSZip from "jszip";
@@ -38,6 +39,9 @@ export default function UploadPage() {
   // Initialize state with the locale value directly
   const [defaultsetLang, setdefaultSetLang] = useState(locale);
 
+  // Get translations for upload namespace
+  const t = useTranslations("upload");
+
   const session = useSession();
 
   // Use useEffect to handle redirection after component mount
@@ -62,7 +66,7 @@ export default function UploadPage() {
     const validFiles = files.filter((file) => file.type.startsWith("image/"));
 
     if (validFiles.length !== files.length) {
-      setFormError("Only image files are allowed");
+      setFormError(t("form_error_images_only"));
       return;
     }
 
@@ -95,19 +99,19 @@ export default function UploadPage() {
 
     // Form validation
     if (!batchName.trim()) {
-      setFormError("Please enter a batch name");
+      setFormError(t("form_error_batch_name"));
       return;
     }
 
     if (selectedFiles.length === 0) {
-      setFormError("Please select at least one image");
+      setFormError(t("form_error_select_image"));
       return;
     }
 
     // Warning for large batches
     if (selectedFiles.length > 100) {
       const confirmed = window.confirm(
-        `You're uploading ${selectedFiles.length} images. Large batches may take longer to process. Continue?`
+        t("form_warning_large_batch", { count: selectedFiles.length })
       );
       if (!confirmed) return;
     }
@@ -162,10 +166,10 @@ export default function UploadPage() {
       //   setFormError("");
 
       // Show success message or redirect
-      alert("Batch uploaded successfully!");
+      alert(t("success"));
     } catch (error) {
       console.error("Upload failed:", error);
-      setFormError("Failed to upload images. Please try again.");
+      setFormError(t("form_error_upload_failed"));
     } finally {
       setIsUploading(false);
     }
@@ -175,7 +179,7 @@ export default function UploadPage() {
     <div className="min-h-screen bg-black pt-20 px-4 py-12">
       <div className="max-w-3xl mx-auto bg-gray-900 rounded-xl shadow-lg p-6 border border-green-500">
         <h1 className="text-3xl font-bold text-green-400 mb-6 text-center">
-          Upload Images
+          {t("title")}
         </h1>
 
         {formError && (
@@ -191,14 +195,14 @@ export default function UploadPage() {
               htmlFor="batchName"
               className="block text-white font-semibold mb-2"
             >
-              Batch Name*
+              {t("batch_name_label")}
             </label>
             <input
               type="text"
               id="batchName"
               value={batchName}
               onChange={(e) => setBatchName(e.target.value)}
-              placeholder="Enter batch name"
+              placeholder={t("batch_name_placeholder")}
               className="w-full bg-black border border-green-500 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
@@ -210,7 +214,7 @@ export default function UploadPage() {
               htmlFor="cropType"
               className="block text-white font-semibold mb-2"
             >
-              Crop Type
+              {t("crop_type_label")}
             </label>
             <select
               id="cropType"
@@ -229,7 +233,7 @@ export default function UploadPage() {
           {/* Image Upload Field */}
           <div>
             <label className="block text-white font-semibold mb-2">
-              Upload Images*
+              {t("upload_label")}
             </label>
             <div
               className="border-2 border-dashed border-green-500 rounded-lg p-8 text-center cursor-pointer hover:bg-green-900/20 transition-colors"
@@ -237,14 +241,14 @@ export default function UploadPage() {
             >
               <FiUpload className="mx-auto h-10 w-10 text-green-400" />
               <p className="text-white mt-2">
-                Click to select files or drag and drop
+                {t("upload_hint")}
               </p>
               <p className="text-gray-400 text-sm mt-1">
-                Supported formats: JPG, PNG, TIFF
+                {t("upload_formats")}
               </p>
               {selectedFiles.length > 0 && (
                 <p className="text-green-400 font-medium mt-2">
-                  {selectedFiles.length} files selected
+                  {t("selected_files", { count: selectedFiles.length })}
                 </p>
               )}
               <input
@@ -262,7 +266,7 @@ export default function UploadPage() {
           {previewImages.length > 0 && (
             <div>
               <h3 className="text-white font-semibold mb-3">
-                Selected Images ({previewImages.length})
+                {t("selected_images", { count: previewImages.length })}
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 {/* Only show the first 5 images for preview */}
@@ -289,9 +293,7 @@ export default function UploadPage() {
                 {previewImages.length > 5 && (
                   <div className="aspect-square rounded-lg flex items-center justify-center border border-gray-700 bg-gray-800/50">
                     <p className="text-white text-center font-medium">
-                      +{previewImages.length - 5} more
-                      <br />
-                      images
+                      {t("more_images", { count: previewImages.length - 5 })}
                     </p>
                   </div>
                 )}
@@ -308,7 +310,7 @@ export default function UploadPage() {
                 isUploading ? "opacity-70 cursor-not-allowed" : ""
               }`}
             >
-              {isUploading ? "Uploading..." : "Upload Batch"}
+              {isUploading ? t("submit_uploading") : t("submit")}
             </button>
           </div>
         </form>
@@ -319,17 +321,9 @@ export default function UploadPage() {
             href="/dashboard"
             className="text-green-400 hover:text-green-300 underline"
           >
-            Back to Dashboard
+            {t("back_to_dashboard")}
           </Link>
         </div>
-        <button
-          onClick={() => {
-            getLocale();
-            console.log("Locale button clicked");
-          }}
-        >
-          get locale
-        </button>
       </div>
     </div>
   );
