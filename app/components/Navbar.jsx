@@ -60,7 +60,7 @@ const Navbar = () => {
                 </svg>
               </div>
               <span
-                className="text-xl font-bold cursor-default bg-clip-text text-transparent"
+                className="text-xl font-bold cursor-pointer bg-clip-text text-transparent"
                 style={{
                   background: 'linear-gradient(to right, #22c55e 20%, #ffffff 30%, #10b981 70%, #16a34a 80%)',
                   backgroundSize: '500% auto',

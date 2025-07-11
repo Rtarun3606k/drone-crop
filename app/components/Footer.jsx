@@ -7,7 +7,7 @@ const Footer = async () => {
   const t = await getTranslations("common");
 
   return (
-    <footer className={`relative ${'bg-gradient-to-t from-gray-900 to-[#0A0A0A]'} text-white mt-auto overflow-hidden`}>
+    <footer className={`relative ${'bg-gradient-to-t from-gray-900 to-black'} text-white mt-auto overflow-hidden`}>
       <style dangerouslySetInnerHTML={{
         __html: `
           @keyframes textShine {
@@ -23,7 +23,7 @@ const Footer = async () => {
       
       
       {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Main footer content */}
@@ -166,10 +166,8 @@ const Footer = async () => {
         </div>
       </div>
 
-      {/* Subtle animated background elements */}
+      {/* Subtle background elements */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
-      <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-green-400/5 rounded-full blur-2xl animate-pulse delay-1000" />
     </footer>
   );
 };
