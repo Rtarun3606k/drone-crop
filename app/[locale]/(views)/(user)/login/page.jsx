@@ -17,7 +17,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#232526] to-[#414345] flex items-center justify-center font-sans">
+    <div className="min-h-screen flex items-center justify-center font-sans" style={{ backgroundColor: 'var(--background)' }}>
       <form
         onSubmit={(e) => e.preventDefault()}
         className="bg-white/5 rounded-2xl shadow-lg backdrop-blur-md border border-white/20 px-8 py-10 w-[350px] flex flex-col gap-6"
