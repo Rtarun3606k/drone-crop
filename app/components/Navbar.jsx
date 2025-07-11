@@ -11,28 +11,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
   // Get translations and make sure they're rendered only once
   const t = useTranslations("common");
-
-  // Handle scrolling effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    // Set initial scroll state
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -41,11 +24,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-black/90 backdrop-blur-md shadow-md"
-          : "bg-black/50 backdrop-blur-sm"
-      }`}
+      className={"fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-black/50 backdrop-blur-sm"}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">

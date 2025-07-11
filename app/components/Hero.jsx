@@ -11,7 +11,7 @@ export const Hero = () => {
   return (
     <div>
       <div
-        className="hero min-h-[50vh]"
+        className="hero min-h-[50vh] relative"
         style={{
           backgroundImage:
             "url(https://www.innovationnewsnetwork.com/wp-content/uploads/2023/11/shutterstockLove-Silhouette_1304774914.jpg)",
@@ -19,7 +19,7 @@ export const Hero = () => {
       >
         <div className="hero-overlay"></div>
         <motion.div 
-          className="absolute inset-0 flex items-center justify-start text-neutral-content text-left top-[-30vh]"
+          className="hero-content text-neutral-content text-left justify-start"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
