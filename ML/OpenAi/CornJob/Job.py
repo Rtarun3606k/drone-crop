@@ -1,9 +1,10 @@
 import json
-from CornJob.krishi_advisor import get_krishi_sathi_response
+# from CornJob.krishi_advisor import get_krishi_sathi_response
 import os
 from dotenv import load_dotenv
 from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus,uploadResponseToDB,uploadPrefferedLanguageResponseToDB
 from CornJob.Translator import translationJob
+from CornJob.krishi import get_krishi_sathi_response
 
 # Load environment variables
 load_dotenv()
@@ -70,14 +71,18 @@ Please provide:
     
     try:
         # Call the function with all required parameters from environment variables
-        response = get_krishi_sathi_response(
-            user_message=user_message,
-            endpoint=os.getenv("ENDPOINT_URL"),
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+        # response = get_krishi_sathi_response(
+        #     user_message=user_message,
+        #     endpoint=os.getenv("ENDPOINT_URL"),
+        #     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
           
-            search_key=os.getenv("SEARCH_KEY"),
+        #     search_key=os.getenv("SEARCH_KEY"),
             
+        # )
+        response = get_krishi_sathi_response(
+            user_message
         )
+        print(f"AI analysis response: {response}")
         return response
     except Exception as e:
         return f"Error analyzing data: {str(e)}"
