@@ -148,6 +148,8 @@
     "navigation": "Use the navigation menu to access different sections of your dashboard.",
     "questions": "If you have any questions, feel free to",
     "contact": "Contact",
+    "geotagged_notice_title": "Important Notice",
+    "geotagged_notice_desc": "Images you upload need to be geotagged. This will help us appropriately give recommendations based on location.",
     "upload_title": "Upload Images",
     "upload_desc": "Upload new drone images for analysis",
     "batches_title": "View Batches",
