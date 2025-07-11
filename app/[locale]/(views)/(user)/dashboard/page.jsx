@@ -19,51 +19,57 @@ const page = async ({ params }) => {
 
   // This is the main dashboard page for users
   return (
-    <>
-      <div className="mx-auto p-4 flex flex-col items-center font-stretch-semi-expanded text-lg text-center">
-        <p className="font-extrabold text-2xl">{t("welcome")}</p>
-        <p>{t("navigation")}</p>
-        <p>
-          {t("questions")}
-          <Link href="/contact" className="text-blue-500 hover:underline">
-            {t("contact")}
+    <div className="min-h-screen bg-[#0A0A0A]">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="text-center mb-12">
+          <h1 className="text-3xl font-bold text-white mb-4">{t("welcome")}</h1>
+          <p className="text-lg text-gray-300 mb-2">{t("navigation")}</p>
+          <p className="text-gray-300">
+            {t("questions")}
+            <Link href="/contact" className="text-green-500 hover:text-green-400 hover:underline ml-1 font-medium">
+              {t("contact")}
+            </Link>
+            .
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Link
+            href="/dashboard/upload"
+            className="group flex flex-col items-center border-2 border-dashed border-gray-600 rounded-xl p-8 hover:border-green-500 hover:bg-gray-900 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-green-900 rounded-full mb-4 group-hover:bg-green-800 transition-colors duration-300">
+              <FiUpload className="text-2xl text-green-400 group-hover:text-green-300" />
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-semibold text-white mb-2 group-hover:text-green-300">
+                {t("upload_title")}
+              </p>
+              <p className="text-sm text-gray-400 group-hover:text-gray-300">
+                {t("upload_desc")}
+              </p>
+            </div>
           </Link>
-          .
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5">
-        <Link
-          href="/dashboard/upload"
-          className="flex justify-center items-center border-2 border-dashed border-gray-300 rounded-lg p-6 gap-3 hover:border-green-600 hover:bg-green-700 hover:text-black transition-colors duration-300"
-        >
-          <FiUpload className="text-2xl hover:text-black" />
-          <div>
-            <p className="text-lg font-semibold hover:text-black">
-              {t("upload_title")}
-            </p>
-            <p className="text-sm text-gray-400 hover:text-black">
-              {t("upload_desc")}
-            </p>
-          </div>
-        </Link>
-
-        <Link
-          href="/dashboard/batches"
-          className="flex justify-center items-center border-2 border-dashed border-gray-300 rounded-lg p-6 gap-3 hover:border-green-600 hover:bg-green-700 hover:text-black transition-colors duration-300"
-        >
-          <FiList className="text-2xl hover:text-black" />
-          <div>
-            <p className="text-lg font-semibold hover:text-black">
-              {t("batches_title")}
-            </p>
-            <p className="text-sm text-gray-400 hover:text-black">
-              {t("batches_desc")}
-            </p>
-          </div>
-        </Link>
+          <Link
+            href="/dashboard/batches"
+            className="group flex flex-col items-center border-2 border-dashed border-gray-600 rounded-xl p-8 hover:border-green-500 hover:bg-gray-900 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-green-900 rounded-full mb-4 group-hover:bg-green-800 transition-colors duration-300">
+              <FiList className="text-2xl text-green-400 group-hover:text-green-300" />
+            </div>
+            <div className="text-center">
+              <p className="text-xl font-semibold text-white mb-2 group-hover:text-green-300">
+                {t("batches_title")}
+              </p>
+              <p className="text-sm text-gray-400 group-hover:text-gray-300">
+                {t("batches_desc")}
+              </p>
+            </div>
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

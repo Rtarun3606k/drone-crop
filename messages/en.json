@@ -118,19 +118,19 @@
         ]
       },
       {
-        "title": "LLM-Driven Crop Insight Generation",
-        "features": [
-          "Converts ML outputs to human-readable crop health reports",
-          "Suggests remedies, fertilizers, and preventive measures",
-          "Customizes insights based on crop stage and region"
-        ]
-      },
-      {
         "title": "Multilingual Report Generation",
         "features": [
           "Translates insights into multiple Indian languages (Hindi, Tamil, Telugu, Kannada, Malayalam, etc.)",
           "Uses farmer’s profile/location to auto-select language",
           "Keeps technical simplicity for rural users"
+        ]
+      },
+      {
+        "title": "LLM-Driven Crop Insight Generation",
+        "features": [
+          "Converts ML outputs to human-readable crop health reports",
+          "Suggests remedies, fertilizers, and preventive measures",
+          "Customizes insights based on crop stage and region"
         ]
       },
       {
@@ -146,7 +146,7 @@
   "dashboard": {
     "welcome": "Welcome to your dashboard!",
     "navigation": "Use the navigation menu to access different sections of your dashboard.",
-    "questions": "If you have any questions, feel free to ",
+    "questions": "If you have any questions, feel free to",
     "contact": "Contact",
     "upload_title": "Upload Images",
     "upload_desc": "Upload new drone images for analysis",
