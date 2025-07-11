@@ -26,6 +26,18 @@ const Navbar = () => {
     <nav
       className={"fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-black/50 backdrop-blur-sm"}
     >
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes textShine {
+            0% {
+              background-position: 0% 50%;
+            }
+            100% {
+              background-position: 100% 50%;
+            }
+          }
+        `
+      }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo and brand name */}
@@ -48,8 +60,14 @@ const Navbar = () => {
                 </svg>
               </div>
               <span
-                className="text-xl font-bold text-white"
+                className="text-xl font-bold cursor-default bg-clip-text text-transparent"
                 style={{
+                  background: 'linear-gradient(to right, #22c55e 20%, #ffffff 30%, #10b981 70%, #16a34a 80%)',
+                  backgroundSize: '500% auto',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  animation: 'textShine 4s ease-in-out infinite alternate',
                   display: "inline-block",
                   minHeight: "28px",
                   position: "relative",

@@ -9,7 +9,7 @@ const layout = ({ children }) => {
     >
       <Navbar />
       <main style={{ flex: 1 }}>{children}</main>
-      <Footer backgroundImage="/footer.png"/>
+      <Footer />
     </div>
   );
 };
