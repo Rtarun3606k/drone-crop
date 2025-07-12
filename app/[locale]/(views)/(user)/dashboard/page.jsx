@@ -33,16 +33,6 @@ const page = async ({ params }) => {
           </p>
         </div>
 
-        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
-          <div className="flex items-center justify-center mb-3">
-            <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></div>
-            <h3 className="text-lg font-semibold text-yellow-400">{t("geotagged_notice_title")}</h3>
-          </div>
-          <p className="text-gray-300 text-center">
-            {t("geotagged_notice_desc")}
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link
             href="/dashboard/upload"

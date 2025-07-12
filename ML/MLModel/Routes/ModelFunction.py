@@ -21,7 +21,8 @@ def ModelRunner():
     """
     # ensure destination exists
     # project base
-    project_root = '/home/dragoon/coding/drone-crop'
+    #project_root = '/home/dragoon/coding/drone-crop'
+    project_root = '/home/bruh/Documents/drone-crop'
     # target data/Zips folder under MLModel
     zips_dir = os.path.join(project_root, 'ML', 'MLModel', 'data', 'Zips')
     unzip_dir = os.path.join(project_root, 'ML', 'MLModel', 'data', 'unzip')
@@ -50,8 +51,8 @@ def ModelRunner():
             print(f"Copied {os.path.basename(src)} → {dst}")
             os.system(f"unzip -o '{dst}' -d '{unzip_dir}'")
             
-            model_path = "/home/dragoon/coding/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"            
-            output_json = f"/home/dragoon/coding/drone-crop/predectionResults/{batch['sessionId']}.json"
+            model_path = "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"            
+            output_json = f"/home/bruh/Documents/drone-crop/predectionResults/{batch['sessionId']}.json"
 
             # Get all jpg files in directory
             image_paths = [os.path.join(unzip_dir, f) for f in os.listdir(unzip_dir) 

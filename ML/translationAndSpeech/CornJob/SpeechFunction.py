@@ -377,7 +377,8 @@ def test_speech_function():
     # Test parameters
     test_text = "Hello, this is a test message for speech synthesis."
     test_language = "hi"  # Hindi
-    test_output_path = "/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/test_output.mp3"
+    # test_output_path = "/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/test_output.mp3"
+    test_output_path = "/home/bruh/Documents/drone-crop/ML/translationAndSpeech/audio/test_output.mp3"
     
     print("Testing translate_and_synthesize_speech function...")
     result = translate_and_synthesize_speech(
