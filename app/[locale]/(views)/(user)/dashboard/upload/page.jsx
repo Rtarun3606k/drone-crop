@@ -44,6 +44,8 @@ export default function UploadPage() {
   const [isCheckingGeotags, setIsCheckingGeotags] = useState(false);
   const [geotagProgress, setGeotagProgress] = useState(0);
   const [checkingFileName, setCheckingFileName] = useState("");
+  const warningRef = React.useRef(null);
+  const submitButtonRef = React.useRef(null);
   const router = useRouter();
   const params = useParams();
   // useParams() returns a regular object, not a Promise, so we access it directly
@@ -71,6 +73,29 @@ export default function UploadPage() {
   }, [locale, defaultsetLang]);
 
   // Using locale from params instead of manually parsing the URL
+  
+  // Auto-scroll to warning when it appears, or to submit button if no warning
+  React.useEffect(() => {
+    if (selectedFiles.length > 0 && geotagResults && !isCheckingGeotags && geotagResults.success) {
+      // Check if warning should be shown (some images not geotagged)
+      const shouldShowWarning = geotagResults.summary.geotaggedCount < geotagResults.summary.successfulChecks;
+      
+      if (shouldShowWarning && warningRef.current) {
+        // Scroll to warning if it's displayed
+        warningRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      } else if (!shouldShowWarning && submitButtonRef.current) {
+        // Scroll to submit button if no warning is shown
+        submitButtonRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+  }, [selectedFiles.length, geotagResults, isCheckingGeotags]);
+
   // Handle file selection
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -437,8 +462,8 @@ export default function UploadPage() {
             geotagResults.success &&
             geotagResults.summary.geotaggedCount <
               geotagResults.summary.successfulChecks && (
-              <div>
-                <div className="bg-yellow-900/30 border border-yellow-500 text-yellow-300 px-4 py-3 rounded text-sm text-center">
+              <div ref={warningRef}>
+                <div className="bg-yellow-900/30 border border-yellow-500 text-yellow-300 px-4 py-3 rounded-lg text-sm text-center">
                   ⚠️ Warning: Some images may not be geotagged, please select
                   location manually.
                 </div>
@@ -451,6 +476,7 @@ export default function UploadPage() {
           {/* Submit Button */}
           <div className="flex justify-center pt-4">
             <button
+              ref={submitButtonRef}
               type="submit"
               disabled={isUploading}
               className={`px-6 py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors ${
