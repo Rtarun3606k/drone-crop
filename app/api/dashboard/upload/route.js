@@ -58,12 +58,14 @@ export async function POST(request) {
       cropType: cropType,
       imagesZipURL: uploadToBucket.url || `public/shared/${zipFile.name}`,
       imagesCount: parseInt(imagesCount) || 0,
-      userId: session.user.id, // You need to provide the user ID
-      prefferedLanguage: preferredLanguage || "En", // Default language for the batch
+      userId: session.user.id,
+      preferredLanguage: preferredLanguage || "En", // Fixed: removed typo, now matches schema
       // The following fields have defaults, so you don't need to provide them:
       // createdAt: new Date(), // This has @default(now())
-      // isCompletedModel: false, // This has @default(false)
-      // isCompleted: false, // This has @default(false)
+      // isModelCompleted: false, // This has @default(false)
+      // isDescCompleted: false, // This has @default(false)
+      // isAudioCompleted: false, // This has @default(false)
+      // hasExecutionFailed: false, // This has @default(false)
       // sessionId will get a UUID automatically
     },
   });
