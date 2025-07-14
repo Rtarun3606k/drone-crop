@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId 
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 import logging
 
@@ -24,7 +25,7 @@ def getAllIncompleteBatches():
     """
 
     try:
-        data = db['Batch'].find({"isCompletedDesc": False, "isCompletedModel": True, })
+        data = db['Batch'].find({"isDescCompleted": False, "isModelCompleted": True, "hasExecutionFailed": False})
         coursor = list(data)
         # data = db['Batch'].find()
         print("Fetched incomplete batches successfully.", len(coursor), "batches found.")
@@ -44,11 +45,11 @@ def updatebatchStatus(batch_id, status):
         if status =='failed':
             result = db['Batch'].update_one(
                 {"_id": ObjectId(batch_id)},
-                {"$set": {"isCompletedDesc": False, "execFailed": True}}
+                {"$set": {"isDescCompleted": False, "hasExecutionFailed": True}}
             )
         result = db['Batch'].update_one(
             {"_id": ObjectId(batch_id)},
-            {"$set": {"isCompletedDesc": True, "execFailed": False}}
+            {"$set": {"isDescCompleted": True, "hasExecutionFailed": False}}
         )
         return result.modified_count
     except Exception as e:
@@ -91,6 +92,46 @@ def uploadPrefferedLanguageResponseToDB(id, response):
         print(f"An error occurred while uploading preferred language response to DB: {e}")
         return False
     
+
+
+def create_description(batch_id, language, long_description, 
+                        short_description, word_count = None, 
+                        confidence = None):
+    """
+    Create a new description document
+    
+    Args:
+        batch_id: The batch ID
+        language: Language code
+        long_description: Long form description
+        short_description: Short form description
+        word_count: Optional word count
+        confidence: Optional AI confidence score
+        
+    Returns:
+        The created description ID or None if failed
+    """
+    try:
+        description_doc = {
+            "batchId": batch_id,
+            "language": language,
+            "longDescription": long_description,
+            "shortDescription": short_description,
+            "createdAt": datetime.utcnow(),
+            "updatedAt": datetime.utcnow()
+        }
+        
+        if word_count is not None:
+            description_doc["wordCount"] = word_count
+        if confidence is not None:
+            description_doc["confidence"] = confidence
+        
+        result = db["Description"].insert_one(description_doc)
+        return str(result.inserted_id)
+    except Exception as e:
+        print(f"Error creating description: {e}")
+        return None
+
 if __name__ == "__main__":
     # query = db['Batch'].delete_many({"isCompletedModel": False})
     # query = db['Batch'].delete_many({"isCompletedModel": False})
