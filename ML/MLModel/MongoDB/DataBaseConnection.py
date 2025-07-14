@@ -3,6 +3,7 @@ from bson.objectid import ObjectId
 from dotenv import load_dotenv
 import os
 import logging
+import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -22,7 +23,7 @@ def getAllIncompleteBatches():
     """
 
     try:
-        data = db['Batch'].find({"isCompletedModel": False})
+        data = db['Batch'].find({"isModelCompleted": False , "hasExecutionFailed": False})
         coursor = list(data)
         # data = db['Batch'].find()
         print("Fetched incomplete batches successfully.", len(coursor),coursor, "batches found.")
@@ -35,28 +36,58 @@ def updatebatchStatus(batch_id, status):
     """
     Update the status of a batch in the 'Batch' collection.
     
-    :param batch_id: The ID of the batch to update.
-    :param status: The new status to set for the batch.
+    :param batch_id: The ID of the batch to update (ObjectId or string).
+    :param status: The new status ('completed' or 'failed').
     """
     try:
-        if status =='failed':
-            result = db['Batch'].update_one(
-                {"_id": ObjectId(batch_id)},
-                {"$set": {"isCompletedModel": False, "execFailed": True}}
-            )
-        result = db['Batch'].update_one(
-            {"_id": ObjectId(batch_id)},
-            {"$set": {"isCompletedModel": True, "execFailed": False}}
-        )
-        return result.modified_count
-    except Exception as e:
-        print(f"An error occurred while updating batch status: {e}")
+        # Convert string to ObjectId if necessary
+        if isinstance(batch_id, str):
+            batch_id = ObjectId(batch_id)
         
+        if status == 'failed':
+            result = db['Batch'].update_one(
+                {"_id": batch_id},
+                {"$set": {
+                    "isModelCompleted": False, 
+                    "hasExecutionFailed": True,
+                    "updatedAt": datetime.utcnow()
+                }}
+            )
+        elif status == 'completed':
+            result = db['Batch'].update_one(
+                {"_id": batch_id},
+                {"$set": {
+                    "isModelCompleted": True, 
+                    "hasExecutionFailed": False,  # Fixed typo: removed extra space
+                    "updatedAt": datetime.utcnow()
+                }}
+            )
+        else:
+            result = db['Batch'].update_one(
+                {"_id": batch_id},
+                {"$set": {
+                    "isModelCompleted": True, 
+                    "hasExecutionFailed": False,  # Fixed typo: removed extra space
+                    "updatedAt": datetime.utcnow()
+                }}
+            )
+            logger.error(f"Invalid status: {status}. Use 'completed' or 'failed'.")
+            return False
+        
+        logger.info(f"Updated batch {batch_id} with status: {status}")
+        return result.modified_count > 0
+        
+    except Exception as e:
+        logger.error(f"An error occurred while updating batch status: {e}")
         return False
     
 if __name__ == "__main__":
-    query = db['Batch'].delete_many({"isCompletedModel": False})
-    print(f"Deleted {query.deleted_count} incomplete batches from the database.")
+    # query = db['Batch'].delete_many({"isModelCompleted": False})
+    # print(f"Deleted {query.deleted_count} incomplete batches from the database.")
+    # query = db['Batch'].find({"isModelCompleted": False})
+    # print(f"Found {query.count()} incomplete batches in the database.")
+    # print("Incomplete batches:", list(query))  # Example usage to ensure the connection works
+    print(getAllIncompleteBatches())  # Example usage to ensure the connection works
 
 # data  = getAllIncompleteBatches()
 # # print("Function to get all incomplete batches defined successfully.",getAllIncompleteBatches()[0],listLen)
