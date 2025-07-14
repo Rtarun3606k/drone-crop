@@ -1,6 +1,6 @@
 __pycache__/
 .venv
 venv
-__pycache__
-*.pyc
+__pycache__ 
+*.py        c
 test/*
