@@ -87,14 +87,14 @@ export async function POST(request) {
       { status: 500 }
     );
   }
-  console.log("✅ Batch data saved to database:", DB);
-  console.log("📦 ZIP file received:", zipFile.name);
-  console.log(
-    "📦 ZIP file received:",
-    (zipFile.size / (1024 * 1024)).toFixed(2) + " MB"
-  );
-  console.log("📂 Batch Name:", batchName);
-  console.log("🌱 Crop Type:", cropType);
+  // console.log("✅ Batch data saved to database:", DB);
+  // console.log("📦 ZIP file received:", zipFile.name);
+  // console.log(
+  //   "📦 ZIP file received:",
+  //   (zipFile.size / (1024 * 1024)).toFixed(2) + " MB"
+  // );
+  // console.log("📂 Batch Name:", batchName);
+  // console.log("🌱 Crop Type:", cropType);
 
   // Read ZIP content (Blob → Buffer)
   const arrayBuffer = await zipFile.arrayBuffer();
