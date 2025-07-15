@@ -21,8 +21,10 @@ def ModelRunner():
     """
     # ensure destination exists
     # project base
-    #project_root = '/home/dragoon/coding/drone-crop'
-    project_root = '/home/bruh/Documents/drone-crop'
+
+#      project_root = '/home/bruh/Documents/drone-crop'
+    project_root = os.getenv('project_root')
+# 
     # target data/Zips folder under MLModel
     zips_dir = os.path.join(project_root, 'ML', 'MLModel', 'data', 'Zips')
     unzip_dir = os.path.join(project_root, 'ML', 'MLModel', 'data', 'unzip')
@@ -51,8 +53,11 @@ def ModelRunner():
             print(f"Copied {os.path.basename(src)} → {dst}")
             os.system(f"unzip -o '{dst}' -d '{unzip_dir}'")
             
-            model_path = "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"            
-            output_json = f"/home/bruh/Documents/drone-crop/predectionResults/{batch['sessionId']}.json"
+#              model_path = "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"            
+#             output_json = f"/home/bruh/Documents/drone-crop/predectionResults/{batch['sessionId']}.json"
+            model_path = os.getenv('model_path')            
+            output_json = f"{os.getenv('output_json')}{batch['sessionId']}.json"
+
 
             # Get all jpg files in directory
             image_paths = [os.path.join(unzip_dir, f) for f in os.listdir(unzip_dir) 
@@ -70,7 +75,11 @@ def ModelRunner():
             logger.info(f"Batch {batch['sessionId']} processed successfully.")
 
         except Exception as e:
+            print(batch['_id'],'batch _id')
+            logger.error(batch['_id'],'batch _id')
+            updatebatchStatus(batch['_id'], 'failed')
             print(f"Failed to copy {src}: {e}")
+            logger.error(f"Batch {batch['sessionId']} failed: {e}")
 
 if __name__ == "__main__":
     ModelRunner()

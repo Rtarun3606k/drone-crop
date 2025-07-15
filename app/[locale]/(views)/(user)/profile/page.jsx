@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import SessionManager from "@/app/components/SessionManager";
 import { City, State } from "country-state-city";
 import ProtectedRoute from "@/app/components/ProtectedRoute";
+import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 // import { State, City } from "country-state-cities";
 
 export default function ProfilePage() {
@@ -118,6 +119,9 @@ function ProfileContent({ session }) {
                     {user.role} Role
                   </span>
                 )}
+                <span className="px-3 py-1  text-sm rounded-full">
+                  <LanguageSwitcher />
+                </span>
               </div>
             </div>
           </div>

@@ -2,9 +2,10 @@ import json
 # from CornJob.krishi_advisor import get_krishi_sathi_response
 import os
 from dotenv import load_dotenv
-from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus,uploadResponseToDB,uploadPrefferedLanguageResponseToDB
+from MongoDB.DataBaseConnection import getAllIncompleteBatches,updatebatchStatus,uploadResponseToDB,uploadPrefferedLanguageResponseToDB,create_description
 from CornJob.Translator import translationJob
-from CornJob.krishi import get_krishi_sathi_response
+# from CornJob.krishi import get_krishi_sathi_response
+from CornJob.LOngAndShort import get_krishi_sathi_response
 
 # Load environment variables
 load_dotenv()
@@ -106,7 +107,7 @@ def Job_generate_response():
     for batch in batches:
         session_id = str(batch['sessionId'])
         batch_id = str(batch['_id'])
-        preffered_language = batch.get('prefferedLanguage', 'en')
+        preffered_language = batch.get('preferredLanguage', 'En')
         print(f"Processing batch with ID: {session_id}")
         
         # Load JSON data from file
@@ -118,14 +119,43 @@ def Job_generate_response():
         
         # Analyze the crop data
         analysis = analyze_crop_data_with_ai(json_data=json_data)
-        language = translationJob(analysis, preffered_language)  # Translate to Hindi
+        long_description=analysis['long_description']
+        short_description=analysis['short_description']
+        long_description = long_description.replace('\n', ' ')
+        short_description = short_description.replace('\n', ' ')
+        long_description= long_description.split(' ')
+        short_description = short_description.split(' ')
+        word_count = len(long_description) + len(short_description)
+        # language = translationJob(analysis, preffered_language)  # Translate to Hindi
+        LongDesc = translationJob(analysis['long_description'], preffered_language)  # Translate to English
+        shortDesc = translationJob(analysis['short_description'], preffered_language)  # Translate to English
+
+        if LongDesc is None or shortDesc is None:
+            updatebatchStatus(batch_id, 'failed')
+            print(f"Translation failed for batch {session_id}. Skipping...")
+            continue
+        LongDescWordCount = len(LongDesc.split(' '))
+        shortDescWordCount = len(shortDesc.split(' '))
+        print(f"Long Description Word Count: {LongDescWordCount}")
+        print(f"Short Description Word Count: {shortDescWordCount}")
+        languageWordCount = LongDescWordCount + shortDescWordCount
+        language = {
+            'longDesc' : LongDesc,
+            'shortDesc' : shortDesc
+        }
         
         if analysis and language:
             # Upload response to database
-            uploadResponseToDB(batch_id, analysis)
+            # uploadResponseToDB(batch_id, analysis)
+            create_description(batch_id=batch_id,long_description=analysis['long_description'],
+                               short_description=analysis['short_description'],word_count=word_count,language='En',
+                               confidence=analysis.get('confidence', None))
+
             print(f"Response uploaded for batch {session_id}.")
             # Upload translated response to database
-            uploadPrefferedLanguageResponseToDB(batch_id, language)
+            create_description(batch_id=batch_id,long_description=LongDesc,
+                    short_description=shortDesc,word_count=languageWordCount,language=preffered_language,
+                    confidence=analysis.get('confidence', None))
             print(f"Translated response uploaded for batch {session_id}.")
             
             # Update batch status
