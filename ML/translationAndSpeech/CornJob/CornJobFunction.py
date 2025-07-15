@@ -1,8 +1,8 @@
 import os
 import sys
-# from CornJob.SpeechFunction import text_to_speech
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from SpeechFunction import text_to_speech
+from CornJob.SpeechFunction import text_to_speech
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# from SpeechFunction import text_to_speech
 # from MongoDB.DatabAseConnection import getAllIncompleteBatches,updatebatchStatus
 from MongoDB.DatabAseConnection import getAllIncompleteBatches, updatebatchStatus
 
