@@ -13,6 +13,7 @@ import Fill from "ol/style/Fill.js";
 import Stroke from "ol/style/Stroke.js";
 import { fromLonLat, toLonLat } from "ol/proj.js";
 import "ol/ol.css";
+import SetAsHome from "./SetAsHome";
 
 const MapSelect = ({
   setSelectedCoordinatesProp,
@@ -113,6 +114,7 @@ const MapSelect = ({
                 <strong>Address:</strong> {addressProp}
               </div>
             )}
+            <SetAsHome />
           </div>
         ) : (
           <div className="text-gray-500 italic">

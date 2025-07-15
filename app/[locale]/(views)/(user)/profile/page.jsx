@@ -6,18 +6,20 @@ import SessionManager from "@/app/components/SessionManager";
 import { City, State } from "country-state-city";
 import ProtectedRoute from "@/app/components/ProtectedRoute";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
+
 // import { State, City } from "country-state-cities";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
+  const [errors, setErrors] = useState({});
+  const [cities, setCities] = useState([]);
+
   const [form, setForm] = useState({
     phone: "",
     address: "",
     state: "",
     city: "",
   });
-  const [errors, setErrors] = useState({});
-  const [cities, setCities] = useState([]);
 
   return (
     <ProtectedRoute>
@@ -128,6 +130,7 @@ function ProfileContent({ session }) {
         </div>
 
         {/* Session Manager Component */}
+
         <SessionManager />
       </div>
     </div>
