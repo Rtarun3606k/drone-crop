@@ -6,12 +6,17 @@ from CornJob.SpeechFunction import text_to_speech
 # from MongoDB.DatabAseConnection import getAllIncompleteBatches,updatebatchStatus
 from MongoDB.DatabAseConnection import getAllIncompleteBatches, updatebatchStatus
 
+
 from dotenv import load_dotenv
 
 load_dotenv()
 
+#output_file_path = "/home/dragoon/coding/drone-crop/public/audioFiles/"
+# output_file_path = "/home/bruh/Documents/drone-crop/public/audioFiles/"
+# output_file_path_relative = "/audioFiles/"
 output_file_path = os.getenv('output_file_path', '/home/dragoon/coding/drone-crop/public/audioFiles/')
 output_file_path_relative = os.getenv('output_file_path_relative', '/audioFiles/')
+
 
 def Job_generate_speech():
     """

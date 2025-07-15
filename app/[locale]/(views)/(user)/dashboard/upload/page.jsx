@@ -10,6 +10,14 @@ import JSZip from "jszip";
 import { useSession } from "next-auth/react";
 import { Param } from "@/app/generated/prisma/runtime/library";
 import { useParams } from "next/navigation";
+import GeotagChecker from "@/scripts/geotagCheckClient";
+// import MapSelect from "@/app/components/MapSelect";
+import dynamic from "next/dynamic";
+
+const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
+  ssr: false,
+  loading: () => <div>Loading map...</div>,
+});
 
 // List of crops for dropdown
 const cropOptions = [
@@ -32,6 +40,12 @@ export default function UploadPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [previewImages, setPreviewImages] = useState([]);
   const [formError, setFormError] = useState("");
+  const [geotagResults, setGeotagResults] = useState(null);
+  const [isCheckingGeotags, setIsCheckingGeotags] = useState(false);
+  const [geotagProgress, setGeotagProgress] = useState(0);
+  const [checkingFileName, setCheckingFileName] = useState("");
+  const warningRef = React.useRef(null);
+  const submitButtonRef = React.useRef(null);
   const router = useRouter();
   const params = useParams();
   // useParams() returns a regular object, not a Promise, so we access it directly
@@ -41,6 +55,7 @@ export default function UploadPage() {
 
   // Get translations for upload namespace
   const t = useTranslations("upload");
+  const tDashboard = useTranslations("dashboard");
 
   const session = useSession();
 
@@ -58,6 +73,29 @@ export default function UploadPage() {
   }, [locale, defaultsetLang]);
 
   // Using locale from params instead of manually parsing the URL
+  
+  // Auto-scroll to warning when it appears, or to submit button if no warning
+  React.useEffect(() => {
+    if (selectedFiles.length > 0 && geotagResults && !isCheckingGeotags && geotagResults.success) {
+      // Check if warning should be shown (some images not geotagged)
+      const shouldShowWarning = geotagResults.summary.geotaggedCount < geotagResults.summary.successfulChecks;
+      
+      if (shouldShowWarning && warningRef.current) {
+        // Scroll to warning if it's displayed
+        warningRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      } else if (!shouldShowWarning && submitButtonRef.current) {
+        // Scroll to submit button if no warning is shown
+        submitButtonRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+  }, [selectedFiles.length, geotagResults, isCheckingGeotags]);
+
   // Handle file selection
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -70,7 +108,8 @@ export default function UploadPage() {
       return;
     }
 
-    setSelectedFiles((prev) => [...prev, ...validFiles]);
+    const updatedFiles = [...selectedFiles, ...validFiles];
+    setSelectedFiles(updatedFiles);
 
     // Create preview URLs for the selected images
     const newPreviewImages = validFiles.map((file) => ({
@@ -80,6 +119,103 @@ export default function UploadPage() {
 
     setPreviewImages((prev) => [...prev, ...newPreviewImages]);
     setFormError("");
+
+    // Reset geotag results when new files are selected
+    setGeotagResults(null);
+
+    // Automatically check geotags for all files (including new ones)
+    setTimeout(() => {
+      checkGeotagsForFiles(updatedFiles);
+    }, 100);
+  };
+
+  // Function to check geotags for a specific set of files
+  const checkGeotagsForFiles = async (filesToCheck) => {
+    if (filesToCheck.length === 0) {
+      return;
+    }
+
+    setIsCheckingGeotags(true);
+    setGeotagProgress(0);
+    setCheckingFileName("");
+
+    try {
+      const checker = new GeotagChecker();
+
+      const onProgress = (progress, filename) => {
+        setGeotagProgress(progress);
+        setCheckingFileName(filename);
+      };
+
+      const results = await checker.checkGeotagsInFiles(
+        filesToCheck,
+        onProgress
+      );
+      setGeotagResults(results);
+
+      if (results.success) {
+        console.log("Geotag check completed:", results.summary);
+      } else {
+        console.warn("Geotag check failed:", results.message);
+      }
+    } catch (error) {
+      console.error("Error checking geotags:", error);
+      // Don't set form error for automatic checks to avoid interrupting user flow
+    } finally {
+      setIsCheckingGeotags(false);
+      setGeotagProgress(0);
+      setCheckingFileName("");
+    }
+  };
+
+  // Function to check geotags in selected files (for manual button if needed)
+  const checkGeotags = async () => {
+    if (selectedFiles.length === 0) {
+      setFormError(t("form_error_select_image"));
+      return;
+    }
+
+    await checkGeotagsForFiles(selectedFiles);
+  };
+
+  // Function to automatically check geotags for newly selected files
+  const checkGeotagsForNewFiles = async (newFiles) => {
+    if (newFiles.length === 0) {
+      return;
+    }
+
+    setIsCheckingGeotags(true);
+    setGeotagProgress(0);
+    setCheckingFileName("");
+
+    try {
+      const checker = new GeotagChecker();
+
+      const onProgress = (progress, filename) => {
+        setGeotagProgress(progress);
+        setCheckingFileName(filename);
+      };
+
+      // Check geotags for all selected files (including existing ones)
+      const results = await checker.checkGeotagsInFiles(
+        selectedFiles,
+        onProgress
+      );
+      setGeotagResults(results);
+
+      if (results.success) {
+        console.log("Automatic geotag check completed:", results.summary);
+      } else {
+        console.warn("Geotag check failed:", results.message);
+      }
+    } catch (error) {
+      console.error("Error checking geotags:", error);
+      // Don't set form error for automatic checks to avoid interrupting user flow
+    } finally {
+      setIsCheckingGeotags(false);
+      setGeotagProgress(0);
+      setCheckingFileName("");
+    }
   };
 
   // Remove a selected file
@@ -93,6 +229,14 @@ export default function UploadPage() {
     URL.revokeObjectURL(updatedPreviews[index].preview);
     updatedPreviews.splice(index, 1);
     setPreviewImages(updatedPreviews);
+
+    // Reset geotag results and recheck if there are still files
+    setGeotagResults(null);
+    if (updatedFiles.length > 0) {
+      setTimeout(() => {
+        checkGeotagsForFiles(updatedFiles);
+      }, 100);
+    }
   }; // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -182,6 +326,18 @@ export default function UploadPage() {
           {t("title")}
         </h1>
 
+        <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
+          <div className="flex items-center justify-center mb-3">
+            <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></div>
+            <h3 className="text-lg font-semibold text-yellow-400">
+              {tDashboard("geotagged_notice_title")}
+            </h3>
+          </div>
+          <p className="text-gray-300 text-center">
+            {tDashboard("geotagged_notice_desc")}
+          </p>
+        </div>
+
         {formError && (
           <div className="bg-red-900/30 border border-red-500 text-red-300 px-4 py-3 rounded mb-6">
             {formError}
@@ -240,9 +396,7 @@ export default function UploadPage() {
               onClick={() => document.getElementById("fileInput").click()}
             >
               <FiUpload className="mx-auto h-10 w-10 text-green-400" />
-              <p className="text-white mt-2">
-                {t("upload_hint")}
-              </p>
+              <p className="text-white mt-2">{t("upload_hint")}</p>
               <p className="text-gray-400 text-sm mt-1">
                 {t("upload_formats")}
               </p>
@@ -301,9 +455,28 @@ export default function UploadPage() {
             </div>
           )}
 
+          {/* Geotag Analysis Section */}
+          {selectedFiles.length > 0 &&
+            geotagResults &&
+            !isCheckingGeotags &&
+            geotagResults.success &&
+            geotagResults.summary.geotaggedCount <
+              geotagResults.summary.successfulChecks && (
+              <div ref={warningRef}>
+                <div className="bg-yellow-900/30 border border-yellow-500 text-yellow-300 px-4 py-3 rounded-lg text-sm text-center">
+                  ⚠️ Warning: Some images may not be geotagged, please select
+                  location manually.
+                </div>
+                <div>
+                  <MapSelect />
+                </div>
+              </div>
+            )}
+
           {/* Submit Button */}
           <div className="flex justify-center pt-4">
             <button
+              ref={submitButtonRef}
               type="submit"
               disabled={isUploading}
               className={`px-6 py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors ${

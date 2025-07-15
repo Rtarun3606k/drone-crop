@@ -14,7 +14,8 @@ db = MongoDBConnection["droneCrop"]
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-predection_path = '/home/dragoon/coding/drone-crop/predectionResults'
+#predection_path = '/home/dragoon/coding/drone-crop/predectionResults'
+predection_path = '/home/bruh/Documents/drone-crop/predectionResults'
 
 print("MongoDB connection established successfully.")
 

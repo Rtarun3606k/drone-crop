@@ -14,7 +14,7 @@ export const Hero = () => {
         className="hero min-h-[50vh] relative"
         style={{
           backgroundImage:
-            "url(https://www.innovationnewsnetwork.com/wp-content/uploads/2023/11/shutterstockLove-Silhouette_1304774914.jpg)",
+            "url(/hero-bg.jpg)",
         }}
       >
         <div className="hero-overlay"></div>

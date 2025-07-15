@@ -6,7 +6,8 @@ if __name__ == "__main__":
     result = translate_and_synthesize_speech(
         text="Hello, how are you today?",
         target_language="hi",
-        output_file_path="/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/abcd.mp3"
+        # output_file_path="/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/abcd.mp3"
+        output_file_path="/home/bruh/Documents/drone-crop/ML/translationAndSpeech/audio/abcd.mp3"
     )
     
     if result['success']:
@@ -21,5 +22,6 @@ if __name__ == "__main__":
     result = text_to_speech(
         text="ನಮಸ್ಕಾರ, ನೀವು ಇಂದು ಹೇಗಿದ್ದೀರಿ?",
         target_language="kn",
-        output_file_path="/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/abcdefg.mp3"
+        # output_file_path="/home/dragoon/coding/drone-crop/ML/translationAndSpeech/audio/abcdefg.mp3"
+        output_file_path="/home/bruh/Documents/drone-crop/ML/translationAndSpeech/audio/abcdefg.mp3"
     )
