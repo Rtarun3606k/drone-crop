@@ -101,6 +101,8 @@ model Batch {
   audioFiles     AudioFile[]
   processingJobs ProcessingJob[]
 
+  metadata Json? // For additional metadata storage
+
   // Optimized indexes
   @@index([userId, createdAt])
   @@index([userId, cropType])

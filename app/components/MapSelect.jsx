@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Map from "ol/Map.js";
 import View from "ol/View.js";
 import TileLayer from "ol/layer/Tile.js";
@@ -14,91 +14,75 @@ import Stroke from "ol/style/Stroke.js";
 import { fromLonLat, toLonLat } from "ol/proj.js";
 import "ol/ol.css";
 
-const MapSelect = () => {
+const MapSelect = ({
+  setSelectedCoordinatesProp,
+  setAddressProp,
+  selectedCoordinatesProp,
+  addressProp,
+}) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const vectorSourceRef = useRef(null);
-  const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+
+  const fetchAddressFromCoords = async (lat, lon) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
+      );
+      const data = await response.json();
+      setAddressProp(data.display_name || "No address found");
+    } catch (error) {
+      console.error("Error fetching address:", error);
+      setAddressProp("Error fetching address");
+    }
+  };
 
   useEffect(() => {
     if (!mapRef.current) return;
 
-    // Create a vector source to hold the marker
     vectorSourceRef.current = new VectorSource();
 
-    // Create the vector layer for markers
     const vectorLayer = new VectorLayer({
       source: vectorSourceRef.current,
       style: new Style({
         image: new Circle({
           radius: 8,
-          fill: new Fill({
-            color: "#ff0000",
-          }),
-          stroke: new Stroke({
-            color: "#ffffff",
-            width: 2,
-          }),
+          fill: new Fill({ color: "#ff0000" }),
+          stroke: new Stroke({ color: "#ffffff", width: 2 }),
         }),
       }),
     });
 
-    // Create the map instance
     mapInstanceRef.current = new Map({
       target: mapRef.current,
-      layers: [
-        new TileLayer({
-          source: new OSM(),
-        }),
-        vectorLayer,
-      ],
+      layers: [new TileLayer({ source: new OSM() }), vectorLayer],
       view: new View({
         center: fromLonLat([80.329, 23.512]),
         zoom: 4,
       }),
-      // controls: defaultControls({
-      //   attribution: false
-      // })
     });
 
-    // Add click event listener
     mapInstanceRef.current.on("click", function (event) {
-      // Get the clicked coordinate
       const coordinate = event.coordinate;
-
-      // Convert to longitude/latitude
       const lonLat = toLonLat(coordinate);
 
-      // Update state with coordinates
       const coordinateData = {
         longitude: lonLat[0],
         latitude: lonLat[1],
         projected: coordinate,
       };
 
-      setSelectedCoordinates(coordinateData);
+      setSelectedCoordinatesProp(coordinateData);
+      fetchAddressFromCoords(coordinateData.latitude, coordinateData.longitude);
 
-      // Log the coordinates
-      console.log("Selected coordinates:", coordinateData);
-
-      // Clear existing markers
       vectorSourceRef.current.clear();
-
-      // Create a new point feature at the clicked location
-      const marker = new Feature({
-        geometry: new Point(coordinate),
-      });
-
-      // Add the marker to the vector source
+      const marker = new Feature({ geometry: new Point(coordinate) });
       vectorSourceRef.current.addFeature(marker);
     });
 
-    // Cleanup function
     return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.setTarget(null);
-        mapInstanceRef.current = null;
-      }
+      mapInstanceRef.current?.setTarget(null);
+      mapInstanceRef.current = null;
     };
   }, []);
 
@@ -109,17 +93,26 @@ const MapSelect = () => {
         className="w-full h-96 rounded-lg mt-2.5 overflow-hidden text-black map-container"
       />
       <div className="bg-gray-900 mt-2.5 border border-gray-700 rounded-lg p-2">
-        {selectedCoordinates ? (
+        {selectedCoordinatesProp ? (
           <div className="text-gray-300">
-            <h4 className="m-0 mb-2.5  font-sans font-semibold">
+            <h4 className="m-0 mb-2.5 font-sans font-semibold">
               Selected Location:
             </h4>
-            <div className="mb-2 ">
-              <strong>Latitude:</strong> {selectedCoordinates.latitude.toFixed(6)}°
+            <div className="mb-2 flex gap-2.5">
+              <div>
+                <strong>Latitude:</strong>{" "}
+                {selectedCoordinatesProp.latitude.toFixed(6)}°
+              </div>
+              <div>
+                <strong>Longitude:</strong>{" "}
+                {selectedCoordinatesProp.longitude.toFixed(6)}°
+              </div>
             </div>
-            <div className="mb-2 ">
-              <strong>Longitude:</strong> {selectedCoordinates.longitude.toFixed(6)}°
-            </div>
+            {addressProp && (
+              <div className="mb-2">
+                <strong>Address:</strong> {addressProp}
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-gray-500 italic">

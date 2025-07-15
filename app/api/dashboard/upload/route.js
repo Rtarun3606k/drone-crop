@@ -34,6 +34,17 @@ export async function POST(request) {
   const cropType = formData.get("cropType");
   const imagesCount = formData.get("imagesCount");
   const defaultSetLang = formData.get("defaultSetLang");
+  const metadata = formData.get("metadata") || null;
+
+  var parsedMetadata = null;
+  if (metadata) {
+    parsedMetadata = JSON.parse(metadata);
+
+    // console.log("Metadata received:", parsedMetadata);
+    // console.log("Selected Coordinates:", parsedMetadata.selectedCoordinates);
+    // console.log("Address:", parsedMetadata.address);
+  }
+  // console.log("Metadata received:", metadata.selectedCoordinates);
 
   if (!zipFile || !zipFile.name.endsWith(".zip")) {
     return NextResponse.json(
@@ -60,6 +71,7 @@ export async function POST(request) {
       imagesCount: parseInt(imagesCount) || 0,
       userId: session.user.id,
       preferredLanguage: preferredLanguage || "En", // Fixed: removed typo, now matches schema
+      metadata: parsedMetadata,
       // The following fields have defaults, so you don't need to provide them:
       // createdAt: new Date(), // This has @default(now())
       // isModelCompleted: false, // This has @default(false)

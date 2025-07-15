@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import GeotagChecker from "@/scripts/geotagCheckClient";
 // import MapSelect from "@/app/components/MapSelect";
 import dynamic from "next/dynamic";
+import Popup, { usePopup } from "@/app/components/Popup";
 
 const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
   ssr: false,
@@ -48,6 +49,9 @@ export default function UploadPage() {
   const submitButtonRef = React.useRef(null);
   const router = useRouter();
   const params = useParams();
+  const [selectedCoordinatesProp, setSelectedCoordinatesProp] = useState(null);
+  const [addressProp, setAddressProp] = useState(null);
+  const { popup, showSuccess, showError, showWarning, hidePopup } = usePopup();
   // useParams() returns a regular object, not a Promise, so we access it directly
   const locale = params.locale;
   // Initialize state with the locale value directly
@@ -73,24 +77,31 @@ export default function UploadPage() {
   }, [locale, defaultsetLang]);
 
   // Using locale from params instead of manually parsing the URL
-  
+
   // Auto-scroll to warning when it appears, or to submit button if no warning
   React.useEffect(() => {
-    if (selectedFiles.length > 0 && geotagResults && !isCheckingGeotags && geotagResults.success) {
+    if (
+      selectedFiles.length > 0 &&
+      geotagResults &&
+      !isCheckingGeotags &&
+      geotagResults.success
+    ) {
       // Check if warning should be shown (some images not geotagged)
-      const shouldShowWarning = geotagResults.summary.geotaggedCount < geotagResults.summary.successfulChecks;
-      
+      const shouldShowWarning =
+        geotagResults.summary.geotaggedCount <
+        geotagResults.summary.successfulChecks;
+
       if (shouldShowWarning && warningRef.current) {
         // Scroll to warning if it's displayed
         warningRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
+          behavior: "smooth",
+          block: "center",
         });
       } else if (!shouldShowWarning && submitButtonRef.current) {
         // Scroll to submit button if no warning is shown
         submitButtonRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
+          behavior: "smooth",
+          block: "center",
         });
       }
     }
@@ -285,6 +296,13 @@ export default function UploadPage() {
       );
       formData.append("defaultSetLang", defaultsetLang);
       formData.append("imagesCount", selectedFiles.length);
+      formData.append(
+        "metadata",
+        JSON.stringify({
+          selectedCoordinates: selectedCoordinatesProp,
+          address: addressProp,
+        })
+      );
       console.log("Form data prepared for upload:", {
         batchName,
         cropType: selectedCrop,
@@ -310,7 +328,8 @@ export default function UploadPage() {
       //   setFormError("");
 
       // Show success message or redirect
-      alert(t("success"));
+      // alert(t("success"));
+      showSuccess(t("success"), { duration: 4000 });
     } catch (error) {
       console.error("Upload failed:", error);
       setFormError(t("form_error_upload_failed"));
@@ -468,7 +487,12 @@ export default function UploadPage() {
                   location manually.
                 </div>
                 <div>
-                  <MapSelect />
+                  <MapSelect
+                    selectedCoordinatesProp={selectedCoordinatesProp}
+                    setSelectedCoordinatesProp={setSelectedCoordinatesProp}
+                    addressProp={addressProp}
+                    setAddressProp={setAddressProp}
+                  />
                 </div>
               </div>
             )}
@@ -498,6 +522,17 @@ export default function UploadPage() {
           </Link>
         </div>
       </div>
+      {/* Render the popup */}
+      {popup && (
+        <Popup
+          message={popup.message}
+          type={popup.type}
+          isVisible={popup.isVisible}
+          onClose={hidePopup}
+          duration={popup.duration}
+          position={popup.position}
+        />
+      )}
     </div>
   );
 }
