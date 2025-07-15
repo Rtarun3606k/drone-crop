@@ -50,7 +50,7 @@ def updatebatchStatus(batch_id, status):
                 {"$set": {
                     "isModelCompleted": False, 
                     "hasExecutionFailed": True,
-                    "updatedAt": datetime.utcnow()
+                    # "updatedAt": datetime.utcnow()
                 }}
             )
         elif status == 'completed':
@@ -59,7 +59,7 @@ def updatebatchStatus(batch_id, status):
                 {"$set": {
                     "isModelCompleted": True, 
                     "hasExecutionFailed": False,  # Fixed typo: removed extra space
-                    "updatedAt": datetime.utcnow()
+                    # "updatedAt": datetime.utcnow()
                 }}
             )
         else:
@@ -68,7 +68,7 @@ def updatebatchStatus(batch_id, status):
                 {"$set": {
                     "isModelCompleted": True, 
                     "hasExecutionFailed": False,  # Fixed typo: removed extra space
-                    "updatedAt": datetime.utcnow()
+                   
                 }}
             )
             logger.error(f"Invalid status: {status}. Use 'completed' or 'failed'.")
