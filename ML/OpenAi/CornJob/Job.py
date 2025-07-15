@@ -128,6 +128,11 @@ def Job_generate_response():
         # language = translationJob(analysis, preffered_language)  # Translate to Hindi
         LongDesc = translationJob(analysis['long_description'], preffered_language)  # Translate to English
         shortDesc = translationJob(analysis['short_description'], preffered_language)  # Translate to English
+
+        if LongDesc is None or shortDesc is None:
+            updatebatchStatus(batch_id, 'failed')
+            print(f"Translation failed for batch {session_id}. Skipping...")
+            continue
         LongDescWordCount = len(LongDesc.split(' '))
         shortDescWordCount = len(shortDesc.split(' '))
         print(f"Long Description Word Count: {LongDescWordCount}")
