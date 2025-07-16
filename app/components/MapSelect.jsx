@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import Map from "ol/Map.js";
 import View from "ol/View.js";
 import TileLayer from "ol/layer/Tile.js";
@@ -23,6 +24,7 @@ const MapSelect = ({
   onAlert, // Pass through the alert function
   skipHomeLoad = false, // Skip loading home location if already handled by parent
 }) => {
+  const t = useTranslations("mapSelect");
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const vectorSourceRef = useRef(null);
@@ -53,15 +55,15 @@ const MapSelect = ({
               onAlert(
                 <div>
                   <p>
-                    <strong>Existing home location found!</strong>
+                    <strong>{t("alerts.existingHomeFound.title")}</strong>
                   </p>
                   <p>
-                    Address:{" "}
+                    {t("alerts.existingHomeFound.addressLabel")}{" "}
                     {data.coordinates.address ||
                       `${data.coordinates.lat}, ${data.coordinates.lng}`}
                   </p>
                   <p>
-                    You can update it by selecting a new location on the map.
+                    {t("alerts.existingHomeFound.updateInfo")}
                   </p>
                 </div>,
                 "info"
@@ -92,11 +94,10 @@ const MapSelect = ({
               onAlert(
                 <div>
                   <p>
-                    <strong>No home location set</strong>
+                    <strong>{t("alerts.noHomeLocation.title")}</strong>
                   </p>
                   <p>
-                    Click on the map to select your workplace/home location.
-                    This will be used as default for images without GPS data.
+                    {t("alerts.noHomeLocation.description")}
                   </p>
                 </div>,
                 "info"
@@ -107,7 +108,7 @@ const MapSelect = ({
       } catch (error) {
         console.error("Error loading existing home location:", error);
         if (onAlert && !hasLoadedHome) {
-          onAlert("Error loading existing home location", "error");
+          onAlert(t("alerts.errorLoading"), "error");
         }
       } finally {
         setHasLoadedHome(true);
@@ -221,21 +222,21 @@ const MapSelect = ({
         {selectedCoordinatesProp ? (
           <div className="text-gray-300">
             <h4 className="m-0 mb-2.5 font-sans font-semibold">
-              Selected Location:
+              {t("selectedLocation")}
             </h4>
             <div className="mb-2 flex gap-2.5">
               <div>
-                <strong>Latitude:</strong>{" "}
+                <strong>{t("latitude")}</strong>{" "}
                 {selectedCoordinatesProp?.latitude?.toFixed(6)}°
               </div>
               <div>
-                <strong>Longitude:</strong>{" "}
+                <strong>{t("longitude")}</strong>{" "}
                 {selectedCoordinatesProp?.longitude?.toFixed(6)}°
               </div>
             </div>
             {addressProp && (
               <div className="mb-2">
-                <strong>Address:</strong> {addressProp}
+                <strong>{t("address")}</strong> {addressProp}
               </div>
             )}
             <SetAsHome
@@ -248,7 +249,7 @@ const MapSelect = ({
           </div>
         ) : (
           <div className="text-gray-500 italic">
-            Click on the map to select a location
+            {t("clickToSelect")}
           </div>
         )}
       </div>

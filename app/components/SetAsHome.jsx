@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { FiHome, FiLoader } from "react-icons/fi";
 
 const SetAsHome = ({
@@ -8,6 +9,7 @@ const SetAsHome = ({
   addressProp,
   onAlert, // Alert function passed from parent
 }) => {
+  const t = useTranslations("setAsHome");
   const [isLoading, setIsLoading] = useState(false);
   const [existingHome, setExistingHome] = useState(null);
 
@@ -34,7 +36,7 @@ const SetAsHome = ({
     // Validate required data
     if (!selectedCoordinatesProp || !addressProp) {
       onAlert &&
-        onAlert("Please select a location on the map first.", "warning");
+        onAlert(t("alerts.selectLocationFirst"), "warning");
       return;
     }
 
@@ -45,7 +47,7 @@ const SetAsHome = ({
     ) {
       onAlert &&
         onAlert(
-          "Invalid coordinate data. Please select a location on the map.",
+          t("alerts.invalidCoordinates"),
           "error"
         );
       return;
@@ -81,20 +83,21 @@ const SetAsHome = ({
             <div>
               <p className="font-bold">
                 {isUpdate
-                  ? "Home Location Updated! 🏠"
-                  : "Home Location Set Successfully! 🏠"}
+                  ? t("alerts.homeLocationUpdated")
+                  : t("alerts.homeLocationSet")}
               </p>
-              <p className="mt-1 text-sm">Your workplace has been saved as:</p>
+              <p className="mt-1 text-sm">{t("alerts.workplaceSaved")}</p>
               <p className="mt-1 text-xs bg-green-800/30 rounded p-2">
                 {addressProp}
               </p>
               <p className="mt-2 text-xs">
-                Coordinates: {selectedCoordinatesProp.latitude.toFixed(6)}°,{" "}
-                {selectedCoordinatesProp.longitude.toFixed(6)}°
+                {t("alerts.coordinates", {
+                  lat: selectedCoordinatesProp.latitude.toFixed(6),
+                  lng: selectedCoordinatesProp.longitude.toFixed(6)
+                })}
               </p>
               <p className="mt-2 text-xs opacity-80">
-                This location will be used as default for images without GPS
-                data.
+                {t("alerts.defaultLocationNote")}
               </p>
             </div>,
             "success",
@@ -108,12 +111,12 @@ const SetAsHome = ({
       onAlert &&
         onAlert(
           <div>
-            <p className="font-bold">Failed to Set Home Location</p>
+            <p className="font-bold">{t("alerts.setHomeFailed")}</p>
             <p className="mt-1 text-sm">
-              {error.message || "Please try again."}
+              {error.message || t("alerts.tryAgain")}
             </p>
             <p className="mt-2 text-xs">
-              Make sure you have a stable internet connection and try again.
+              {t("alerts.checkConnection")}
             </p>
           </div>,
           "error",
@@ -127,7 +130,7 @@ const SetAsHome = ({
   return (
     <div>
       <div className="flex items-center justify-start mt-2 gap-2.5">
-        <strong>Set Work Place as:</strong>
+        <strong>{t("setWorkplaceAs")}</strong>
         <button
           type="button"
           disabled={isLoading || !selectedCoordinatesProp || !addressProp}
@@ -143,13 +146,13 @@ const SetAsHome = ({
           onClick={setHomeLocation}
           title={
             !selectedCoordinatesProp || !addressProp
-              ? "Please select a location on the map first"
-              : "Set this location as your home workplace"
+              ? t("tooltips.selectLocation")
+              : t("tooltips.setAsHome")
           }
         >
           {isLoading ? <FiLoader className="animate-spin" /> : <FiHome />}
           <span className="font-medium">
-            {isLoading ? "Setting..." : "Set as Home"}
+            {isLoading ? t("setting") : t("setAsHome")}
           </span>
         </button>
       </div>
@@ -158,7 +161,7 @@ const SetAsHome = ({
       {selectedCoordinatesProp && addressProp && !isLoading && (
         <div className="mt-2 text-xs text-gray-400 flex items-center gap-1">
           <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          <span>Location ready to be set as home</span>
+          <span>{t("locationReady")}</span>
         </div>
       )}
     </div>

@@ -155,6 +155,55 @@
     "batches_title": "View Batches",
     "batches_desc": "See all your uploaded batches and analysis results"
   },
+  "uploadPage": {
+    "locationSettings": "Location Settings",
+    "hideMap": "Hide Map",
+    "setUpdateLocation": "Set/Update Location",
+    "locationForUpload": "Location for This Upload Session",
+    "nonGpsImagesNote": "Non-GPS images in this upload will use this location",
+    "setUpdateDefaultLocation": "Set/Update Default Location"
+  },
+  "mapSelect": {
+    "selectedLocation": "Selected Location:",
+    "latitude": "Latitude:",
+    "longitude": "Longitude:",
+    "address": "Address:",
+    "clickToSelect": "Click on the map to select a location",
+    "alerts": {
+      "existingHomeFound": {
+        "title": "Existing home location found!",
+        "addressLabel": "Address:",
+        "updateInfo": "You can update it by selecting a new location on the map."
+      },
+      "noHomeLocation": {
+        "title": "No home location set",
+        "description": "Click on the map to select your workplace/home location. This will be used as default for images without GPS data."
+      },
+      "errorLoading": "Error loading existing home location"
+    }
+  },
+  "setAsHome": {
+    "setWorkplaceAs": "Set Work Place as:",
+    "setAsHome": "Set as Home",
+    "setting": "Setting...",
+    "locationReady": "Location ready to be set as home",
+    "tooltips": {
+      "selectLocation": "Please select a location on the map first",
+      "setAsHome": "Set this location as your home workplace"
+    },
+    "alerts": {
+      "selectLocationFirst": "Please select a location on the map first.",
+      "invalidCoordinates": "Invalid coordinate data. Please select a location on the map.",
+      "homeLocationUpdated": "Home Location Updated! 🏠",
+      "homeLocationSet": "Home Location Set Successfully! 🏠",
+      "workplaceSaved": "Your workplace has been saved as:",
+      "coordinates": "Coordinates: {lat}°, {lng}°",
+      "defaultLocationNote": "This location will be used as default for images without GPS data.",
+      "setHomeFailed": "Failed to Set Home Location",
+      "tryAgain": "Please try again.",
+      "checkConnection": "Make sure you have a stable internet connection and try again."
+    }
+  },
   "contact": {
     "title": "Contact Us",
     "description": "Have questions or want to collaborate? Reach out to the Drone Crop team using the form below.",

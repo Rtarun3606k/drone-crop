@@ -75,6 +75,7 @@ export default function UploadPage() {
   const tDashboard = useTranslations("dashboard");
   const tIphone = useTranslations("info_iphone");
   const tAndroid = useTranslations("info_android");
+  const tUploadPage = useTranslations("uploadPage");
 
   const session = useSession();
 
@@ -515,14 +516,14 @@ export default function UploadPage() {
           <div>
             <div className="flex items-center justify-between mb-4">
               <label className="block text-white font-semibold">
-                Location Settings
+                {tUploadPage("locationSettings")}
               </label>
               <button
                 type="button"
                 onClick={() => setShowLocationSection(!showLocationSection)}
                 className="text-green-400 hover:text-green-300 text-sm underline"
               >
-                {showLocationSection ? "Hide Map" : "Set/Update Location"}
+                {showLocationSection ? tUploadPage("hideMap") : tUploadPage("setUpdateLocation")}
               </button>
             </div>
 
@@ -545,11 +546,11 @@ export default function UploadPage() {
               <div className="bg-blue-900/20 border border-blue-700 rounded-lg p-3 mt-4">
                 <div className="flex items-center text-blue-400 text-sm mb-1">
                   <FiMapPin className="mr-2" size={14} />
-                  <strong>Location for This Upload Session</strong>
+                  <strong>{tUploadPage("locationForUpload")}</strong>
                 </div>
                 <p className="text-blue-300 text-sm">{addressProp}</p>
                 <p className="text-blue-400 text-xs mt-1">
-                  Non-GPS images in this upload will use this location
+                  {tUploadPage("nonGpsImagesNote")}
                 </p>
               </div>
             )}
@@ -558,7 +559,7 @@ export default function UploadPage() {
             {showLocationSection && (
               <div className="border border-gray-700 rounded-lg p-4 bg-gray-800 mt-4">
                 <h3 className="text-white font-semibold mb-3">
-                  Set/Update Default Location
+                  {tUploadPage("setUpdateDefaultLocation")}
                 </h3>
                 <MapSelect
                   setSelectedCoordinatesProp={setSelectedCoordinatesProp}
