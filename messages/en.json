@@ -1,31 +1,31 @@
 {
-    "upload": {
-      "title": "Upload Images",
-      "form_error_images_only": "Only image files are allowed",
-      "form_error_batch_name": "Please enter a batch name",
-      "form_error_select_image": "Please select at least one image",
-      "form_error_upload_failed": "Failed to upload images. Please try again.",
-      "form_warning_large_batch": "You're uploading {count} images. Large batches may take longer to process. Continue?",
-      "success": "Batch uploaded successfully!",
-      "batch_name_label": "Batch Name*",
-      "batch_name_placeholder": "Enter batch name",
-      "crop_type_label": "Crop Type",
-      "upload_label": "Upload Images*",
-      "upload_hint": "Click to select files or drag and drop",
-      "upload_formats": "Supported formats: JPG, PNG, TIFF",
-      "selected_files": "{count} files selected",
-      "selected_images": "Selected Images ({count})",
-      "more_images": "+{count} more\nimages",
-      "submit_uploading": "Uploading...",
-      "submit": "Upload Batch",
-      "back_to_dashboard": "Back to Dashboard"
-    },
+  "upload": {
+    "title": "Upload Images",
+    "form_error_images_only": "Only image files are allowed",
+    "form_error_batch_name": "Please enter a batch name",
+    "form_error_select_image": "Please select at least one image",
+    "form_error_upload_failed": "Failed to upload images. Please try again.",
+    "form_warning_large_batch": "You're uploading {count} images. Large batches may take longer to process. Continue?",
+    "success": "Batch uploaded successfully!",
+    "batch_name_label": "Batch Name*",
+    "batch_name_placeholder": "Enter batch name",
+    "crop_type_label": "Crop Type",
+    "upload_label": "Upload Images*",
+    "upload_hint": "Click to select files or drag and drop",
+    "upload_formats": "Supported formats: JPG, PNG, TIFF",
+    "selected_files": "{count} files selected",
+    "selected_images": "Selected Images ({count})",
+    "more_images": "+{count} more\nimages",
+    "submit_uploading": "Uploading...",
+    "submit": "Upload Batch",
+    "back_to_dashboard": "Back to Dashboard",
+    "warning": "Warning: Some images may not be geotagged, please select location manually."
+  },
   "Home": {
     "title": "Bridging the Gap Between Aerial Intelligence and Farmer Action",
     "description": "Turn Drone Imagery into Local-Language Crop Insights for Every Farmer. From aerial data to actionable words—delivered in their language.",
     "actionButton": "Upload Images"
   },
-
   "Flow": {
     "steps": [
       {
@@ -65,7 +65,6 @@
       }
     ]
   },
-
   "common": {
     "brand": "DroneCrop",
     "home": "Home",

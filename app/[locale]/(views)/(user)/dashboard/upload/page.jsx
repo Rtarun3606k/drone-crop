@@ -483,8 +483,7 @@ export default function UploadPage() {
               geotagResults.summary.successfulChecks && (
               <div ref={warningRef}>
                 <div className="bg-yellow-900/30 border border-yellow-500 text-yellow-300 px-4 py-3 rounded-lg text-sm text-center">
-                  ⚠️ Warning: Some images may not be geotagged, please select
-                  location manually.
+                  ⚠️ {t("warning")}
                 </div>
                 <div>
                   <MapSelect
