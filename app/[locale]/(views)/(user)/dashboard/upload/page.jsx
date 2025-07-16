@@ -65,14 +65,7 @@ export default function UploadPage() {
     alertInfo,
     closeAlert,
   } = useAlert();
-  const {
-    alertData,
-    alertSuccess,
-    alertError,
-    alertWarning,
-    alertInfo,
-    closeAlert,
-  } = useAlert();
+
   // useParams() returns a regular object, not a Promise, so we access it directly
   const locale = params.locale;
   // Initialize state with the locale value directly
