@@ -16,7 +16,6 @@ import dynamic from "next/dynamic";
 import Popup, { usePopup } from "@/app/components/Popup";
 import AleartBox, { useAlert } from "@/app/components/AleartBox";
 import HomeLocationInfo from "@/app/components/HomeLocationInfo";
-import { options } from "@/venv/lib/python3.13/site-packages/torch/utils/model_dump/preact.mjs";
 
 const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
   ssr: false,
@@ -376,7 +375,7 @@ export default function UploadPage() {
           <p
             className="text-blue-500 underline hover:text-blue-500 cursor-pointer"
             onClick={() => {
-              alertInfo( 
+              alertInfo(
                 <div>
                   <div className="join join-vertical  bg-transparent">
                     <div className="collapse collapse-arrow join-item border-dotted border">
@@ -390,15 +389,38 @@ export default function UploadPage() {
                       </div>
                       <div className="collapse-content text-sm">
                         <div className="space-y-2">
-                          <div className="text-sm">{tIphone("steps.0.text")}</div>
-                          <div className="text-sm">{tIphone("steps.1.text")}</div>
-                          <div className="text-sm">{tIphone("steps.2.text")}</div>
-                          <div className="text-sm">{tIphone("steps.3.text")}</div>
-                          <div className="text-sm">{tIphone("steps.4.text")}</div>
-                          <div className="text-sm">{tIphone("steps.5.text")}</div>
-                          <div className="text-sm">{tIphone("steps.6.text")}</div>
-                          <div className="text-sm">{tIphone("steps.7.text")} <Link className="text-blue-500 underline cursor-pointer" href={"https://www.youtube.com/watch?v=7UpRjdNv_GU"}>{tAndroid("video")}</Link></div>
-
+                          <div className="text-sm">
+                            {tIphone("steps.0.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.1.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.2.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.3.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.4.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.5.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.6.text")}
+                          </div>
+                          <div className="text-sm">
+                            {tIphone("steps.7.text")}{" "}
+                            <Link
+                              className="text-blue-500 underline cursor-pointer"
+                              href={
+                                "https://www.youtube.com/watch?v=7UpRjdNv_GU"
+                              }
+                            >
+                              {tAndroid("video")}
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -408,17 +430,31 @@ export default function UploadPage() {
                         {tAndroid("title")}
                       </div>
                       <div className="collapse-content text-sm">
-                        <div className="text-sm">{tAndroid("steps.0.text")}</div>
-                          <div className="text-sm">{tAndroid("steps.1.text")}</div>
-                          <div className="text-sm">{tAndroid("steps.2.text")}</div>
-                          <div className="text-sm">{tAndroid("steps.3.text")}</div>
-                          <div className="text-sm">{tAndroid("steps.4.text")} <Link className="text-blue-500 underline cursor-pointer" href={"https://www.youtube.com/watch?v=Sw8P7PY1QSI"}>{tAndroid("video")}</Link> </div>
-
+                        <div className="text-sm">
+                          {tAndroid("steps.0.text")}
+                        </div>
+                        <div className="text-sm">
+                          {tAndroid("steps.1.text")}
+                        </div>
+                        <div className="text-sm">
+                          {tAndroid("steps.2.text")}
+                        </div>
+                        <div className="text-sm">
+                          {tAndroid("steps.3.text")}
+                        </div>
+                        <div className="text-sm">
+                          {tAndroid("steps.4.text")}{" "}
+                          <Link
+                            className="text-blue-500 underline cursor-pointer"
+                            href={"https://www.youtube.com/watch?v=Sw8P7PY1QSI"}
+                          >
+                            {tAndroid("video")}
+                          </Link>{" "}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                ,
+                </div>,
                 { duration: 3600000 }
               );
             }}
