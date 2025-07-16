@@ -4,7 +4,7 @@ import { auth } from "@/app/auth";
 import { Link, redirect, useRouter } from "@/i18n/routing";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import { FiUpload, FiX } from "react-icons/fi";
+import { FiUpload, FiX, FiMapPin } from "react-icons/fi";
 import Image from "next/image";
 import JSZip from "jszip";
 import { useSession } from "next-auth/react";
@@ -15,6 +15,7 @@ import GeotagChecker from "@/scripts/geotagCheckClient";
 import dynamic from "next/dynamic";
 import Popup, { usePopup } from "@/app/components/Popup";
 import AleartBox, { useAlert } from "@/app/components/AleartBox";
+import HomeLocationInfo from "@/app/components/HomeLocationInfo";
 import { options } from "@/venv/lib/python3.13/site-packages/torch/utils/model_dump/preact.mjs";
 
 const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
@@ -47,13 +48,23 @@ export default function UploadPage() {
   const [isCheckingGeotags, setIsCheckingGeotags] = useState(false);
   const [geotagProgress, setGeotagProgress] = useState(0);
   const [checkingFileName, setCheckingFileName] = useState("");
+  const [selectedCoordinatesProp, setSelectedCoordinatesProp] = useState(null);
+  const [addressProp, setAddressProp] = useState("");
+  const [showLocationSection, setShowLocationSection] = useState(false);
+  const [homeLocationRefresh, setHomeLocationRefresh] = useState(0);
   const warningRef = React.useRef(null);
   const submitButtonRef = React.useRef(null);
   const router = useRouter();
   const params = useParams();
-  const [selectedCoordinatesProp, setSelectedCoordinatesProp] = useState(null);
-  const [addressProp, setAddressProp] = useState(null);
   const { popup, showSuccess, showError, showWarning, hidePopup } = usePopup();
+  const {
+    alertData,
+    alertSuccess,
+    alertError,
+    alertWarning,
+    alertInfo,
+    closeAlert,
+  } = useAlert();
   const {
     alertData,
     alertSuccess,
@@ -471,6 +482,78 @@ export default function UploadPage() {
             </select>
           </div>
 
+          {/* Location Information Section */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <label className="block text-white font-semibold">
+                Location Settings
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowLocationSection(!showLocationSection)}
+                className="text-green-400 hover:text-green-300 text-sm underline"
+              >
+                {showLocationSection ? "Hide Map" : "Set/Update Location"}
+              </button>
+            </div>
+
+            {/* Home location info component */}
+            <HomeLocationInfo
+              onAlert={alertInfo}
+              refreshTrigger={homeLocationRefresh}
+              onUseAsDefault={(location) => {
+                // Set the coordinates for this upload session
+                setSelectedCoordinatesProp({
+                  latitude: location.lat,
+                  longitude: location.lng,
+                });
+                setAddressProp(location.address);
+              }}
+            />
+
+            {/* Current upload session location */}
+            {selectedCoordinatesProp && addressProp && (
+              <div className="bg-blue-900/20 border border-blue-700 rounded-lg p-3 mt-4">
+                <div className="flex items-center text-blue-400 text-sm mb-1">
+                  <FiMapPin className="mr-2" size={14} />
+                  <strong>Location for This Upload Session</strong>
+                </div>
+                <p className="text-blue-300 text-sm">{addressProp}</p>
+                <p className="text-blue-400 text-xs mt-1">
+                  Non-GPS images in this upload will use this location
+                </p>
+              </div>
+            )}
+
+            {/* Map section - shown when toggled */}
+            {showLocationSection && (
+              <div className="border border-gray-700 rounded-lg p-4 bg-gray-800 mt-4">
+                <h3 className="text-white font-semibold mb-3">
+                  Set/Update Default Location
+                </h3>
+                <MapSelect
+                  setSelectedCoordinatesProp={setSelectedCoordinatesProp}
+                  setAddressProp={setAddressProp}
+                  selectedCoordinatesProp={selectedCoordinatesProp}
+                  addressProp={addressProp}
+                  skipHomeLoad={true} // Skip loading since HomeLocationInfo already handles it
+                  onAlert={(message, type) => {
+                    // Only show alerts for errors, not info messages to prevent spam
+                    if (type === "error" || type === "success") {
+                      alertInfo(message, type);
+                    }
+                    // Trigger refresh of home location info when location is updated
+                    if (type === "success") {
+                      setTimeout(() => {
+                        setHomeLocationRefresh((prev) => prev + 1);
+                      }, 1000);
+                    }
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
           {/* Image Upload Field */}
           <div>
             <label className="block text-white font-semibold mb-2">
@@ -557,6 +640,18 @@ export default function UploadPage() {
                     setSelectedCoordinatesProp={setSelectedCoordinatesProp}
                     addressProp={addressProp}
                     setAddressProp={setAddressProp}
+                    onAlert={(message, type, options) => {
+                      // Use the alert system for SetAsHome notifications
+                      if (type === "success") {
+                        alertSuccess(message, options);
+                      } else if (type === "error") {
+                        alertError(message, options);
+                      } else if (type === "warning") {
+                        alertWarning(message, options);
+                      } else if (type === "info") {
+                        alertInfo(message, options);
+                      }
+                    }}
                   />
                 </div>
               </div>
