@@ -149,6 +149,7 @@
     "contact": "Contact",
     "geotagged_notice_title": "Important Notice",
     "geotagged_notice_desc": "Images you upload need to be geotagged. This will help us appropriately give recommendations based on location.",
+    "info": "Click here for more information.",
     "upload_title": "Upload Images",
     "upload_desc": "Upload new drone images for analysis",
     "batches_title": "View Batches",

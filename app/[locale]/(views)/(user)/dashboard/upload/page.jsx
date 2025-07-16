@@ -360,6 +360,11 @@ export default function UploadPage() {
           <p className="text-gray-300 text-center">
             {tDashboard("geotagged_notice_desc")}
           </p>
+            <p className="text-blue-500 underline hover:text-blue-500 cursor-pointer" onClick={()=>{
+              alertWarning("Hello")
+            }}>
+              {tDashboard("info")}
+            </p>
         </div>
 
         {formError && (
