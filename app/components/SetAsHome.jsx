@@ -15,7 +15,10 @@ const SetAsHome = ({
         <strong>Set Work Place as :</strong>
         <button
           className="rounded-3xl bg-green-600 text-sm text-white pr-2 pl-2 pt-1 pb-1 hover:bg-green-700 transition-colors duration-200 flex items-center gap-1.5"
-          onClick={() => {}}
+          onClick={() => {
+            console.log("Setting as home location...");
+          }}
+          type="button"
         >
           <FiHome />
           <p>Home</p>

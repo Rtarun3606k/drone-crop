@@ -14,6 +14,7 @@ import GeotagChecker from "@/scripts/geotagCheckClient";
 // import MapSelect from "@/app/components/MapSelect";
 import dynamic from "next/dynamic";
 import Popup, { usePopup } from "@/app/components/Popup";
+import AleartBox, { useAlert } from "@/app/components/AleartBox";
 
 const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
   ssr: false,
@@ -52,6 +53,8 @@ export default function UploadPage() {
   const [selectedCoordinatesProp, setSelectedCoordinatesProp] = useState(null);
   const [addressProp, setAddressProp] = useState(null);
   const { popup, showSuccess, showError, showWarning, hidePopup } = usePopup();
+  const { alertData, alertSuccess, alertError, alertWarning, closeAlert } =
+    useAlert();
   // useParams() returns a regular object, not a Promise, so we access it directly
   const locale = params.locale;
   // Initialize state with the locale value directly
@@ -330,6 +333,8 @@ export default function UploadPage() {
       // Show success message or redirect
       // alert(t("success"));
       showSuccess(t("success"), { duration: 4000 });
+      // alertSuccess(t("success"), { duration: 4000 });
+      // Redirect to dashboard or another page
     } catch (error) {
       console.error("Upload failed:", error);
       setFormError(t("form_error_upload_failed"));
@@ -530,6 +535,17 @@ export default function UploadPage() {
           onClose={hidePopup}
           duration={popup.duration}
           position={popup.position}
+        />
+      )}
+      {/* Render the alert */}
+      {alertData && (
+        <AleartBox
+          message={alertData.message}
+          type={alertData.type}
+          isVisible={alertData.isVisible}
+          onClose={closeAlert}
+          duration={alertData.duration}
+          showCloseButton={alertData.showCloseButton}
         />
       )}
     </div>
