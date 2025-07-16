@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Map from "ol/Map.js";
 import View from "ol/View.js";
 import TileLayer from "ol/layer/Tile.js";
@@ -20,10 +20,102 @@ const MapSelect = ({
   setAddressProp,
   selectedCoordinatesProp,
   addressProp,
+  onAlert, // Pass through the alert function
+  skipHomeLoad = false, // Skip loading home location if already handled by parent
 }) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const vectorSourceRef = useRef(null);
+  const [existingHome, setExistingHome] = useState(null);
+  const [hasLoadedHome, setHasLoadedHome] = useState(false);
+  const loadedRef = useRef(false);
+
+  // Load existing home location on mount
+  useEffect(() => {
+    if (skipHomeLoad) {
+      setHasLoadedHome(true);
+      return;
+    }
+
+    if (loadedRef.current) return; // Prevent multiple loads using ref
+    loadedRef.current = true;
+
+    const loadExistingHome = async () => {
+      try {
+        const response = await fetch("/api/user/set-home");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.coordinates) {
+            setExistingHome(data.coordinates);
+
+            // Show alert about existing home location (only once)
+            if (onAlert && !hasLoadedHome) {
+              onAlert(
+                <div>
+                  <p>
+                    <strong>Existing home location found!</strong>
+                  </p>
+                  <p>
+                    Address:{" "}
+                    {data.coordinates.address ||
+                      `${data.coordinates.lat}, ${data.coordinates.lng}`}
+                  </p>
+                  <p>
+                    You can update it by selecting a new location on the map.
+                  </p>
+                </div>,
+                "info"
+              );
+            }
+
+            // If no coordinates are set yet, use existing home as default
+            if (
+              !selectedCoordinatesProp ||
+              (!selectedCoordinatesProp.lat && !selectedCoordinatesProp.lng)
+            ) {
+              if (setSelectedCoordinatesProp) {
+                setSelectedCoordinatesProp({
+                  latitude: data.coordinates.lat,
+                  longitude: data.coordinates.lng,
+                });
+              }
+              if (setAddressProp) {
+                setAddressProp(
+                  data.coordinates.address ||
+                    `${data.coordinates.lat}, ${data.coordinates.lng}`
+                );
+              }
+            }
+          } else {
+            // No existing home location (only show alert once)
+            if (onAlert && !hasLoadedHome) {
+              onAlert(
+                <div>
+                  <p>
+                    <strong>No home location set</strong>
+                  </p>
+                  <p>
+                    Click on the map to select your workplace/home location.
+                    This will be used as default for images without GPS data.
+                  </p>
+                </div>,
+                "info"
+              );
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error loading existing home location:", error);
+        if (onAlert && !hasLoadedHome) {
+          onAlert("Error loading existing home location", "error");
+        }
+      } finally {
+        setHasLoadedHome(true);
+      }
+    };
+
+    loadExistingHome();
+  }, [skipHomeLoad]); // Only depend on skipHomeLoad
 
   const fetchAddressFromCoords = async (lat, lon) => {
     try {
@@ -54,14 +146,28 @@ const MapSelect = ({
       }),
     });
 
+    // Determine initial center and zoom based on existing home or default
+    const initialCenter = existingHome
+      ? fromLonLat([existingHome.lng, existingHome.lat])
+      : fromLonLat([80.329, 23.512]);
+    const initialZoom = existingHome ? 12 : 4;
+
     mapInstanceRef.current = new Map({
       target: mapRef.current,
       layers: [new TileLayer({ source: new OSM() }), vectorLayer],
       view: new View({
-        center: fromLonLat([80.329, 23.512]),
-        zoom: 4,
+        center: initialCenter,
+        zoom: initialZoom,
       }),
     });
+
+    // Add existing home marker if available
+    if (existingHome) {
+      const homeMarker = new Feature({
+        geometry: new Point(fromLonLat([existingHome.lng, existingHome.lat])),
+      });
+      vectorSourceRef.current.addFeature(homeMarker);
+    }
 
     mapInstanceRef.current.on("click", function (event) {
       const coordinate = event.coordinate;
@@ -85,7 +191,25 @@ const MapSelect = ({
       mapInstanceRef.current?.setTarget(null);
       mapInstanceRef.current = null;
     };
-  }, []);
+  }, [existingHome]); // Add existingHome as dependency
+
+  // Update map when existing home is loaded
+  useEffect(() => {
+    if (mapInstanceRef.current && existingHome) {
+      const view = mapInstanceRef.current.getView();
+      view.setCenter(fromLonLat([existingHome.lng, existingHome.lat]));
+      view.setZoom(12);
+
+      // Add marker for existing home
+      if (vectorSourceRef.current) {
+        vectorSourceRef.current.clear();
+        const homeMarker = new Feature({
+          geometry: new Point(fromLonLat([existingHome.lng, existingHome.lat])),
+        });
+        vectorSourceRef.current.addFeature(homeMarker);
+      }
+    }
+  }, [existingHome]);
 
   return (
     <div>
@@ -102,11 +226,11 @@ const MapSelect = ({
             <div className="mb-2 flex gap-2.5">
               <div>
                 <strong>Latitude:</strong>{" "}
-                {selectedCoordinatesProp.latitude.toFixed(6)}°
+                {selectedCoordinatesProp?.latitude?.toFixed(6)}°
               </div>
               <div>
                 <strong>Longitude:</strong>{" "}
-                {selectedCoordinatesProp.longitude.toFixed(6)}°
+                {selectedCoordinatesProp?.longitude?.toFixed(6)}°
               </div>
             </div>
             {addressProp && (
@@ -114,7 +238,13 @@ const MapSelect = ({
                 <strong>Address:</strong> {addressProp}
               </div>
             )}
-            <SetAsHome />
+            <SetAsHome
+              setSelectedCoordinatesProp={setSelectedCoordinatesProp}
+              setAddressProp={setAddressProp}
+              selectedCoordinatesProp={selectedCoordinatesProp}
+              addressProp={addressProp}
+              onAlert={onAlert}
+            />
           </div>
         ) : (
           <div className="text-gray-500 italic">
