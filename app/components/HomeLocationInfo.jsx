@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FiHome, FiMapPin, FiInfo } from "react-icons/fi";
+import { useTranslations } from "next-intl";
 
 const HomeLocationInfo = ({ onAlert, refreshTrigger, onUseAsDefault }) => {
+  const t = useTranslations("homeLocationInfo");
   const [homeLocation, setHomeLocation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -40,11 +42,10 @@ const HomeLocationInfo = ({ onAlert, refreshTrigger, onUseAsDefault }) => {
         onAlert(
           <div>
             <p>
-              <strong>Default location applied!</strong>
+              <strong>{t("alerts.defaultApplied.title")}</strong>
             </p>
             <p>
-              Your existing home location will be used for images without GPS
-              data in this upload.
+              {t("alerts.defaultApplied.description")}
             </p>
           </div>,
           "success"
@@ -69,33 +70,34 @@ const HomeLocationInfo = ({ onAlert, refreshTrigger, onUseAsDefault }) => {
         <div className="flex-1">
           <h4 className="text-white font-semibold mb-2 flex items-center">
             <FiMapPin className="mr-2" size={16} />
-            Default Location for Non-GPS Images
+            {t("title")}
           </h4>
 
           {homeLocation ? (
             <div>
               <p className="text-gray-300 text-sm mb-2">
-                Images without GPS data will use your default workplace
-                location:
+                {t("hasLocation.description")}
               </p>
               <div className="bg-green-900/20 border border-green-700 rounded p-3">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center text-green-400 text-sm">
                     <FiHome className="mr-2" size={14} />
-                    <strong>Current Default Location</strong>
+                    <strong>{t("hasLocation.currentLocationLabel")}</strong>
                   </div>
                   <button
                     type="button"
                     onClick={handleUseAsDefault}
                     className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1 rounded transition-colors"
                   >
-                    Use for This Upload
+                    {t("hasLocation.useForUploadButton")}
                   </button>
                 </div>
                 <p className="text-green-300 text-sm">{homeLocation.address}</p>
                 <p className="text-green-400 text-xs mt-1">
-                  Coordinates: {homeLocation.lat.toFixed(6)},{" "}
-                  {homeLocation.lng.toFixed(6)}
+                  {t("hasLocation.coordinatesLabel", {
+                    lat: homeLocation.lat.toFixed(6),
+                    lng: homeLocation.lng.toFixed(6)
+                  })}
                 </p>
               </div>
               <button
@@ -105,25 +107,12 @@ const HomeLocationInfo = ({ onAlert, refreshTrigger, onUseAsDefault }) => {
                     onAlert(
                       <div>
                         <p>
-                          <strong>How Default Location Works</strong>
+                          <strong>{t("alerts.howItWorks.title")}</strong>
                         </p>
                         <ul className="list-disc list-inside mt-2 space-y-1 text-sm">
-                          <li>
-                            Images with GPS data will use their original
-                            location
-                          </li>
-                          <li>
-                            Images without GPS data will be tagged with your
-                            default location
-                          </li>
-                          <li>
-                            You can update your default location anytime using
-                            the map below
-                          </li>
-                          <li>
-                            This ensures all images have location data for
-                            analysis
-                          </li>
+                          {t.raw("alerts.howItWorks.points").map((point, index) => (
+                            <li key={index}>{point}</li>
+                          ))}
                         </ul>
                       </div>,
                       "info"
@@ -132,23 +121,20 @@ const HomeLocationInfo = ({ onAlert, refreshTrigger, onUseAsDefault }) => {
                 }}
                 className="text-blue-400 hover:text-blue-300 text-xs underline mt-2"
               >
-                Learn more about default locations
+                {t("hasLocation.learnMoreButton")}
               </button>
             </div>
           ) : (
             <div>
               <p className="text-yellow-300 text-sm mb-2">
-                <strong>No default location set!</strong>
+                <strong>{t("noLocation.title")}</strong>
               </p>
               <p className="text-gray-300 text-sm mb-3">
-                Images without GPS data won't have location information. Set a
-                default workplace location below to ensure proper analysis.
+                {t("noLocation.description")}
               </p>
               <div className="bg-yellow-900/20 border border-yellow-700 rounded p-3">
                 <p className="text-yellow-200 text-xs">
-                  💡 <strong>Tip:</strong> Set your primary workplace or field
-                  location as default. This will be used for images that don't
-                  contain GPS data.
+                  💡 <strong>{t("noLocation.tipTitle")}</strong> {t("noLocation.tipDescription")}
                 </p>
               </div>
             </div>

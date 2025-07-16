@@ -215,5 +215,37 @@
       }
     ],
     "video": "Watch video"
+  },
+  "homeLocationInfo": {
+    "title": "Default Location for Non-GPS Images",
+    "loading": "Loading location information...",
+    "hasLocation": {
+      "description": "Images without GPS data will use your default workplace location:",
+      "currentLocationLabel": "Current Default Location",
+      "useForUploadButton": "Use for This Upload",
+      "coordinatesLabel": "Coordinates: {lat}, {lng}",
+      "learnMoreButton": "Learn more about default locations"
+    },
+    "noLocation": {
+      "title": "No default location set!",
+      "description": "Images without GPS data won't have location information. Set a default workplace location below to ensure proper analysis.",
+      "tipTitle": "Tip:",
+      "tipDescription": "Set your primary workplace or field location as default. This will be used for images that don't contain GPS data."
+    },
+    "alerts": {
+      "defaultApplied": {
+        "title": "Default location applied!",
+        "description": "Your existing home location will be used for images without GPS data in this upload."
+      },
+      "howItWorks": {
+        "title": "How Default Location Works",
+        "points": [
+          "Images with GPS data will use their original location",
+          "Images without GPS data will be tagged with your default location",
+          "You can update your default location anytime using the map below",
+          "This ensures all images have location data for analysis"
+        ]
+      }
+    }
   }
 }
