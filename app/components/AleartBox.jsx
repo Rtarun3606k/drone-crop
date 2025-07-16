@@ -69,6 +69,29 @@ const AleartBox = ({
           progressBar: "bg-yellow-500",
           title: "Warning",
         };
+      case "info":
+        return {
+          bg: "bg-blue-900/80 border-blue-500",
+          text: "text-blue-100",
+          icon: (
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          ),
+          iconBg: "bg-blue-500/20",
+          progressBar: "bg-blue-500",
+          title: "Information",
+        };
       case "success":
       default:
         return {
@@ -154,6 +177,16 @@ const AleartBox = ({
     },
   };
 
+  // Helper function to render message content (string or JSX)
+  const renderMessage = () => {
+    if (typeof message === "string") {
+      return <p className="text-sm leading-relaxed">{message}</p>;
+    }
+
+    // If message is JSX/React element, render it directly
+    return <div className="text-sm leading-relaxed">{message}</div>;
+  };
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -212,19 +245,19 @@ const AleartBox = ({
                   >
                     {config.title}
                   </motion.h3>
-                  <motion.p
-                    className="text-sm leading-relaxed"
+                  <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    {message}
-                  </motion.p>
+                    {renderMessage()}
+                  </motion.div>
                 </div>
 
                 {/* Close Button */}
                 {showCloseButton && (
                   <motion.button
+                    type="button"
                     onClick={onClose}
                     className={`
                       ${config.text} hover:opacity-70
@@ -299,6 +332,8 @@ export const useAlert = () => {
     displayAlert(message, "error", options);
   const alertWarning = (message, options = {}) =>
     displayAlert(message, "warning", options);
+  const alertInfo = (message, options = {}) =>
+    displayAlert(message, "info", options);
 
   return {
     alertData,
@@ -307,6 +342,7 @@ export const useAlert = () => {
     alertSuccess,
     alertError,
     alertWarning,
+    alertInfo,
   };
 };
 
