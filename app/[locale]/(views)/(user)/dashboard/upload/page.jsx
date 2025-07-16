@@ -15,6 +15,7 @@ import GeotagChecker from "@/scripts/geotagCheckClient";
 import dynamic from "next/dynamic";
 import Popup, { usePopup } from "@/app/components/Popup";
 import AleartBox, { useAlert } from "@/app/components/AleartBox";
+import { options } from "@/venv/lib/python3.13/site-packages/torch/utils/model_dump/preact.mjs";
 
 const MapSelect = dynamic(() => import("@/app/components/MapSelect"), {
   ssr: false,
@@ -53,8 +54,14 @@ export default function UploadPage() {
   const [selectedCoordinatesProp, setSelectedCoordinatesProp] = useState(null);
   const [addressProp, setAddressProp] = useState(null);
   const { popup, showSuccess, showError, showWarning, hidePopup } = usePopup();
-  const { alertData, alertSuccess, alertError, alertWarning, closeAlert } =
-    useAlert();
+  const {
+    alertData,
+    alertSuccess,
+    alertError,
+    alertWarning,
+    alertInfo,
+    closeAlert,
+  } = useAlert();
   // useParams() returns a regular object, not a Promise, so we access it directly
   const locale = params.locale;
   // Initialize state with the locale value directly
@@ -63,6 +70,8 @@ export default function UploadPage() {
   // Get translations for upload namespace
   const t = useTranslations("upload");
   const tDashboard = useTranslations("dashboard");
+  const tIphone = useTranslations("info_iphone");
+  const tAndroid = useTranslations("info_android");
 
   const session = useSession();
 
@@ -360,11 +369,58 @@ export default function UploadPage() {
           <p className="text-gray-300 text-center">
             {tDashboard("geotagged_notice_desc")}
           </p>
-            <p className="text-blue-500 underline hover:text-blue-500 cursor-pointer" onClick={()=>{
-              alertWarning("Hello")
-            }}>
-              {tDashboard("info")}
-            </p>
+          <p
+            className="text-blue-500 underline hover:text-blue-500 cursor-pointer"
+            onClick={() => {
+              alertInfo( 
+                <div>
+                  <div className="join join-vertical  bg-transparent">
+                    <div className="collapse collapse-arrow join-item border-dotted border">
+                      <input
+                        type="radio"
+                        name="my-accordion-4"
+                        defaultChecked
+                      />
+                      <div className="collapse-title font-semibold">
+                        {tIphone("title")}
+                      </div>
+                      <div className="collapse-content text-sm">
+                        <div className="space-y-2">
+                          <div className="text-sm">{tIphone("steps.0.text")}</div>
+                          <div className="text-sm">{tIphone("steps.1.text")}</div>
+                          <div className="text-sm">{tIphone("steps.2.text")}</div>
+                          <div className="text-sm">{tIphone("steps.3.text")}</div>
+                          <div className="text-sm">{tIphone("steps.4.text")}</div>
+                          <div className="text-sm">{tIphone("steps.5.text")}</div>
+                          <div className="text-sm">{tIphone("steps.6.text")}</div>
+                          <div className="text-sm">{tIphone("steps.7.text")} <Link className="text-blue-500 underline cursor-pointer" href={"https://www.youtube.com/watch?v=7UpRjdNv_GU"}>{tAndroid("video")}</Link></div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div className="collapse collapse-arrow join-item border-dotted border">
+                      <input type="radio" name="my-accordion-4" />
+                      <div className="collapse-title font-semibold">
+                        {tAndroid("title")}
+                      </div>
+                      <div className="collapse-content text-sm">
+                        <div className="text-sm">{tAndroid("steps.0.text")}</div>
+                          <div className="text-sm">{tAndroid("steps.1.text")}</div>
+                          <div className="text-sm">{tAndroid("steps.2.text")}</div>
+                          <div className="text-sm">{tAndroid("steps.3.text")}</div>
+                          <div className="text-sm">{tAndroid("steps.4.text")} <Link className="text-blue-500 underline cursor-pointer" href={"https://www.youtube.com/watch?v=Sw8P7PY1QSI"}>{tAndroid("video")}</Link> </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ,
+                { duration: 3600000 }
+              );
+            }}
+          >
+            <span className="flex justify-center">{tDashboard("info")}</span>
+          </p>
         </div>
 
         {formError && (

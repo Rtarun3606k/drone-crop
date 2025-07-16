@@ -164,5 +164,56 @@
     "send_button": "Send Message",
     "or_email": "Or email us at",
     "back_to_home": "Back to Home"
+  },
+  "info_iphone": {
+    "title": "How do I enable Geotagging on my iPhone",
+    "steps": [
+      {
+        "text": "1. Open Settings - Go to your iPhone's home screen and tap on Settings."
+      },
+      {
+        "text": "2. Scroll down and tap on Privacy & Security (On iOS 16 and above, it's called Privacy & Security.)"
+      },
+      {
+        "text": "3. Tap on Location Services"
+      },
+      {
+        "text": "4. Make sure Location Services is ON - If it's off, toggle it on."
+      },
+      {
+        "text": "5. Scroll down to find Camera (Or search for \"Camera\" in the Settings search bar.)"
+      },
+      {
+        "text": "6. Tap on Camera"
+      },
+      {
+        "text": "7. Set Allow Location Access to \"While Using the App\" or \"Ask Next Time\" - This allows the Camera app to embed location data into photos."
+      },
+      {
+        "text": "Here is a video tutorial for the same: "
+      }
+    ],
+    "video": "Watch video"
+  },
+  "info_android": {
+    "title": "How do i enable Geotagging on my Android phone",
+    "steps": [
+      {
+        "text": "1. Open the Camera app"
+      },
+      {
+        "text": "2. Go to Camera Settings - Usually, there's a gear ⚙️ icon somewhere in the Camera app — top corner or menu."
+      },
+      {
+        "text": "3. Look for Location Tags / Save Location / Geo-tagging - The option may be called: Location Tags (Samsung), Save Location (Pixel), or Geo-tagging (others)"
+      },
+      {
+        "text": "4. Turn it ON"
+      },
+      {
+        "text": "Here is a video tutorial for the same: "
+      }
+    ],
+    "video": "Watch video"
   }
 }
