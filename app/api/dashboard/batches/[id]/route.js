@@ -14,7 +14,7 @@ export async function GET(request, { params }) {
       );
     }
 
-    const id = params.id;
+    const { id } = await params;
 
     // Validate the ID format for MongoDB ObjectId
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {

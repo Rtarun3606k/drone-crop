@@ -136,10 +136,28 @@ export default function BatchDetailPage({ params }) {
   // Generate PDF with descriptions in all languages
   const generatePDF = async () => {
     try {
-      // Check if jsPDF is available
+      // Import required libraries
       const { jsPDF } = await import("jspdf");
-
-      const doc = new jsPDF();
+      // Import the required fonts for multilingual support
+      await import('pdfjs-dist/build/pdf.worker.entry');
+      
+      // Create a new document with UTF-8 support
+      const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        putOnlyUsedFonts: true,
+        compress: true
+      });
+      
+      // Try to load the Noto Sans font which has good multilingual support
+      try {
+        // Load default font for English
+        doc.setFont('Helvetica', 'normal');
+      } catch (fontError) {
+        console.warn("Couldn't load custom font, using default:", fontError);
+      }
+      
       let yPosition = 20;
       const pageHeight = doc.internal.pageSize.height;
       const margin = 20;
@@ -147,13 +165,13 @@ export default function BatchDetailPage({ params }) {
 
       // Title
       doc.setFontSize(20);
-      doc.setFont(undefined, "bold");
+      doc.setFont('Helvetica', "bold");
       doc.text(`Crop Analysis Report: ${batch.name}`, margin, yPosition);
       yPosition += 20;
 
       // Batch Info
       doc.setFontSize(12);
-      doc.setFont(undefined, "normal");
+      doc.setFont('Helvetica', "normal");
       doc.text(`Crop Type: ${batch.cropType}`, margin, yPosition);
       yPosition += lineHeight;
       doc.text(`Images Count: ${batch.imagesCount}`, margin, yPosition);
@@ -163,6 +181,10 @@ export default function BatchDetailPage({ params }) {
 
       // Descriptions
       if (batch.descriptions && batch.descriptions.length > 0) {
+        // Create a canvas for rendering non-Latin scripts
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
         batch.descriptions.forEach((desc) => {
           // Check if we need a new page
           if (yPosition > pageHeight - 60) {
@@ -172,51 +194,105 @@ export default function BatchDetailPage({ params }) {
 
           // Language title
           doc.setFontSize(16);
-          doc.setFont(undefined, "bold");
-          doc.text(
-            `${languageDisplay[desc.language] || desc.language}`,
-            margin,
-            yPosition
-          );
+          doc.setFont('Helvetica', "bold");
+          
+          // Special handling for language display
+          const languageTitle = `${languageDisplay[desc.language] || desc.language}`;
+          doc.text(languageTitle, margin, yPosition);
           yPosition += lineHeight * 1.5;
 
           // Briefed (Long Description)
           doc.setFontSize(14);
-          doc.setFont(undefined, "bold");
+          doc.setFont('Helvetica', "bold");
           doc.text("Briefed Analysis:", margin, yPosition);
           yPosition += lineHeight;
 
-          doc.setFontSize(10);
-          doc.setFont(undefined, "normal");
-
-          // Ensure longDescription exists and is a string
-          const longDesc = desc.longDescription || "No description available";
-          const briefedLines = doc.splitTextToSize(longDesc, 170);
-
-          briefedLines.forEach((line) => {
-            if (yPosition > pageHeight - 20) {
-              doc.addPage();
-              yPosition = margin;
-            }
-            doc.text(line, margin, yPosition);
-            yPosition += lineHeight * 0.8;
-          });
-          yPosition += lineHeight;
-
-          // Summarised (Short Description)
-          if (desc.shortDescription) {
-            doc.setFontSize(14);
-            doc.setFont(undefined, "bold");
-            doc.text("Summarised Analysis:", margin, yPosition);
-            yPosition += lineHeight;
-
+          // Add non-Latin text as image for better compatibility
+          if (desc.language !== 'En' && ['Ta', 'Hi', 'Te', 'Ml', 'Kn'].includes(desc.language)) {
             doc.setFontSize(10);
-            doc.setFont(undefined, "normal");
-            const summaryLines = doc.splitTextToSize(
-              desc.shortDescription,
-              170
-            );
-            summaryLines.forEach((line) => {
+            
+            // Create text rendering on canvas
+            const longDesc = desc.longDescription || "No description available";
+            const fontSize = 14;
+            
+            // Set canvas size and prepare context
+            canvas.width = 500;  // Width in pixels
+            canvas.height = 300; // Height in pixels (will be adjusted)
+            ctx.font = `${fontSize}px Arial`;
+            ctx.fillStyle = 'black';
+            ctx.textBaseline = 'top';
+            
+            // Word wrapping for canvas
+            const maxWidth = 450; // Canvas width minus margins
+            const words = longDesc.split(' ');
+            let line = '';
+            let y = 10;
+            
+            words.forEach(word => {
+              const testLine = line + word + ' ';
+              const metrics = ctx.measureText(testLine);
+              const testWidth = metrics.width;
+              
+              if (testWidth > maxWidth && line !== '') {
+                ctx.fillText(line, 10, y);
+                line = word + ' ';
+                y += fontSize * 1.5;
+              } else {
+                line = testLine;
+              }
+            });
+            
+            // Add the last line
+            if (line) {
+              ctx.fillText(line, 10, y);
+              y += fontSize * 1.5;
+            }
+            
+            // Adjust canvas height to actual content
+            canvas.height = y + 20;
+            
+            // Re-draw after canvas height adjustment
+            ctx.font = `${fontSize}px Arial`;
+            ctx.fillStyle = 'black';
+            ctx.textBaseline = 'top';
+            
+            y = 10;
+            line = '';
+            
+            words.forEach(word => {
+              const testLine = line + word + ' ';
+              const metrics = ctx.measureText(testLine);
+              const testWidth = metrics.width;
+              
+              if (testWidth > maxWidth && line !== '') {
+                ctx.fillText(line, 10, y);
+                line = word + ' ';
+                y += fontSize * 1.5;
+              } else {
+                line = testLine;
+              }
+            });
+            
+            // Add the last line again
+            if (line) {
+              ctx.fillText(line, 10, y);
+            }
+            
+            // Convert canvas to image and add to PDF
+            const imgData = canvas.toDataURL('image/png');
+            doc.addImage(imgData, 'PNG', margin, yPosition, 160, canvas.height * 0.5);
+            
+            yPosition += canvas.height * 0.5 + lineHeight;
+          } else {
+            // For English, use standard text rendering
+            doc.setFontSize(10);
+            doc.setFont('Helvetica', "normal");
+            
+            // Ensure longDescription exists and is a string
+            const longDesc = desc.longDescription || "No description available";
+            const briefedLines = doc.splitTextToSize(longDesc, 170);
+            
+            briefedLines.forEach((line) => {
               if (yPosition > pageHeight - 20) {
                 doc.addPage();
                 yPosition = margin;
@@ -224,6 +300,107 @@ export default function BatchDetailPage({ params }) {
               doc.text(line, margin, yPosition);
               yPosition += lineHeight * 0.8;
             });
+          }
+          
+          yPosition += lineHeight;
+
+          // Summarised (Short Description)
+          if (desc.shortDescription) {
+            doc.setFontSize(14);
+            doc.setFont('Helvetica', "bold");
+            doc.text("Summarised Analysis:", margin, yPosition);
+            yPosition += lineHeight;
+
+            // Special handling for non-Latin scripts
+            if (desc.language !== 'En' && ['Ta', 'Hi', 'Te', 'Ml', 'Kn'].includes(desc.language)) {
+              // Create text rendering on canvas for short description
+              const fontSize = 12;
+              
+              // Set canvas size and prepare context
+              canvas.width = 500;  // Width in pixels
+              canvas.height = 200; // Initial height
+              ctx.font = `${fontSize}px Arial`;
+              ctx.fillStyle = 'black';
+              ctx.textBaseline = 'top';
+              
+              // Word wrapping for canvas
+              const maxWidth = 450; // Canvas width minus margins
+              const words = desc.shortDescription.split(' ');
+              let line = '';
+              let y = 10;
+              
+              words.forEach(word => {
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                
+                if (testWidth > maxWidth && line !== '') {
+                  ctx.fillText(line, 10, y);
+                  line = word + ' ';
+                  y += fontSize * 1.5;
+                } else {
+                  line = testLine;
+                }
+              });
+              
+              // Add the last line
+              if (line) {
+                ctx.fillText(line, 10, y);
+                y += fontSize * 1.5;
+              }
+              
+              // Adjust canvas height to actual content
+              canvas.height = y + 20;
+              
+              // Re-draw after canvas height adjustment
+              ctx.font = `${fontSize}px Arial`;
+              ctx.fillStyle = 'black';
+              ctx.textBaseline = 'top';
+              
+              y = 10;
+              line = '';
+              
+              words.forEach(word => {
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                
+                if (testWidth > maxWidth && line !== '') {
+                  ctx.fillText(line, 10, y);
+                  line = word + ' ';
+                  y += fontSize * 1.5;
+                } else {
+                  line = testLine;
+                }
+              });
+              
+              // Add the last line again
+              if (line) {
+                ctx.fillText(line, 10, y);
+              }
+              
+              // Convert canvas to image and add to PDF
+              const imgData = canvas.toDataURL('image/png');
+              doc.addImage(imgData, 'PNG', margin, yPosition, 160, canvas.height * 0.5);
+              
+              yPosition += canvas.height * 0.5 + lineHeight;
+            } else {
+              // For English, use standard text rendering
+              doc.setFontSize(10);
+              doc.setFont('Helvetica', "normal");
+              const summaryLines = doc.splitTextToSize(
+                desc.shortDescription,
+                170
+              );
+              summaryLines.forEach((line) => {
+                if (yPosition > pageHeight - 20) {
+                  doc.addPage();
+                  yPosition = margin;
+                }
+                doc.text(line, margin, yPosition);
+                yPosition += lineHeight * 0.8;
+              });
+            }
           }
           yPosition += lineHeight * 2;
         });
