@@ -24,51 +24,17 @@ export async function GET(request, { params }) {
       );
     }
 
-    // Fetch the specific batch for the current user
+    // Fetch the specific batch with related audioFiles and descriptions
     const batch = await prisma.batch.findUnique({
       where: {
         id: id,
-        userId: session.user.id, // Ensure the batch belongs to the current user
+        userId: session.user.id,
       },
       include: {
-        audioFiles: true, // Include audioFiles relation
+        audioFiles: true,
+        descriptions: true, // ✅ Fetch descriptions directly here
       },
     });
-
-    if (batch) {
-      // Always fetch descriptions directly by batchId
-      console.log(`Fetching descriptions for batch ${id}...`);
-      try {
-        const descriptions = await prisma.description.findMany({
-          where: { batchId: id },
-        });
-        console.log(
-          `Found ${descriptions.length} descriptions for batch ${id}`
-        );
-
-        // console.log(`Found ${batch.length} descriptions for batch ${id}`);
-        // console.log("Descriptions fetched successfully.", batch);
-        console.log("Descriptions fetched successfully.", descriptions);
-
-        // Normalize MongoDB documents to ensure consistent id format
-        const normalizedDescriptions = descriptions.map((desc) => {
-          // If the description has MongoDB _id format, normalize it
-          if (desc._id && typeof desc._id === "object" && desc._id.$oid) {
-            return {
-              ...desc,
-              id: desc._id.$oid,
-            };
-          }
-          return desc;
-        });
-
-        // Add descriptions to the batch object
-        batch.descriptions = normalizedDescriptions;
-      } catch (descError) {
-        console.error("Error fetching descriptions:", descError);
-        batch.descriptions = [];
-      }
-    }
 
     if (!batch) {
       return NextResponse.json(
