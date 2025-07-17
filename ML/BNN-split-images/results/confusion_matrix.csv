@@ -1,5 +1,5 @@
-,Pred_catterpillar,Pred_healthy,Pred_mosaic,Pred_rust
-True_catterpillar,2408,51,32,37
-True_healthy,78,749,51,18
-True_mosaic,40,95,1902,434
-True_rust,60,44,807,2289
+,Pred_cat,Pred_healthy,Pred_mosaic,Pred_rust
+True_cat,0,0,0,3
+True_healthy,0,2,0,0
+True_mosaic,0,0,3,0
+True_rust,0,0,0,2
