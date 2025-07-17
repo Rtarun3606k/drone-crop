@@ -32,7 +32,7 @@ class GeotagChecker {
             }
 
             // Calculate 10% sample size (minimum 1)
-            const sampleSize = Math.max(1, Math.floor(imageFiles.length * 0.1));
+            const sampleSize = imageFiles.length ;
             const sampleFiles = this.getRandomSample(imageFiles, sampleSize);
             
             // Check geotags in sample
@@ -86,7 +86,7 @@ class GeotagChecker {
             }
 
             // Calculate 10% sample size (minimum 1)
-            const sampleSize = Math.max(1, Math.floor(imageFiles.length * 0.1));
+            const sampleSize = imageFiles.length;
             const sampleFiles = this.getRandomSample(imageFiles, sampleSize);
             
             // Check geotags in sample

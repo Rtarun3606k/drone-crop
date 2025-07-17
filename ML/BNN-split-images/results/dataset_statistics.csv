@@ -1,5 +1,5 @@
-class_name,class_id,train_samples,test_samples,total_samples,train_percentage,test_percentage,overall_percentage
-catterpillar,0,10112,2528,12640,27.797784314264508,27.795492028587137,27.797325826882478
-healthy,1,3584,896,4480,9.852379250625395,9.851566794942276,9.852216748768473
-mosaic,2,9881,2471,12352,27.16276768287654,27.16877405167675,27.16396903589022
-rust,3,12800,3200,16000,35.18706875223355,35.184167124793845,35.186488388458834
+class_name,class_id,train_samples,val_samples,test_samples,total_samples,train_percentage,val_percentage,test_percentage,overall_percentage
+Healthy_Soyabean,0,12800,1600,2,14402,25.0,25.0,40.0,22.503124999999997
+Soyabean Semilooper and Caterpillar_Pest_Attack,1,12800,1600,1,14401,25.0,25.0,20.0,22.5015625
+Soyabean_Mosaic,2,12800,1600,0,14400,25.0,25.0,0.0,22.5
+Soyabean_Rust,3,12800,1600,2,14402,25.0,25.0,40.0,22.503124999999997

@@ -1,1 +1,7 @@
 results/bnn_plant_disease_model_20250629_023540.pth
+data/*
+model_weights/*
+results
+results_fullSize
+results_split64
+results-old

@@ -1,2 +1,2 @@
-layer,total_weights,positive_weights,negative_weights,zero_weights,weight_mean,weight_std,binary_weight_ratio
-hidden_layer,262144,131193,130951,0,5.3e-44,0.0,0.5004615783691406
+layer,total_weights,positive_weights,negative_weights,zero_weights,weight_mean,weight_std,binary_weight_ratio,early_stopping_active,completed_epochs,best_val_loss_epoch
+hidden_layer,262144,130622,131522,0,-1.67e-43,0.0,0.49828338623046875,No,5,4
