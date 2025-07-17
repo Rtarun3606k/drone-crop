@@ -1,5 +1,5 @@
-,Pred_cat,Pred_healthy,Pred_mosaic,Pred_rust
-True_cat,0,0,0,3
-True_healthy,0,2,0,0
-True_mosaic,0,0,3,0
-True_rust,0,0,0,2
+,Pred_Healthy_Soyabean,Pred_Soyabean Semilooper and Caterpillar_Pest_Attack,Pred_Soyabean_Mosaic,Pred_Soyabean_Rust
+True_Healthy_Soyabean,1346,190,64,0
+True_Soyabean Semilooper and Caterpillar_Pest_Attack,168,1377,55,0
+True_Soyabean_Mosaic,175,61,1243,121
+True_Soyabean_Rust,68,4,576,952
