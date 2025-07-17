@@ -86,25 +86,24 @@ model Batch {
   imagesCount Int    @default(0)
   sessionId   String @default(uuid())
 
-  // Legacy fields for backward compatibility
+  // Legacy fields
   description String? @db.String
   audioURL    String? @db.String
 
-  // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations
-  userId String @db.ObjectId
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // ✅ Explicit relation name
+  descriptions Description[] @relation("BatchDescriptions")
 
-  descriptions   Description[]
-  audioFiles     AudioFile[]
-  processingJobs ProcessingJob[]
+  // Other relations
+  audioFiles AudioFile[]
+  userId     String      @db.ObjectId
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  metadata Json? // For additional metadata storage
+  metadata Json?
 
-  // Optimized indexes
+  // Indexes
   @@index([userId, createdAt])
   @@index([userId, cropType])
   @@index([preferredLanguage])
@@ -123,38 +122,6 @@ enum Language {
   Te
   Ml
   Kn
-}
-
-enum JobType {
-  MODEL_ANALYSIS
-  DESCRIPTION_GENERATION
-  AUDIO_GENERATION
-}
-
-enum JobStatus {
-  PENDING
-  PROCESSING
-  COMPLETED
-  FAILED
-}
-
-model ProcessingJob {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  batchId      String    @db.ObjectId
-  jobType      JobType
-  status       JobStatus @default(PENDING)
-  startedAt    DateTime?
-  completedAt  DateTime?
-  errorMessage String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  batch Batch @relation(fields: [batchId], references: [id], onDelete: Cascade)
-
-  @@index([batchId, jobType])
-  @@index([status])
-  @@index([createdAt])
 }
 
 model AudioFile {
@@ -190,7 +157,8 @@ model Description {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  batch Batch @relation(fields: [batchId], references: [id], onDelete: Cascade)
+  // ✅ Explicit relation name
+  batch Batch @relation("BatchDescriptions", fields: [batchId], references: [id], onDelete: Cascade)
 
   // Ensure one description per language per batch
   @@unique([batchId, language])

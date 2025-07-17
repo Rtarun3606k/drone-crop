@@ -12,6 +12,7 @@ import {
   FiFileText,
   FiVolume2,
   FiLoader,
+  FiFilePlus,
 } from "react-icons/fi";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -78,10 +79,10 @@ export default function BatchDetailPage({ params }) {
     // If batch is still processing, refresh every 30 seconds
     if (
       batch &&
-      !batch.execFailed &&
-      (!batch.isCompletedModel ||
-        !batch.isCompletedDesc ||
-        !batch.isCompletedAudio)
+      !batch.hasExecutionFailed &&
+      (!batch.isModelCompleted ||
+        !batch.isDescCompleted ||
+        !batch.isAudioCompleted)
     ) {
       refreshInterval = setInterval(() => {
         fetchBatchDetails(true); // Silent refresh
@@ -115,6 +116,9 @@ export default function BatchDetailPage({ params }) {
       }
 
       const data = await response.json();
+      console.log("Batch data received:", data.batch);
+      console.log("Descriptions:", data.batch.descriptions);
+      console.log("Description field:", data.batch.description);
       setBatch(data.batch);
 
       // Reset any error if successful
@@ -129,6 +133,110 @@ export default function BatchDetailPage({ params }) {
     }
   };
 
+  // Generate PDF with descriptions in all languages
+  const generatePDF = async () => {
+    try {
+      // Check if jsPDF is available
+      const { jsPDF } = await import("jspdf");
+
+      const doc = new jsPDF();
+      let yPosition = 20;
+      const pageHeight = doc.internal.pageSize.height;
+      const margin = 20;
+      const lineHeight = 10;
+
+      // Title
+      doc.setFontSize(20);
+      doc.setFont(undefined, "bold");
+      doc.text(`Crop Analysis Report: ${batch.name}`, margin, yPosition);
+      yPosition += 20;
+
+      // Batch Info
+      doc.setFontSize(12);
+      doc.setFont(undefined, "normal");
+      doc.text(`Crop Type: ${batch.cropType}`, margin, yPosition);
+      yPosition += lineHeight;
+      doc.text(`Images Count: ${batch.imagesCount}`, margin, yPosition);
+      yPosition += lineHeight;
+      doc.text(`Created: ${formatDate(batch.createdAt)}`, margin, yPosition);
+      yPosition += lineHeight * 2;
+
+      // Descriptions
+      if (batch.descriptions && batch.descriptions.length > 0) {
+        batch.descriptions.forEach((desc) => {
+          // Check if we need a new page
+          if (yPosition > pageHeight - 60) {
+            doc.addPage();
+            yPosition = margin;
+          }
+
+          // Language title
+          doc.setFontSize(16);
+          doc.setFont(undefined, "bold");
+          doc.text(
+            `${languageDisplay[desc.language] || desc.language}`,
+            margin,
+            yPosition
+          );
+          yPosition += lineHeight * 1.5;
+
+          // Briefed (Long Description)
+          doc.setFontSize(14);
+          doc.setFont(undefined, "bold");
+          doc.text("Briefed Analysis:", margin, yPosition);
+          yPosition += lineHeight;
+
+          doc.setFontSize(10);
+          doc.setFont(undefined, "normal");
+
+          // Ensure longDescription exists and is a string
+          const longDesc = desc.longDescription || "No description available";
+          const briefedLines = doc.splitTextToSize(longDesc, 170);
+
+          briefedLines.forEach((line) => {
+            if (yPosition > pageHeight - 20) {
+              doc.addPage();
+              yPosition = margin;
+            }
+            doc.text(line, margin, yPosition);
+            yPosition += lineHeight * 0.8;
+          });
+          yPosition += lineHeight;
+
+          // Summarised (Short Description)
+          if (desc.shortDescription) {
+            doc.setFontSize(14);
+            doc.setFont(undefined, "bold");
+            doc.text("Summarised Analysis:", margin, yPosition);
+            yPosition += lineHeight;
+
+            doc.setFontSize(10);
+            doc.setFont(undefined, "normal");
+            const summaryLines = doc.splitTextToSize(
+              desc.shortDescription,
+              170
+            );
+            summaryLines.forEach((line) => {
+              if (yPosition > pageHeight - 20) {
+                doc.addPage();
+                yPosition = margin;
+              }
+              doc.text(line, margin, yPosition);
+              yPosition += lineHeight * 0.8;
+            });
+          }
+          yPosition += lineHeight * 2;
+        });
+      }
+
+      // Save the PDF
+      doc.save(`${batch.name}_analysis_report.pdf`);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      alert("Failed to generate PDF. Please try again.");
+    }
+  };
+
   // Format date nicely
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleString(locale, {
@@ -140,29 +248,46 @@ export default function BatchDetailPage({ params }) {
     });
   };
 
+  // Helper function to get a unique identifier for descriptions
+  const getDescriptionKey = (desc) => {
+    if (!desc) return Math.random().toString();
+    // Try different ID formats
+    return (
+      desc.id ||
+      (desc._id && typeof desc._id === "string"
+        ? desc._id
+        : desc._id && desc._id.$oid
+        ? desc._id.$oid
+        : Math.random().toString())
+    );
+  };
+
   // Get status label and color
   const getBatchStatus = (batch) => {
-    if (batch.execFailed) {
+    if (batch.hasExecutionFailed) {
       return {
         label: "Failed",
         color: "bg-red-600",
         textColor: "text-red-400",
       };
     } else if (
-      batch.isCompletedModel &&
-      batch.isCompletedDesc &&
-      batch.isCompletedAudio
+      batch.isModelCompleted &&
+      batch.isDescCompleted &&
+      batch.isAudioCompleted
     ) {
       return {
         label: "Completed",
         color: "bg-green-600",
         textColor: "text-green-400",
       };
-    } else if (batch.isCompletedModel) {
+    } else if (
+      batch.isModelCompleted ||
+      (batch.descriptions && batch.descriptions.length > 0)
+    ) {
       return {
-        label: "Processing",
-        color: "bg-yellow-600",
-        textColor: "text-yellow-400",
+        label: batch.isDescCompleted ? "Completed" : "Processing",
+        color: batch.isDescCompleted ? "bg-green-600" : "bg-yellow-600",
+        textColor: batch.isDescCompleted ? "text-green-400" : "text-yellow-400",
       };
     } else {
       return {
@@ -172,7 +297,6 @@ export default function BatchDetailPage({ params }) {
       };
     }
   };
-
   if (session.status === "loading" || loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -225,6 +349,55 @@ export default function BatchDetailPage({ params }) {
               })()}
             </div>
 
+            {/* Debug Information */}
+            {/* <div className="mb-6 p-4 bg-gray-800 border border-yellow-500 rounded-md text-xs overflow-auto">
+              <h3 className="text-yellow-400 font-bold mb-2">
+                Debug Information
+              </h3>
+              <div className="space-y-2 text-gray-300">
+                <div>
+                  <span className="text-yellow-400">Batch ID:</span> {batch.id}
+                </div>
+                <div>
+                  <span className="text-yellow-400">
+                    Has Descriptions Array:
+                  </span>{" "}
+                  {batch.descriptions ? "Yes" : "No"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">Descriptions Count:</span>{" "}
+                  {batch.descriptions ? batch.descriptions.length : "0"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">
+                    Has Legacy Description:
+                  </span>{" "}
+                  {batch.description ? "Yes" : "No"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">
+                    Has Audio Files Array:
+                  </span>{" "}
+                  {batch.audioFiles ? "Yes" : "No"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">Audio Files Count:</span>{" "}
+                  {batch.audioFiles ? batch.audioFiles.length : "0"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">Has Legacy Audio URL:</span>{" "}
+                  {batch.audioURL ? "Yes" : "No"}
+                </div>
+                <div>
+                  <span className="text-yellow-400">Status Flags:</span> Model:{" "}
+                  {batch.isModelCompleted ? "Completed" : "Pending"}, Desc:{" "}
+                  {batch.isDescCompleted ? "Completed" : "Pending"}, Audio:{" "}
+                  {batch.isAudioCompleted ? "Completed" : "Pending"}, Failed:{" "}
+                  {batch.hasExecutionFailed ? "Yes" : "No"}
+                </div>
+              </div>
+            </div> */}
+
             {/* Batch Details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-gray-800 p-6 rounded-lg shadow-md">
@@ -247,8 +420,8 @@ export default function BatchDetailPage({ params }) {
                   <div>
                     <span className="text-gray-400">Preferred Language:</span>
                     <span className="text-white ml-2 font-medium">
-                      {languageDisplay[batch.prefferedLanguage] ||
-                        batch.prefferedLanguage}
+                      {languageDisplay[batch.preferredLanguage] ||
+                        batch.preferredLanguage}
                     </span>
                   </div>
                   <div>
@@ -268,12 +441,12 @@ export default function BatchDetailPage({ params }) {
                   <div className="flex items-center">
                     <div
                       className={`w-4 h-4 rounded-full ${
-                        batch.isCompletedModel ? "bg-green-500" : "bg-gray-600"
+                        batch.isModelCompleted ? "bg-green-500" : "bg-gray-600"
                       } mr-2`}
                     ></div>
                     <span
                       className={`${
-                        batch.isCompletedModel
+                        batch.isModelCompleted
                           ? "text-green-400"
                           : "text-gray-400"
                       }`}
@@ -284,12 +457,12 @@ export default function BatchDetailPage({ params }) {
                   <div className="flex items-center">
                     <div
                       className={`w-4 h-4 rounded-full ${
-                        batch.isCompletedDesc ? "bg-green-500" : "bg-gray-600"
+                        batch.isDescCompleted ? "bg-green-500" : "bg-gray-600"
                       } mr-2`}
                     ></div>
                     <span
                       className={`${
-                        batch.isCompletedDesc
+                        batch.isDescCompleted
                           ? "text-green-400"
                           : "text-gray-400"
                       }`}
@@ -300,12 +473,12 @@ export default function BatchDetailPage({ params }) {
                   <div className="flex items-center">
                     <div
                       className={`w-4 h-4 rounded-full ${
-                        batch.isCompletedAudio ? "bg-green-500" : "bg-gray-600"
+                        batch.isAudioCompleted ? "bg-green-500" : "bg-gray-600"
                       } mr-2`}
                     ></div>
                     <span
                       className={`${
-                        batch.isCompletedAudio
+                        batch.isAudioCompleted
                           ? "text-green-400"
                           : "text-gray-400"
                       }`}
@@ -316,12 +489,14 @@ export default function BatchDetailPage({ params }) {
                   <div className="flex items-center">
                     <div
                       className={`w-4 h-4 rounded-full ${
-                        batch.execFailed ? "bg-red-500" : "bg-gray-600"
+                        batch.hasExecutionFailed ? "bg-red-500" : "bg-gray-600"
                       } mr-2`}
                     ></div>
                     <span
                       className={`${
-                        batch.execFailed ? "text-red-400" : "text-gray-400"
+                        batch.hasExecutionFailed
+                          ? "text-red-400"
+                          : "text-gray-400"
                       }`}
                     >
                       Execution Failed
@@ -382,79 +557,281 @@ export default function BatchDetailPage({ params }) {
                 )}
               </div>
 
+              {/* Debug Info - Remove this later */}
+              {/* <div className="bg-yellow-900/20 border border-yellow-600 p-4 rounded-lg mb-6">
+                <h3 className="text-yellow-400 font-semibold mb-2">
+                  Debug Info:
+                </h3>
+                <pre className="text-xs text-yellow-300 overflow-auto">
+                  {JSON.stringify(
+                    {
+                      hasDescriptions:
+                        batch.descriptions && batch.descriptions.length > 0,
+                      descriptionsLength: batch.descriptions
+                        ? batch.descriptions.length
+                        : 0,
+                      hasDescription: !!batch.description,
+                      descriptionPreview: batch.description
+                        ? batch.description.substring(0, 100) + "..."
+                        : null,
+                      descriptions: batch.descriptions,
+                    },
+                    null,
+                    2
+                  )}
+                </pre>
+              </div> */}
+
               {/* Description */}
-              {batch.description && (
-                <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-                  <div className="flex items-center mb-4">
+              <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
                     <FiFileText className="text-green-400 text-xl mr-2" />
                     <h2 className="text-xl font-semibold text-white">
                       Analysis Description
                     </h2>
                   </div>
-                  <div className="bg-gray-900 p-4 rounded-md text-gray-300 max-h-60 overflow-y-auto">
-                    {batch.description}
+                  {batch &&
+                    batch.descriptions &&
+                    batch.descriptions.length > 0 && (
+                      <button
+                        onClick={generatePDF}
+                        className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white transition-colors"
+                      >
+                        <FiFilePlus className="mr-2" /> Generate PDF Report
+                      </button>
+                    )}
+                </div>
+
+                {/* Debug Info */}
+                {/* <div className="mb-4 p-3 bg-gray-900 rounded-md border border-yellow-500">
+                  <h3 className="text-yellow-500 text-sm font-semibold mb-2">
+                    Debug Info:
+                  </h3>
+                  <pre className="text-xs text-gray-300 overflow-auto max-h-40">
+                    {JSON.stringify(
+                      {
+                        hasDescriptions: batch?.descriptions
+                          ? batch.descriptions.length > 0
+                          : "none",
+                        descriptionsCount: batch?.descriptions?.length || 0,
+                        descriptions: batch?.descriptions || "none",
+                        legacyDescription: batch?.description
+                          ? "exists"
+                          : "none",
+                        isDescCompleted: batch?.isDescCompleted || false,
+                        batchId: batch?.id,
+                      },
+                      null,
+                      2
+                    )}
+                  </pre>
+                </div> */}
+
+                {/* Debug information */}
+                {/* <div className="bg-gray-900 p-4 mb-4 rounded border border-gray-700 text-xs font-mono">
+                  <div className="text-yellow-400">Debug Info:</div>
+                  <div className="text-gray-400">
+                    Has batch: {batch ? "Yes" : "No"}
                   </div>
-                  {batch.langDescription && (
-                    <div className="mt-4">
-                      <h3 className="text-lg font-semibold text-white mb-2">
-                        {languageDisplay[batch.prefferedLanguage] ||
-                          batch.prefferedLanguage}{" "}
-                        Translation
+                  <div className="text-gray-400">
+                    Has descriptions:{" "}
+                    {batch && batch.descriptions
+                      ? `Yes (${batch.descriptions.length})`
+                      : "No"}
+                  </div>
+                  <div className="text-gray-400">
+                    Batch ID: {batch ? batch.id : "N/A"}
+                  </div>
+                </div> */}
+
+                {/* Display descriptions by language */}
+                {batch &&
+                batch.descriptions &&
+                batch.descriptions.length > 0 ? (
+                  batch.descriptions.map((desc) => (
+                    <div
+                      key={getDescriptionKey(desc)}
+                      className="mb-6 last:mb-0 border-b border-gray-700 last:border-b-0 pb-6 last:pb-0"
+                    >
+                      <h3 className="text-lg font-semibold text-white mb-4">
+                        {languageDisplay[desc.language] || desc.language}
                       </h3>
-                      <div className="bg-gray-900 p-4 rounded-md text-gray-300 max-h-60 overflow-y-auto">
-                        {batch.langDescription}
+
+                      {/* Briefed (Long Description) */}
+                      <div className="mb-4">
+                        <h4 className="text-md font-medium text-green-400 mb-2">
+                          📝 Briefed Analysis
+                        </h4>
+                        <div className="bg-gray-900 p-4 rounded-md text-gray-300 max-h-60 overflow-y-auto border-l-4 border-green-500">
+                          {desc.longDescription}
+                        </div>
+                      </div>
+
+                      {/* Summarised (Short Description) */}
+                      {desc.shortDescription && (
+                        <div className="mb-4">
+                          <h4 className="text-md font-medium text-blue-400 mb-2">
+                            📋 Summarised Analysis
+                          </h4>
+                          <div className="bg-gray-900 p-4 rounded-md text-gray-300 border-l-4 border-blue-500">
+                            {desc.shortDescription}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Metadata */}
+                      {(desc.wordCount || desc.confidence) && (
+                        <div className="text-xs text-gray-400 mt-2 flex gap-4">
+                          {desc.wordCount && (
+                            <span>📊 Words: {desc.wordCount}</span>
+                          )}
+                          {desc.confidence && (
+                            <span>
+                              🎯 Confidence:{" "}
+                              {(desc.confidence * 100).toFixed(1)}%
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))
+                ) : batch && batch.description ? (
+                  /* Legacy description support */
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-4">
+                      Description
+                    </h3>
+                    <div className="mb-4">
+                      <h4 className="text-md font-medium text-green-400 mb-2">
+                        📝 Briefed Analysis
+                      </h4>
+                      <div className="bg-gray-900 p-4 rounded-md text-gray-300 max-h-60 overflow-y-auto border-l-4 border-green-500">
+                        {batch.description}
                       </div>
                     </div>
-                  )}
-                </div>
-              )}
+                  </div>
+                ) : (
+                  /* No descriptions available */
+                  <div className="text-center py-8">
+                    <FiFileText className="text-gray-600 text-4xl mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-400 mb-2">
+                      No Analysis Available
+                    </h3>
+                    <p className="text-gray-500">
+                      Analysis description will appear here once processing is
+                      complete.
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* Audio */}
-              {batch.audioURL && (
-                <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-                  <div className="flex items-center mb-4">
-                    <FiVolume2 className="text-green-400 text-xl mr-2" />
-                    <h2 className="text-xl font-semibold text-white">
-                      Audio Analysis
-                    </h2>
-                  </div>
-                  <div className="bg-gray-900 p-4 rounded-md">
-                    <audio controls className="w-full">
-                      <source src={batch.audioURL} type="audio/mpeg" />
-                      Your browser does not support the audio element.
-                    </audio>
-                    <div className="mt-3 flex justify-end">
-                      <a
-                        href={batch.audioURL}
-                        download
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center px-3 py-1 bg-green-600 hover:bg-green-700 rounded-md text-sm text-white transition-colors"
-                      >
-                        <FiDownload className="mr-1" /> Download Audio
-                      </a>
+              <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+                <div className="flex items-center mb-4">
+                  <FiVolume2 className="text-green-400 text-xl mr-2" />
+                  <h2 className="text-xl font-semibold text-white">
+                    Audio Analysis
+                  </h2>
+                </div>
+
+                {/* Display audio files by language */}
+                {batch && batch.audioFiles && batch.audioFiles.length > 0 ? (
+                  batch.audioFiles.map((audio) => (
+                    <div key={audio.id} className="mb-6 last:mb-0">
+                      <h3 className="text-lg font-semibold text-white mb-2">
+                        {languageDisplay[audio.language] || audio.language}
+                      </h3>
+                      <div className="bg-gray-900 p-4 rounded-md">
+                        <audio controls className="w-full">
+                          <source src={audio.fileUrl} type="audio/mpeg" />
+                          Your browser does not support the audio element.
+                        </audio>
+                        <div className="mt-3 flex justify-between items-center">
+                          <div className="text-xs text-gray-400">
+                            {audio.duration && (
+                              <span>Duration: {audio.duration}s</span>
+                            )}
+                            {audio.fileSize && (
+                              <span className="ml-4">
+                                Size:{" "}
+                                {(audio.fileSize / 1024 / 1024).toFixed(2)} MB
+                              </span>
+                            )}
+                          </div>
+                          <a
+                            href={audio.fileUrl}
+                            download
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center px-3 py-1 bg-green-600 hover:bg-green-700 rounded-md text-sm text-white transition-colors"
+                          >
+                            <FiDownload className="mr-1" /> Download Audio
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : batch && batch.audioURL ? (
+                  /* Legacy audio support */
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      Audio
+                    </h3>
+                    <div className="bg-gray-900 p-4 rounded-md">
+                      <audio controls className="w-full">
+                        <source src={batch.audioURL} type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <div className="mt-3 flex justify-end">
+                        <a
+                          href={batch.audioURL}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center px-3 py-1 bg-green-600 hover:bg-green-700 rounded-md text-sm text-white transition-colors"
+                        >
+                          <FiDownload className="mr-1" /> Download Audio
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                ) : (
+                  /* No audio available */
+                  <div className="text-center py-8">
+                    <FiVolume2 className="text-gray-600 text-4xl mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-400 mb-2">
+                      No Audio Available
+                    </h3>
+                    <p className="text-gray-500">
+                      Audio analysis will appear here once processing is
+                      complete.
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* If no results yet */}
-              {!batch.description && !batch.audioURL && !batch.execFailed && (
-                <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center">
-                  <FiLoader className="text-green-400 text-5xl mx-auto mb-4 animate-spin" />
-                  <h2 className="text-xl font-semibold text-white mb-2">
-                    Processing Your Batch
-                  </h2>
-                  <p className="text-gray-300">
-                    Your images are being analyzed. This process may take some
-                    time depending on the number of images. Check back later for
-                    results.
-                  </p>
-                </div>
-              )}
+              {!batch.description &&
+                (!batch.descriptions || batch.descriptions.length === 0) &&
+                !batch.audioURL &&
+                (!batch.audioFiles || batch.audioFiles.length === 0) &&
+                !batch.hasExecutionFailed && (
+                  <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center">
+                    <FiLoader className="text-green-400 text-5xl mx-auto mb-4 animate-spin" />
+                    <h2 className="text-xl font-semibold text-white mb-2">
+                      Processing Your Batch
+                    </h2>
+                    <p className="text-gray-300">
+                      Your images are being analyzed. This process may take some
+                      time depending on the number of images. Check back later
+                      for results.
+                    </p>
+                  </div>
+                )}
 
               {/* If execution failed */}
-              {batch.execFailed && (
+              {batch.hasExecutionFailed && (
                 <div className="bg-red-900/20 border border-red-600 p-6 rounded-lg shadow-md">
                   <h2 className="text-xl font-semibold text-red-400 mb-2">
                     Processing Failed

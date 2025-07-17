@@ -10,8 +10,8 @@ from CornJob.LOngAndShort import get_krishi_sathi_response
 # Load environment variables
 load_dotenv()
 
-#predection_path = '/home/dragoon/coding/drone-crop/predectionResults'
-predection_path = '/home/bruh/Documents/drone-crop/predectionResults'
+predection_path = '/home/dragoon/coding/drone-crop/predectionResults'
+# predection_path = '/home/bruh/Documents/drone-crop/predectionResults'
 
 def loadJsonFromFile(file_path, session_id):
     """

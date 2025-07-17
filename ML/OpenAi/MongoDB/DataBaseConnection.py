@@ -113,7 +113,7 @@ def create_description(batch_id, language, long_description,
     """
     try:
         description_doc = {
-            "batchId": batch_id,
+            "batchId": ObjectId(batch_id),
             "language": language,
             "longDescription": long_description,
             "shortDescription": short_description,
