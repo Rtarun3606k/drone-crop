@@ -1,7 +1,12 @@
+"use client";
+
 /**
  * PDF Generator utility for multilingual content
- * Handles non-Latin scripts like Kannada, Tamil, etc. using HTML canvas rendering
+ * Simple direct text rendering approach to avoid CSS issues
  */
+
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 /**
  * Format date for PDF
@@ -21,19 +26,25 @@ export function formatPdfDate(dateString, locale = "en") {
 
 /**
  * Generate PDF with batch descriptions
- * @param {Object} batch - Batch object with descriptions
+ * @param {Object|Array} batchInput - Batch object or array of batch objects with descriptions
  * @param {Object} languageDisplay - Map of language codes to display names
  * @param {string} locale - Current locale for date formatting
+ * @returns {Promise<boolean>} - True if successful, false if error
  */
 export async function generateAnalysisPDF(
-  batch,
+  batchInput,
   languageDisplay,
   locale = "en"
 ) {
   try {
-    // Import required libraries
-    const { jsPDF } = await import("jspdf");
-    const html2canvas = (await import("html2canvas")).default;
+    // Handle array input - use the first batch
+    const batch = Array.isArray(batchInput) ? batchInput[0] : batchInput;
+
+    // If no batch, return early
+    if (!batch) {
+      console.error("No valid batch provided");
+      return false;
+    }
 
     // Create a new PDF document
     const doc = new jsPDF();
@@ -44,18 +55,34 @@ export async function generateAnalysisPDF(
     const margin = 20;
     const lineHeight = 10;
 
+    // Get window location for web link
+    const baseUrl =
+      typeof window !== "undefined"
+        ? `${window.location.protocol}//${window.location.host}`
+        : "";
+    const batchUrl = `${baseUrl}/${locale}/dashboard/batches/${batch.id}`;
+
+    // Function to generate QR code - only if needed for non-Latin scripts
+    const hasNonLatinDescriptions =
+      batch.descriptions &&
+      batch.descriptions.some((desc) => desc.language !== "En");
+
     // Title
     doc.setFontSize(20);
     doc.setFont("helvetica", "bold");
-    doc.text(`Crop Analysis Report: ${batch.name}`, margin, yPosition);
+    doc.text(
+      `Crop Analysis Report: ${batch.name || "Untitled"}`,
+      margin,
+      yPosition
+    );
     yPosition += 20;
 
     // Batch Info
     doc.setFontSize(12);
     doc.setFont("helvetica", "normal");
-    doc.text(`Crop Type: ${batch.cropType}`, margin, yPosition);
+    doc.text(`Crop Type: ${batch.cropType || "Unknown"}`, margin, yPosition);
     yPosition += lineHeight;
-    doc.text(`Images Count: ${batch.imagesCount}`, margin, yPosition);
+    doc.text(`Images Count: ${batch.imagesCount || 0}`, margin, yPosition);
     yPosition += lineHeight;
     doc.text(
       `Created: ${formatPdfDate(batch.createdAt, locale)}`,
@@ -66,78 +93,26 @@ export async function generateAnalysisPDF(
 
     // Process descriptions
     if (batch.descriptions && batch.descriptions.length > 0) {
-      // Create a hidden container for rendering multilingual content
-      const container = document.createElement("div");
-      container.style.position = "absolute";
-      container.style.left = "-9999px";
-      container.style.top = "-9999px";
-      container.style.width = "500px";
-      container.style.fontFamily = "Arial, sans-serif";
-      container.style.backgroundColor = "white";
-      container.style.color = "black";
-      document.body.appendChild(container);
-
-      // Process each description
-      for (const desc of batch.descriptions) {
-        // Add a new page if not enough space
-        if (yPosition > pageHeight - 60) {
-          doc.addPage();
-          yPosition = margin;
-        }
-
-        // Language title (rendered directly with jsPDF)
+      // For English descriptions - fully supported
+      const enDesc = batch.descriptions.find((d) => d.language === "En");
+      if (enDesc) {
+        // English heading
         doc.setFontSize(16);
         doc.setFont("helvetica", "bold");
-        doc.text(
-          `${languageDisplay[desc.language] || desc.language}`,
-          margin,
-          yPosition
-        );
+        doc.text("English Analysis", margin, yPosition);
         yPosition += lineHeight * 1.5;
 
-        // Title for long description
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.text("Briefed Analysis:", margin, yPosition);
-        yPosition += lineHeight * 1.5;
+        // Long description
+        if (enDesc.longDescription) {
+          doc.setFontSize(14);
+          doc.setFont("helvetica", "bold");
+          doc.text("Briefed Analysis:", margin, yPosition);
+          yPosition += lineHeight * 1.5;
 
-        // For non-Latin scripts (like Kannada, Tamil, etc.), use HTML rendering
-        if (desc.language !== "En") {
-          // Clear previous content
-          container.innerHTML = "";
-
-          // Set content for rendering
-          container.innerHTML = `
-            <div style="font-size: 14px; padding: 10px; line-height: 1.5;">
-              ${desc.longDescription || "No description available"}
-            </div>
-          `;
-
-          // Convert the HTML element to an image using html2canvas
-          const canvas = await html2canvas(container, {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-          });
-
-          // Convert canvas to image data
-          const imgData = canvas.toDataURL("image/png");
-
-          // Calculate appropriate width to fit on page
-          const imgWidth = 170;
-          const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-          // Add image to PDF
-          doc.addImage(imgData, "PNG", margin, yPosition, imgWidth, imgHeight);
-
-          // Update position
-          yPosition += imgHeight + lineHeight;
-        } else {
-          // For English, use direct text rendering
           doc.setFontSize(10);
           doc.setFont("helvetica", "normal");
 
-          const longDesc = desc.longDescription || "No description available";
+          const longDesc = enDesc.longDescription || "No description available";
           const briefedLines = doc.splitTextToSize(longDesc, 170);
 
           briefedLines.forEach((line) => {
@@ -152,85 +127,93 @@ export async function generateAnalysisPDF(
           yPosition += lineHeight;
         }
 
-        // Short description section
-        if (desc.shortDescription) {
-          // Check if we need a new page
-          if (yPosition > pageHeight - 40) {
-            doc.addPage();
-            yPosition = margin;
-          }
-
-          // Title for short description
+        // Short description
+        if (enDesc.shortDescription) {
           doc.setFontSize(14);
           doc.setFont("helvetica", "bold");
           doc.text("Summarised Analysis:", margin, yPosition);
           yPosition += lineHeight * 1.5;
 
-          // For non-Latin scripts, use HTML rendering again
-          if (desc.language !== "En") {
-            // Clear previous content
-            container.innerHTML = "";
+          doc.setFontSize(10);
+          doc.setFont("helvetica", "normal");
 
-            // Set content for rendering
-            container.innerHTML = `
-              <div style="font-size: 14px; padding: 10px; line-height: 1.5;">
-                ${desc.shortDescription}
-              </div>
-            `;
+          const summaryLines = doc.splitTextToSize(
+            enDesc.shortDescription,
+            170
+          );
 
-            // Convert the HTML element to an image
-            const canvas = await html2canvas(container, {
-              scale: 2,
-              useCORS: true,
-              logging: false,
-            });
-
-            // Convert canvas to image data
-            const imgData = canvas.toDataURL("image/png");
-
-            // Calculate appropriate width
-            const imgWidth = 170;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-            // Add image to PDF
-            doc.addImage(
-              imgData,
-              "PNG",
-              margin,
-              yPosition,
-              imgWidth,
-              imgHeight
-            );
-
-            // Update position
-            yPosition += imgHeight + lineHeight;
-          } else {
-            // For English, use direct text rendering
-            doc.setFontSize(10);
-            doc.setFont("helvetica", "normal");
-
-            const summaryLines = doc.splitTextToSize(
-              desc.shortDescription,
-              170
-            );
-
-            summaryLines.forEach((line) => {
-              if (yPosition > pageHeight - 20) {
-                doc.addPage();
-                yPosition = margin;
-              }
-              doc.text(line, margin, yPosition);
-              yPosition += lineHeight * 0.8;
-            });
-          }
+          summaryLines.forEach((line) => {
+            if (yPosition > pageHeight - 20) {
+              doc.addPage();
+              yPosition = margin;
+            }
+            doc.text(line, margin, yPosition);
+            yPosition += lineHeight * 0.8;
+          });
         }
 
-        // Add space between descriptions
         yPosition += lineHeight * 2;
       }
 
-      // Clean up the temporary container
-      document.body.removeChild(container);
+      // For non-English descriptions
+      const nonEnglishDescs = batch.descriptions.filter(
+        (d) => d.language !== "En"
+      );
+
+      if (nonEnglishDescs.length > 0) {
+        // Add header for other languages
+        if (yPosition > pageHeight - 60) {
+          doc.addPage();
+          yPosition = margin;
+        }
+
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("Other Languages", margin, yPosition);
+        yPosition += lineHeight * 1.5;
+
+        // List all available non-English languages
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+        doc.text(
+          "This PDF includes descriptions in the following languages:",
+          margin,
+          yPosition
+        );
+        yPosition += lineHeight * 1.5;
+
+        // List languages
+        nonEnglishDescs.forEach((desc) => {
+          const langName = languageDisplay[desc.language] || desc.language;
+          doc.text(`• ${langName}`, margin + 5, yPosition);
+          yPosition += lineHeight;
+        });
+
+        yPosition += lineHeight * 2;
+
+        // Important notice
+        doc.setFillColor(245, 245, 245);
+        doc.rect(margin, yPosition, 170, 25, "F");
+
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "bold");
+        doc.text("Important Note:", margin + 5, yPosition + 8);
+
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+        doc.text(
+          "Non-Latin scripts (like Kannada) cannot be displayed correctly in this PDF.",
+          margin + 5,
+          yPosition + 16
+        );
+        doc.text(
+          "Please use the web interface to view all languages properly.",
+          margin + 5,
+          yPosition + 24
+        );
+
+        yPosition += 35;
+      }
     } else if (batch.description) {
       // Legacy description support
       doc.setFontSize(14);
@@ -253,6 +236,64 @@ export async function generateAnalysisPDF(
       });
     }
 
+    // Add a footer with link back to web interface
+    doc.addPage();
+    yPosition = 40;
+
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("Access Full Multilingual Content", margin, yPosition);
+    yPosition += lineHeight * 2;
+
+    // Create a colored box for the link
+    doc.setFillColor(230, 245, 230);
+    doc.rect(margin, yPosition, 170, 30, "F");
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("View Online:", margin + 5, yPosition + 12);
+
+    // Show the URL
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text(`${batchUrl}`, margin + 40, yPosition + 12);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "italic");
+    doc.text(
+      "(Copy and paste this URL into your browser to access all languages)",
+      margin + 5,
+      yPosition + 22
+    );
+
+    yPosition += 40;
+
+    // Add info box
+    doc.setFillColor(240, 240, 240);
+    doc.rect(margin, yPosition, 170, 40, "F");
+
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("About This Report", margin + 5, yPosition + 10);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text(
+      "This PDF provides English content and a list of other available languages.",
+      margin + 5,
+      yPosition + 20
+    );
+    doc.text(
+      "Due to technical limitations, non-Latin scripts (like Kannada) cannot be displayed",
+      margin + 5,
+      yPosition + 30
+    );
+    doc.text(
+      "correctly in this PDF. Please use the web interface for the complete experience.",
+      margin + 5,
+      yPosition + 40
+    );
+
     // Save the PDF
     doc.save(`${batch.name}_analysis_report.pdf`);
 
@@ -261,4 +302,53 @@ export async function generateAnalysisPDF(
     console.error("Error generating PDF:", error);
     return false;
   }
+}
+
+/**
+ * For backward compatibility - redirects to generateAnalysisPDF
+ */
+export async function generateBatchReportFromState(
+  batch,
+  languageDisplay,
+  locale = "en"
+) {
+  return generateAnalysisPDF(batch, languageDisplay, locale);
+}
+
+/**
+ * For backward compatibility - not actively used
+ */
+export async function generateBatchReport(
+  batchId,
+  languageDisplay,
+  locale = "en"
+) {
+  try {
+    // 1. Fetch batch details
+    const response = await fetch(`/api/dashboard/batches/${batchId}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch batch: ${response.statusText}`);
+    }
+
+    const { batch } = await response.json();
+    if (!batch) {
+      throw new Error("Batch not found");
+    }
+
+    // Use the main PDF generation function
+    return generateAnalysisPDF(batch, languageDisplay, locale);
+  } catch (error) {
+    console.error("Error in generateBatchReport:", error);
+    return false;
+  }
+}
+
+/**
+ * Legacy compatibility function - redirects to main function
+ */
+export async function generatePDF(batch, languageDisplay, locale = "en") {
+  console.warn(
+    "Using legacy generatePDF function - consider updating your code"
+  );
+  return generateAnalysisPDF(batch, languageDisplay, locale);
 }
