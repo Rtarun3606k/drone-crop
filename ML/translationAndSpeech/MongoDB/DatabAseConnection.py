@@ -106,6 +106,20 @@ def updatebatchStatus(batch_id, status,audioURL=None):
         print(f"An error occurred while updating batch status: {e}")
         
         return False
+    
+def findDescByID(batch_id):
+    """
+    Find descriptions by batch ID.
+    
+    :param batch_id: The ID of the batch to find descriptions for.
+    :return: List of descriptions for the given batch ID.
+    """
+    try:
+        descriptions = list(db['Description'].find({"batchId": ObjectId(batch_id)}))
+        return descriptions
+    except Exception as e:
+        print(f"An error occurred while fetching descriptions: {e}")
+        return []
 
     
 

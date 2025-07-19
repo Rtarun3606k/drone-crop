@@ -1,0 +1,30 @@
+-++==============================
+Training Report for: BNN
+==============================
+
+## Configuration ##
+DATA_DIR: /home/dragoon/Downloads/split
+NUM_WORKERS: 4
+IMG_SIZE: 128
+HIDDEN_LAYERS_CONFIG: [32, 64, 128, 256]
+HIDDEN_SIZE_CLASSIFIER: 512
+NUM_EPOCHS: 100
+BATCH_SIZE: 16
+LEARNING_RATE: 0.001
+EARLY_STOP_PATIENCE: 7
+MIN_LR_TO_START_EARLY_STOPPING: 1e-05
+
+## Dataset Information ##
+Total Images: 64000
+Training Images: 51200
+Validation Images: 12800
+
+Class Distribution:
+  - Healthy_Soyabean: 16000 images
+  - Soyabean Semilooper and Caterpillar_Pest_Attack: 16000 images
+  - Soyabean_Mosaic: 16000 images
+  - Soyabean_Rust: 16000 images
+
+## Training Summary ##
+Total Training Time: 6979.81 seconds
+Number of Epochs Trained: 31
