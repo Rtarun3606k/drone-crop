@@ -7,6 +7,7 @@ import { verifyToken } from "../middleware/midddleware.mjs";
 const router = Router();
 
 router.get("/get-user", verifyToken, refreshTokenIfNeeded, async (req, res) => {
+  console.log("Fetching user details...");
   const userEmail = req.user.email;
   const user = await prisma.user.findUnique({
     where: {
