@@ -1,6 +1,7 @@
 import { app, prisma } from "./config.mjs";
 import authRoutes from "./Routes/auth.mjs";
 import userRoutes from "./Routes/user.mjs"; // Assuming you have user routes
+import dashboardRoutes from "./Routes/dashboard.mjs";
 
 // Basic route
 app.get("/", async (req, res) => {
@@ -16,6 +17,7 @@ app.get("/", async (req, res) => {
 // Importing routes
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // 404 handler - catch all remaining routes
 app.use((req, res) => {
