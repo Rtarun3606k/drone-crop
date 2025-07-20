@@ -135,29 +135,66 @@ export default function BatchDetailPage({ params }) {
   };
 
   // Generate PDF with descriptions in all languages using our utility function
-  const generatePDF = async () => {
+  const generatePDFParent = async () => {
     try {
-      // Show loading indicator
+      // Show loading toast
       const loadingToast = document.createElement("div");
       loadingToast.className =
         "fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50";
-      loadingToast.textContent = "Generating PDF...";
+      loadingToast.textContent = "Generating PDF report...";
       document.body.appendChild(loadingToast);
 
-      // Call our utility function to generate the PDF
-      const success = await generateAnalysisPDF(batch, languageDisplay, locale);
+      // Pass the batch object to the PDF generation function
+      const success = await generateAnalysisPDF(
+        [batch],
+        languageDisplay,
+        locale
+      );
 
-      // Remove loading indicator
       document.body.removeChild(loadingToast);
 
-      if (!success) {
-        alert("Failed to generate PDF. Please try again.");
+      if (success) {
+        // Show success toast
+        const successToast = document.createElement("div");
+        successToast.className =
+          "fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50";
+        successToast.textContent =
+          "PDF report generated! (English content fully supported)";
+        document.body.appendChild(successToast);
+
+        // Remove success toast after 3 seconds
+        setTimeout(() => {
+          document.body.removeChild(successToast);
+        }, 3000);
+      } else {
+        // Show error toast
+        const errorToast = document.createElement("div");
+        errorToast.className =
+          "fixed top-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg z-50";
+        errorToast.textContent = "Failed to generate PDF. Please try again.";
+        document.body.appendChild(errorToast);
+
+        // Remove error toast after 5 seconds
+        setTimeout(() => {
+          document.body.removeChild(errorToast);
+        }, 5000);
       }
     } catch (error) {
       console.error("Error generating PDF:", error);
-      alert("Failed to generate PDF. Please try again.");
+
+      const errorToast = document.createElement("div");
+      errorToast.className =
+        "fixed top-4 right-4 bg-red-600 text-white px-4 py-2 rounded shadow-lg z-50";
+      errorToast.textContent = "Failed to generate PDF. Please try again.";
+      document.body.appendChild(errorToast);
+
+      // Remove error toast after 5 seconds
+      setTimeout(() => {
+        document.body.removeChild(errorToast);
+      }, 5000);
     }
-  }; // Format date nicely
+  };
+  // Format date nicely
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleString(locale, {
       year: "numeric",
@@ -515,7 +552,7 @@ export default function BatchDetailPage({ params }) {
                     batch.descriptions &&
                     batch.descriptions.length > 0 && (
                       <button
-                        onClick={generatePDF}
+                        onClick={generatePDFParent}
                         className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white transition-colors"
                       >
                         <FiFilePlus className="mr-2" /> Generate PDF Report
