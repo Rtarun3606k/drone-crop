@@ -45,8 +45,16 @@ router.post(
     try {
       const { batchName, cropType, imagesCount, defaultSetLang, metadata } =
         req.body;
-
       const zipFile = req.file;
+
+      // Use userId from token (not id)
+      const userId = req.user && req.user.userId;
+      if (!userId) {
+        return res.status(401).json({
+          error: "Unauthorized",
+          message: "User ID missing in token.",
+        });
+      }
 
       // Validate required fields
       if (!zipFile) {
@@ -96,16 +104,9 @@ router.post(
           cropType: cropType,
           imagesZipURL: uploadResult.url,
           imagesCount: parseInt(imagesCount) || 0,
-          userId: req.user.id, // From verifyToken middleware
+          userId: userId, // Use userId from token
           preferredLanguage: preferredLanguage,
           metadata: parsedMetadata,
-          // The following fields have defaults in schema:
-          // isModelCompleted: false,
-          // isDescCompleted: false,
-          // isAudioCompleted: false,
-          // hasExecutionFailed: false,
-          // sessionId: auto-generated UUID
-          // createdAt: auto-generated
         },
       });
 

@@ -7,6 +7,7 @@ export const createJwtToken = (user) => {
     mobileId: user.mobileId,
     role: user.role, // Assuming user has a role field
     image: user.image, // Assuming user has an image field
+    userId: user.id, // Assuming user has an id field
   };
 
   const secretKey = process.env.JWT_SECRET || "your-secret-key";
