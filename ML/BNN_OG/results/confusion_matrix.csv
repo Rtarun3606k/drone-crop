@@ -1,0 +1,5 @@
+,Pred_Healthy_Soyabean,Pred_Soyabean Semilooper and Caterpillar_Pest_Attack,Pred_Soyabean_Mosaic,Pred_Soyabean_Rust
+True_Healthy_Soyabean,2805,247,123,25
+True_Soyabean Semilooper and Caterpillar_Pest_Attack,170,2910,73,47
+True_Soyabean_Mosaic,177,88,2555,380
+True_Soyabean_Rust,20,42,849,2289

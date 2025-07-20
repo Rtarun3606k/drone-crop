@@ -51,3 +51,8 @@ shared/*
 predectionResults/*
 
 audioFiles/*
+
+/ML/BNN-split-images
+
+
+ML/BNN_OG/results/bnn_plant_disease_model_20250718_193540.pth
