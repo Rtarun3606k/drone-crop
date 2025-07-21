@@ -1,7 +1,7 @@
 {
     "models": {
         "dabnn": {
-            "path": "/home/bruh/Documents/drone-crop/ML/BNN_NEW/best_dabnn_model.pth",
+            "path": "../../BNN_NEW/best_dabnn_model.pth",
             "type": "DABNN",
             "description": "Dual Attention Binary Neural Network - Latest model with attention mechanisms",
             "img_size": 128,
@@ -9,7 +9,7 @@
             "class_names": ["Healthy_Soyabean", "Soyabean Semilooper_Pest_Attack", "Soyabean_Mosaic", "rust"]
         },
         "legacy_bnn": {
-            "path": "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt",
+            "path": "../../BNN/optimized_bnn_plant_disease_64x64.pt",
             "type": "BNN",
             "description": "Legacy Binary Neural Network - Original model",
             "img_size": 64,
@@ -19,8 +19,8 @@
     },
     "default_model": "dabnn",
     "test_data": {
-        "default_dir": "/home/bruh/Documents/drone-crop/ML/BNN_NEW/test_data",
-        "sample_image": "/home/bruh/Documents/drone-crop/ML/BNN_NEW/test_image.jpg"
+        "default_dir": "../../BNN_NEW/test_data",
+        "sample_image": "../../BNN_NEW/test_image.jpg"
     },
     "output": {
         "default_json": "model_predictions.json"
