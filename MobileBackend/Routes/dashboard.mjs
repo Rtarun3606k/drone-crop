@@ -43,8 +43,13 @@ router.post(
   upload.single("imagesZip"),
   async (req, res) => {
     try {
-      const { batchName, cropType, imagesCount, defaultSetLang, metadata } =
-        req.body;
+      const {
+        batchName,
+        cropType,
+        imagesCount,
+        preferredLanguage: clientLanguage,
+        metadata,
+      } = req.body;
       const zipFile = req.file;
 
       // Use userId from token (not id)
@@ -95,7 +100,7 @@ router.post(
       }
 
       // Map language preference
-      const preferredLanguage = mapLocaleToLanguageEnum(defaultSetLang);
+      const preferredLanguage = mapLocaleToLanguageEnum(clientLanguage);
 
       // Create batch in database
       const batch = await prisma.batch.create({
