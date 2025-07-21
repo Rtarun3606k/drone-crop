@@ -31,7 +31,7 @@ def load_config(config_path=None):
         return {
             "models": {
                 "dabnn": {
-                    "path": "/home/bruh/Documents/drone-crop/ML/BNN_NEW/best_dabnn_model.pth",
+                    "path": "../../BNN_NEW/best_dabnn_model.pth",
                     "type": "DABNN",
                     "description": "Dual Attention Binary Neural Network"
                 }
@@ -523,12 +523,12 @@ def batch_predict(image_paths, model_path, num_threads=4, output_json_path=None)
 
 if __name__ == "__main__":
     # Updated to use the new DABNN model from BNN_NEW folder
-    image_path = "/home/bruh/Documents/drone-crop/ML/BNN_NEW/test_image.jpg"  # Update with actual test image path
-    model_path = "/home/bruh/Documents/drone-crop/ML/BNN_NEW/best_dabnn_model.pth"  # New DABNN model
+    image_path = "../../BNN_NEW/test_image.jpg"  # Update with actual test image path
+    model_path = "../../BNN_NEW/best_dabnn_model.pth"  # New DABNN model
     
     # For batch prediction, update paths as needed:
     # Directory containing images to process
-    image_dir = "/home/bruh/Documents/drone-crop/ML/BNN_NEW/test_data"  # Update with actual test data path
+    image_dir = "../../BNN_NEW/test_data"  # Update with actual test data path
     output_json = "dabnn_results.json"
     
     # Check if the new model exists, otherwise fall back to legacy model
@@ -536,7 +536,7 @@ if __name__ == "__main__":
         print(f"DABNN model not found at {model_path}")
         print("Falling back to legacy BNN model...")
         # Fallback to legacy model path (update this to your actual legacy model path)
-        model_path = "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"
+        # model_path = "../../BNN/optimized_bnn_plant_disease_64x64.pt"
     
     # Check if test directory exists, create sample test if needed
     if os.path.exists(image_dir):
