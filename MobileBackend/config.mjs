@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 4000;
 
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(cors("*"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

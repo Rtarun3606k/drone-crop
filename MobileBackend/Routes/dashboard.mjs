@@ -3,6 +3,9 @@ import multer from "multer";
 import { storeZip } from "../lib/storage.mjs";
 import { verifyToken } from "../middleware/midddleware.mjs";
 import { prisma } from "../config.mjs";
+import path from "path";
+import fs from "fs";
+import { refreshTokenIfNeeded } from "../lib/jwtTokens.mjs";
 
 const router = Router();
 
@@ -232,6 +235,7 @@ router.get("/batch/:id", verifyToken, async (req, res) => {
         error: "Batch not found or you don't have permission to view it.",
       });
     }
+    // console.log("✅ Fetched batch details:", batch);
 
     return res.status(200).json({
       batch,
@@ -244,5 +248,71 @@ router.get("/batch/:id", verifyToken, async (req, res) => {
     });
   }
 });
+
+// In your dashboard routes file (e.g., /routes/dashboard.js)
+// Make sure to import 'path' and 'fs' at the top of the file
+
+// ... your other routes
+
+// --- Secure Audio Streaming Route ---
+// This route streams an audio file associated with a specific batch ID.
+router.get("/audio/:batchId/:userId", async (req, res) => {
+  console.log("🔒 Verifying token and streaming audio...");
+
+  try {
+    const { batchId } = req.params;
+    const { userId } = req.params; // Assuming verifyToken adds user object to req
+    console.log("🔍 Streaming audio for batch ID:", batchId);
+
+    // 1. Find the batch in the database
+    const batch = await prisma.batch.findUnique({
+      where: { id: batchId },
+    });
+
+    // 2. Security Check: Ensure batch exists and belongs to the logged-in user
+    if (!batch) {
+      return res.status(404).json({ error: "Batch not found." });
+    }
+    if (batch.userId !== userId) {
+      return res
+        .status(403)
+        .json({ error: "Forbidden: You do not have access to this batch." });
+    }
+
+    // 3. Check if there is an audioURL to serve
+    if (!batch.audioURL) {
+      return res
+        .status(404)
+        .json({ error: "No audio file associated with this batch." });
+    }
+
+    // 4. Construct the absolute file path
+    // IMPORTANT: This path is constructed relative to your project structure.
+    // It goes up one level from MobileBackend to the drone-crop root, then into public.
+    const audioFilePath =
+      "/home/dragoon/coding/drone-crop/public" + batch.audioURL; // Go up from /MobileBackend/routes to /drone-crop, then into /public
+    // Append the path from DB, e.g., /audioFiles/xyz.mp3
+
+    // A more robust way if your script's location might change:
+    // const projectRoot = path.resolve(__dirname, '../../../');
+    // const audioFilePath = path.join(projectRoot, 'public', batch.audioURL);
+
+    // 5. Check if the file exists on the server's disk
+    if (!fs.existsSync(audioFilePath)) {
+      console.error(`File not found at path: ${audioFilePath}`);
+      return res.status(404).json({ error: "Audio file not found on server." });
+    }
+
+    // 6. Stream the file to the client
+    res.setHeader("Content-Type", "audio/mpeg");
+    const stream = fs.createReadStream(audioFilePath);
+    stream.pipe(res);
+  } catch (error) {
+    console.error("Error streaming audio file:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// ... rest of your router exports
 
 export default router;
