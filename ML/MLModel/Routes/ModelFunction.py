@@ -55,7 +55,7 @@ def ModelRunner():
             
 #              model_path = "/home/bruh/Documents/drone-crop/ML/BNN/optimized_bnn_plant_disease_64x64.pt"            
 #             output_json = f"/home/bruh/Documents/drone-crop/predectionResults/{batch['sessionId']}.json"
-            model_path = os.getenv('model_path')            
+            model_path = "/home/dragoon/coding/drone-crop/ML/BNN_NEW/best_dabnn_model.pth"            
             output_json = f"{os.getenv('output_json')}{batch['sessionId']}.json"
 
 

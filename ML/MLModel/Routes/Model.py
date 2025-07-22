@@ -523,7 +523,8 @@ def batch_predict(image_paths, model_path, num_threads=4, output_json_path=None)
 
 if __name__ == "__main__":
     # Updated to use the new DABNN model from BNN_NEW folder
-    image_path = "../../BNN_NEW/test_image.jpg"  # Update with actual test image path
+    # image_path = "../../BNN_NEW/test_image.jpg"  # Update with actual test image path
+    image_path = "/home/dragoon/Downloads/testset/healthy/image_012.jpg"  # Update with actual test image path
     model_path = "../../BNN_NEW/best_dabnn_model.pth"  # New DABNN model
     
     # For batch prediction, update paths as needed:
