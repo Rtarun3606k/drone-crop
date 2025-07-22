@@ -6,7 +6,7 @@ import atexit
 import signal
 import sys
 import logging
-from CornJob.CornJobFunction import Job_generate_speech
+from CornJob.CornJobFunction import job_generate_speech_and_report
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -31,7 +31,7 @@ scheduler = BackgroundScheduler(
 
 # Schedule your ML runner every 10 minutes
 scheduler.add_job(
-    Job_generate_speech,
+    job_generate_speech_and_report,
     trigger='interval',
     # minutes=10,
     seconds=5,

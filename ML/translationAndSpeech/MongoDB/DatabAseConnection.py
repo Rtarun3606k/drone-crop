@@ -84,7 +84,7 @@ def getAllIncompleteBatches():
         return []
     
     
-def updatebatchStatus(batch_id, status,audioURL=None):
+def updatebatchStatus(batch_id, status,audioURL=None,pdfURL=None):
     """
     Update the status of a batch in the 'Batch' collection.
     
@@ -99,7 +99,7 @@ def updatebatchStatus(batch_id, status,audioURL=None):
             )
         result = db['Batch'].update_one(
             {"_id": ObjectId(batch_id)},
-            {"$set": {"isAudioCompleted": True, "hasExecutionFailed": False,'audioURL':audioURL if audioURL else None}}
+            {"$set": {"isAudioCompleted": True, "hasExecutionFailed": False,'audioURL':audioURL if audioURL else None , 'pdfURL':pdfURL if pdfURL else None}}
         )
         return result.modified_count
     except Exception as e:
