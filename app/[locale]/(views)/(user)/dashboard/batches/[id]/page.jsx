@@ -551,12 +551,16 @@ export default function BatchDetailPage({ params }) {
                   {batch &&
                     batch.descriptions &&
                     batch.descriptions.length > 0 && (
-                      <button
-                        onClick={generatePDFParent}
-                        className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white transition-colors"
+                      <a
+                        href={batch.pdfURL}
+                        target="_blank"
+                        className="text-blue-400 hover:underline"
                       >
-                        <FiFilePlus className="mr-2" /> Generate PDF Report
-                      </button>
+                        <button className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-white transition-colors">
+                          <FiFilePlus className="mr-2" /> Generate PDF Report
+                        </button>
+                        {/* {batch.pdfURL ? "Available" : "Not Available"} */}
+                      </a>
                     )}
                 </div>
 

@@ -39,6 +39,9 @@ yarn-error.log*
 
 public/shared/*
 public/audioFiles/*
+public/pdfReports/*
+
+
 
 
 # typescript
