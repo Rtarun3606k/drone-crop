@@ -7,6 +7,9 @@ import { City, State } from "country-state-city";
 import ProtectedRoute from "@/app/components/ProtectedRoute";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 
+import AleartBox, { useAlert } from "@/app/components/AleartBox";
+import { FiClipboard } from "react-icons/fi";
+
 // import { State, City } from "country-state-cities";
 
 export default function ProfilePage() {
@@ -29,6 +32,15 @@ export default function ProfilePage() {
 }
 
 function ProfileContent({ session }) {
+  const {
+    alertData,
+    alertSuccess,
+    alertError,
+    alertWarning,
+    alertInfo,
+    closeAlert,
+  } = useAlert();
+  const [isCopied, setIsCopied] = useState(false);
   if (!session) return null;
 
   const user = session.user;
@@ -72,6 +84,28 @@ function ProfileContent({ session }) {
       alert("Profile updated!");
     }
   };
+  const handleCopyClick = () => {
+    navigator.clipboard
+      .writeText(user.mobileId || "No Mobile ID")
+      .then(() => {
+        // If the text is successfully copied, we set the state to true
+        setIsCopied(true);
+        // And after 2 seconds, we set it back to false
+        alertSuccess(user.mobileId + " Mobile ID copied to clipboard!", {
+          duration: 2000,
+        });
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+        alertError("Failed to copy Mobile ID. Please try again.", {
+          duration: 2000,
+        });
+        setIsCopied(false);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-transparent flex flex-col items-center py-24">
@@ -110,6 +144,16 @@ function ProfileContent({ session }) {
                 <span className="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-sm rounded-full">
                   Google Account
                 </span>
+                <span
+                  className="px-3 py-1 bg-green-100 text-blue-800 dark:bg-blue-600 dark:text-blue-200 text-sm rounded-full flex items-center cursor-pointer hover:bg-green-200 dark:hover:bg-blue-700 transition-colors duration-200 gap-1.5"
+                  onClick={() => {
+                    handleCopyClick();
+                    // alertSuccess("Mobile ID copied to clipboard!");
+                  }}
+                >
+                  UserID: {user.mobileId || "No Mobile ID"}
+                  <FiClipboard />
+                </span>
                 {user.role && (
                   <span
                     className={`px-3 py-1 text-sm rounded-full ${
@@ -127,6 +171,16 @@ function ProfileContent({ session }) {
               </div>
             </div>
           </div>
+          {alertData && (
+            <AleartBox
+              message={alertData.message}
+              type={alertData.type}
+              isVisible={alertData.isVisible}
+              onClose={closeAlert}
+              duration={alertData.duration}
+              showCloseButton={alertData.showCloseButton}
+            />
+          )}
         </div>
 
         {/* Session Manager Component */}

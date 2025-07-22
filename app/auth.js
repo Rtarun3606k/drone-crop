@@ -3,15 +3,12 @@ import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./lib/prisma-server";
 
-// Check if we have a valid Prisma instance
 const usingPrismaAdapter = !!prisma && typeof prisma.user !== "undefined";
 
-// Standard NextAuth configuration with dynamic adapter selection
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: usingPrismaAdapter ? PrismaAdapter(prisma) : undefined,
-  // debug: process.env.NODE_ENV !== "production",
   debug: false,
-  trustHost: true, // Required for production deployment
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -21,27 +18,36 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: {
     strategy: "database",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60, // 24 hours
-  },
-  cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
   },
   callbacks: {
     async session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
-        session.user.role = user.role;
+        session.user.role = user.role; // Assuming 'role' is on your user model
       }
       return session;
+    },
+    // The signIn callback is no longer needed for this logic.
+    // You can keep it if you have other authorization checks.
+    async signIn() {
+      return true;
+    },
+  },
+  // Add the events callback here
+  events: {
+    async createUser({ user }) {
+      // This event fires right after a new user is created in the database.
+      // 'user.id' here is the final, correct MongoDB ObjectId.
+      if (user.id && user.email) {
+        const emailPrefix = user.email.slice(0, 4);
+        const idSuffix = user.id.slice(-4);
+        const mobileId = emailPrefix + idSuffix;
+
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { mobileId: mobileId },
+        });
+      }
     },
   },
   pages: {

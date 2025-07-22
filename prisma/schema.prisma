@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASEURL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -25,6 +25,10 @@ model User {
   defaultLanguage Language @default(En)
   timezone        String?  @default("UTC")
   metadata        Json? // For additional user metadata
+
+  mobileId       String? @unique // Unique mobile identifier
+  mobileToken    String? // Token for mobile app authentication
+  mobilePassword String? // Password for mobile app authentication
 
   accounts Account[]
   sessions Session[]

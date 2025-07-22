@@ -138,15 +138,15 @@ export default function BatchesPage() {
 
   // Get status label and color
   const getBatchStatus = (batch) => {
-    if (batch.execFailed) {
+    if (batch.hasExecutionFailed) {
       return { label: "Failed", color: "bg-red-600" };
     } else if (
-      batch.isCompletedModel &&
-      batch.isCompletedDesc &&
-      batch.isCompletedAudio
+      batch.isModelCompleted &&
+      batch.isDescCompleted &&
+      batch.isAudioCompleted
     ) {
       return { label: "Completed", color: "bg-green-600" };
-    } else if (batch.isCompletedModel) {
+    } else if (batch.isModelCompleted) {
       return { label: "Processing", color: "bg-yellow-600" };
     } else {
       return { label: "Pending", color: "bg-gray-600" };
