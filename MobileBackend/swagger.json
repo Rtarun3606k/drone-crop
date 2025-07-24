@@ -1,0 +1,449 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Drone Crop Mobile Backend API",
+        "version": "1.0.0",
+        "description": "API documentation for Drone Crop Mobile Backend."
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4000"
+        }
+    ],
+    "paths": {
+        "/api/auth/health": {
+            "get": {
+                "summary": "Health check",
+                "description": "Returns API health status.",
+                "responses": {
+                    "200": {
+                        "description": "API is running"
+                    }
+                }
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "User login",
+                "description": "Login with email and mobileId.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "mobileId": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "mobileId"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful, returns JWT token."
+                    },
+                    "400": {
+                        "description": "Missing required fields."
+                    },
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/api/dashboard/upload-batch": {
+            "post": {
+                "summary": "Upload a batch ZIP file",
+                "description": "Upload a ZIP file and create a batch entry.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "batchName": {
+                                        "type": "string"
+                                    },
+                                    "cropType": {
+                                        "type": "string"
+                                    },
+                                    "imagesCount": {
+                                        "type": "integer"
+                                    },
+                                    "imagesZip": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "metadata": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "batchName",
+                                    "cropType",
+                                    "imagesZip"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Batch uploaded successfully."
+                    },
+                    "400": {
+                        "description": "Bad request."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/api/dashboard/batches": {
+            "get": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "Get all batches for the user",
+                "description": "Returns all batches for the authenticated user.",
+                "responses": {
+                    "200": {
+                        "description": "List of batches."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/api/dashboard/batch/{id}": {
+            "get": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "Get batch details",
+                "description": "Returns details for a specific batch.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Batch details."
+                    },
+                    "400": {
+                        "description": "Invalid batch ID format."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "404": {
+                        "description": "Batch not found."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/api/user/get-user": {
+            "get": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "Get user details",
+                "description": "Returns the authenticated user's details.",
+                "responses": {
+                    "200": {
+                        "description": "User details."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/api/user/set-home-location": {
+            "post": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "Set or update home location",
+                "description": "Set or update the user's home location.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "lat": {
+                                        "type": "number"
+                                    },
+                                    "lng": {
+                                        "type": "number"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "coordinates": {
+                                        "type": "object",
+                                        "properties": {
+                                            "latitude": {
+                                                "type": "number"
+                                            },
+                                            "longitude": {
+                                                "type": "number"
+                                            },
+                                            "projected": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Home location set successfully."
+                    },
+                    "400": {
+                        "description": "Bad request."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            },
+            "get": {
+                "security": [ { "bearerAuth": [] } ],
+                "summary": "Get home location",
+                "description": "Returns the user's home location.",
+                "responses": {
+                    "200": {
+                        "description": "Home location details."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Enter JWT Bearer token in the format: Bearer <token>"
+            }
+        },
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "emailVerified": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "role": {
+                        "type": "string",
+                        "enum": [
+                            "USER",
+                            "ADMIN"
+                        ]
+                    },
+                    "defaultLanguage": {
+                        "$ref": "#/components/schemas/Language"
+                    },
+                    "timezone": {
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "type": "object"
+                    },
+                    "mobileId": {
+                        "type": "string"
+                    },
+                    "mobileToken": {
+                        "type": "string"
+                    },
+                    "mobilePassword": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Batch": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "cropType": {
+                        "type": "string"
+                    },
+                    "imagesZipURL": {
+                        "type": "string"
+                    },
+                    "preferredLanguage": {
+                        "$ref": "#/components/schemas/Language"
+                    },
+                    "isModelCompleted": {
+                        "type": "boolean"
+                    },
+                    "isDescCompleted": {
+                        "type": "boolean"
+                    },
+                    "isAudioCompleted": {
+                        "type": "boolean"
+                    },
+                    "hasExecutionFailed": {
+                        "type": "boolean"
+                    },
+                    "imagesCount": {
+                        "type": "integer"
+                    },
+                    "sessionId": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "audioURL": {
+                        "type": "string"
+                    },
+                    "pdfURL": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "userId": {
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "type": "object"
+                    }
+                }
+            },
+            "Description": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "batchId": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "$ref": "#/components/schemas/Language"
+                    },
+                    "longDescription": {
+                        "type": "string"
+                    },
+                    "shortDescription": {
+                        "type": "string"
+                    },
+                    "wordCount": {
+                        "type": "integer"
+                    },
+                    "confidence": {
+                        "type": "number"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Language": {
+                "type": "string",
+                "enum": [
+                    "En",
+                    "Ta",
+                    "Hi",
+                    "Te",
+                    "Ml",
+                    "Kn"
+                ]
+            },
+            "Role": {
+                "type": "string",
+                "enum": [
+                    "USER",
+                    "ADMIN"
+                ]
+            }
+        }
+    }
+}
