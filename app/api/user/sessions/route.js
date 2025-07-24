@@ -97,3 +97,81 @@ export async function DELETE(request) {
     );
   }
 }
+
+/**
+ * @swagger
+ * /user/profile:
+ *   get:
+ *     summary: Get all active sessions and user role
+ *     description: Returns a list of active sessions for the authenticated user, including the user's role.
+ *     tags:
+ *       - User
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved sessions
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 sessions:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       sessionToken:
+ *                         type: string
+ *                       expires:
+ *                         type: string
+ *                         format: date-time
+ *                       lastUsed:
+ *                         type: string
+ *                         format: date-time
+ *                       current:
+ *                         type: boolean
+ *                 userRole:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Failed to fetch sessions
+ *
+ *   delete:
+ *     summary: Terminate a user session
+ *     description: Delete a specific session or all sessions except the current one for the authenticated user.
+ *     tags:
+ *       - User
+ *     parameters:
+ *       - in: query
+ *         name: sessionToken
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Token of the session to delete
+ *       - in: query
+ *         name: all
+ *         schema:
+ *           type: boolean
+ *         required: false
+ *         description: Whether to delete all other sessions
+ *     responses:
+ *       200:
+ *         description: Successfully deleted session(s)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *       400:
+ *         description: Invalid request or cannot delete current session
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Failed to delete session
+ */

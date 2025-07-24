@@ -66,3 +66,89 @@ export async function POST(request) {
     );
   }
 }
+
+/**
+ * @swagger
+ * /user/profile:
+ *   get:
+ *     summary: Get the authenticated user's profile
+ *     description: Retrieves the profile of the currently authenticated user.
+ *     tags:
+ *       - User
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successful retrieval of user profile
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 metadata:
+ *                   type: object
+ *       401:
+ *         description: Unauthorized - User not authenticated
+ *       500:
+ *         description: Internal Server Error
+ *
+ *   post:
+ *     summary: Get or update the authenticated user's profile
+ *     description: >
+ *       If `where.email` is provided, returns the user profile for that email (only if it matches the authenticated user).
+ *       If `data` is provided, updates the user's profile.
+ *     tags:
+ *       - User
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             oneOf:
+ *               - type: object
+ *                 properties:
+ *                   where:
+ *                     type: object
+ *                     properties:
+ *                       email:
+ *                         type: string
+ *               - type: object
+ *                 properties:
+ *                   data:
+ *                     type: object
+ *                     properties:
+ *                       metadata:
+ *                         type: object
+ *     responses:
+ *       200:
+ *         description: Successful operation (fetch or update)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 metadata:
+ *                   type: object
+ *       401:
+ *         description: Unauthorized - User not authenticated
+ *       403:
+ *         description: Forbidden - Trying to access another user's email
+ *       400:
+ *         description: Invalid request format
+ *       500:
+ *         description: Internal Server Error
+ */

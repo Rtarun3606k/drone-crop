@@ -2,6 +2,41 @@ import { auth } from "@/app/auth";
 import { prisma } from "@/app/lib/prisma-server";
 import { NextResponse } from "next/server";
 
+/**
+ * @swagger
+ * /api/batches:
+ *   get:
+ *     summary: Get all batches for the authenticated user
+ *     tags:
+ *       - Batches
+ *     security:
+ *       - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: A list of batches
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 batches:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *       401:
+ *         description: Unauthorized. Please log in.
+ *       500:
+ *         description: Failed to fetch batches
+ */
+
 export async function GET(request) {
   try {
     const session = await auth();

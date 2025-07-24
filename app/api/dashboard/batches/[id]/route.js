@@ -2,6 +2,59 @@ import { auth } from "@/app/auth";
 import { prisma } from "@/app/lib/prisma-server";
 import { NextResponse } from "next/server";
 
+/**
+ * @swagger
+ * /api/batches/{id}:
+ *   get:
+ *     summary: Get a specific batch by ID with audio files and descriptions
+ *     tags:
+ *       - Batches
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ *           pattern: "^[0-9a-fA-F]{24}$"
+ *         description: The ID of the batch (must be a valid 24-character hex string)
+ *     security:
+ *       - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Batch details with audio files and descriptions
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 batch:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                     name:
+ *                       type: string
+ *                     createdAt:
+ *                       type: string
+ *                       format: date-time
+ *                     audioFiles:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                     descriptions:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *       400:
+ *         description: Invalid batch ID format
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Batch not found or access denied
+ *       500:
+ *         description: Server error
+ */
+
 export async function GET(request, { params }) {
   try {
     const session = await auth();

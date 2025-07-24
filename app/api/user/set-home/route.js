@@ -155,3 +155,101 @@ export async function GET(request) {
     );
   }
 }
+
+/**
+ * @swagger
+ * /user/set-home:
+ *   post:
+ *     summary: Set user's home location
+ *     description: Allows an authenticated user to set their home location using coordinates and an address. Supports both old and new formats.
+ *     tags:
+ *       - User
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             oneOf:
+ *               - type: object
+ *                 required: [lat, lng, address]
+ *                 properties:
+ *                   lat:
+ *                     type: number
+ *                     format: float
+ *                   lng:
+ *                     type: number
+ *                     format: float
+ *                   address:
+ *                     type: string
+ *               - type: object
+ *                 required: [coordinates, address]
+ *                 properties:
+ *                   coordinates:
+ *                     type: object
+ *                     required: [latitude, longitude]
+ *                     properties:
+ *                       latitude:
+ *                         type: number
+ *                       longitude:
+ *                         type: number
+ *                       projected:
+ *                         type: object
+ *                         nullable: true
+ *                   address:
+ *                     type: string
+ *     responses:
+ *       200:
+ *         description: Home location set successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                 homeLocation:
+ *                   type: object
+ *       400:
+ *         description: Invalid input or missing required fields
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Server error while setting home location
+ *
+ *   get:
+ *     summary: Get user's home location
+ *     description: Returns the current home location of the authenticated user.
+ *     tags:
+ *       - User
+ *     responses:
+ *       200:
+ *         description: Successfully fetched home location
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 coordinates:
+ *                   type: object
+ *                   nullable: true
+ *                   properties:
+ *                     lat:
+ *                       type: number
+ *                     lng:
+ *                       type: number
+ *                     address:
+ *                       type: string
+ *                 homeLocation:
+ *                   type: object
+ *                   nullable: true
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Failed to fetch home location
+ */

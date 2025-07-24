@@ -17,6 +17,63 @@ const mapLocaleToLanguageEnum = (locale) => {
 };
 
 // When creating your batch:
+/**
+ * @swagger
+ * /api/batches:
+ *   post:
+ *     summary: Upload a ZIP of images and create a new batch
+ *     tags:
+ *       - Batches
+ *     consumes:
+ *       - multipart/form-data
+ *     security:
+ *       - SessionCookieAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - imagesZip
+ *               - batchName
+ *               - cropType
+ *               - imagesCount
+ *               - defaultSetLang
+ *             properties:
+ *               imagesZip:
+ *                 type: string
+ *                 format: binary
+ *               batchName:
+ *                 type: string
+ *               cropType:
+ *                 type: string
+ *               imagesCount:
+ *                 type: integer
+ *               defaultSetLang:
+ *                 type: string
+ *                 enum: [en, ta, hi, te, ml, kn]
+ *               metadata:
+ *                 type: string
+ *                 description: JSON string containing optional metadata
+ *     responses:
+ *       200:
+ *         description: Batch created and file uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Upload received!
+ *       400:
+ *         description: Missing or invalid ZIP file
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Upload or database failure
+ */
 
 export async function POST(request) {
   const session = await auth();

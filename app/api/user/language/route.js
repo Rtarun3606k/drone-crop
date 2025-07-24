@@ -2,6 +2,80 @@ import { auth } from "@/app/auth";
 import { prisma } from "@/app/lib/prisma-server";
 import { NextResponse } from "next/server";
 
+/**
+ * @swagger
+ * /api/user/language:
+ *   get:
+ *     summary: Get the authenticated user's default language preference
+ *     tags:
+ *       - User
+ *     security:
+ *       - SessionCookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Language preference retrieved
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 defaultLanguage:
+ *                   type: string
+ *                   example: En
+ *                 locale:
+ *                   type: string
+ *                   example: en
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Failed to fetch language preference
+ *
+ *   post:
+ *     summary: Update the authenticated user's default language preference
+ *     tags:
+ *       - User
+ *     security:
+ *       - SessionCookieAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - locale
+ *             properties:
+ *               locale:
+ *                 type: string
+ *                 enum: [en, ta, hi, te, ml, kn]
+ *                 example: ta
+ *     responses:
+ *       200:
+ *         description: Language preference updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                 defaultLanguage:
+ *                   type: string
+ *       400:
+ *         description: Missing locale
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Failed to update language preference
+ */
+
 // Map locale codes to Language enum values
 const mapLocaleToLanguageEnum = (locale) => {
   const mapping = {

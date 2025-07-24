@@ -92,6 +92,7 @@ model Batch {
   // Legacy fields
   description String? @db.String
   audioURL    String? @db.String
+  pdfURL      String? @db.String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
